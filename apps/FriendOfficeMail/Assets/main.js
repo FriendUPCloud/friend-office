@@ -18,7 +18,6 @@ Application.run = function( msg )
 	{
 		if( e == 'ok' && d && d[0].Data )
 		{
-			console.log( 'Here: ', d );
 			Application.credentials = d[0].Data;
 		}
 		else
@@ -75,10 +74,9 @@ window.addEventListener( 'message', function( msg )
 		{
 			if( e == 'ok' )
 			{
-				//console.log('User creds saved');
 				ge( 'MainFrame' ).style.opacity = 1;
-				document.body.removeChild( ge( 'Login' ) );
 				document.body.classList.remove( 'Loading' );
+				document.body.removeChild( ge( 'Login' ) );
 			}
 		} );
 	}
