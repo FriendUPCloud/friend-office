@@ -10,8 +10,24 @@
 *                                                                              *
 *****************************************************************************©*/
 
+Application.credentials = false;
+
 Application.run = function( msg )
 {
+	Application.keyData.get( function( e, d )
+	{
+		if( e == 'ok' && d && d[0].Data )
+		{
+			console.log( 'Here: ', d );
+			Application.credentials = d[0].Data;
+		}
+		else
+		{
+			Application.credentials = false;
+		}
+		window.epat.checkSettings();
+	} );
+	
 	ge( 'MainFrame' ).style.opacity = 0;
 }
 
@@ -28,6 +44,8 @@ window.addEventListener( 'message', function( msg )
 	
 	if( message.command == 'login_with_friend' )
 	{
+		console.log( 'Our credentials: ', Application.credentials );
+		
 		ge( 'MainFrame' ).style.opacity = 0;
 		let d = ge( 'Login' );
 		if( !d ) d = document.createElement( 'div' );
@@ -42,8 +60,15 @@ window.addEventListener( 'message', function( msg )
 	}
 	else if( message.command == 'register_with_friend' )
 	{
-		ge( 'MainFrame' ).style.opacity = 1;
-		document.body.removeChild( ge( 'Login' ) );
+		Application.keyData.save( 'FriendOfficeMail', Application.credentials, false, function( e, d )
+		{
+			if( e == 'ok' )
+			{
+				//console.log('User creds saved');
+				ge( 'MainFrame' ).style.opacity = 1;
+				document.body.removeChild( ge( 'Login' ) );
+			}
+		} );
 	}
 } );
 
