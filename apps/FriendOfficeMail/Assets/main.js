@@ -78,6 +78,7 @@ window.addEventListener( 'message', function( msg )
 				//console.log('User creds saved');
 				ge( 'MainFrame' ).style.opacity = 1;
 				document.body.removeChild( ge( 'Login' ) );
+				document.body.classList.remove( 'Loading' );
 			}
 		} );
 	}
@@ -85,6 +86,7 @@ window.addEventListener( 'message', function( msg )
 
 function executeLogin( u, p )
 {
+	document.body.classList.add( 'Loading' );
 	ge( 'MainFrame' ).contentWindow.postMessage( {
 		command: 'login',
 		username: u ? u : ge( 'loginUser' ).value,
