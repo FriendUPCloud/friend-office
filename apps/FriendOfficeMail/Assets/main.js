@@ -12,12 +12,13 @@
 
 Application.run = function( msg )
 {
+	ge( 'MainFrame' ).contentWindow.postMessage( { 'command': 'register_friend' }, '*' );
 }
 
 window.addEventListener( 'message', function( msg )
 {
-	console.log( 'We received a message!', msg );
+	console.log( 'Friend received a message!', msg );
 } );
 
-ge( 'MainFrame' ).postMessage( { 'testing': 'yes' }, '*' );
+
 
