@@ -12,6 +12,11 @@
 
 Application.run = function( msg )
 {
+	
+}
+
+function initMainFrame()
+{
 	ge( 'MainFrame' ).contentWindow.postMessage( { 'command': 'register_friend' }, '*' );
 }
 
