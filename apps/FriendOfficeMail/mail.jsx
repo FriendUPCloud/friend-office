@@ -12,17 +12,55 @@
 
 Application.run = function( msg )
 {
+	this.setApplicationName( 'Friend Mail' );
+
+	// Open the mail window
 	let v = new View( {
 		title: 'Friend Mail',
 		width: 1280,
 		height: 800
 	} );
 	
+	// Setup static menu items
+	v.setMenuItems( [
+		{
+			name: 'File',
+			items: [
+				{
+					name: 'Quit',
+					command: 'quit'
+				}
+			]
+		},
+		{
+			name: 'Navigation',
+			items: [
+				{
+					name: 'Inbox',
+					command: 'mail_inbox'
+				},
+				{
+					name: 'Drafts',
+					command: 'mail_draft'
+				},
+				{
+					name: 'Sent',
+					command: 'mail_sent'
+				},
+				{
+					name: 'Trash',
+					command: 'mail_trash'
+				}
+			]
+		}
+	] );
+	
 	v.onClose = function()
 	{
 		Application.quit();
 	}
 	
+	// Set the main template
 	let f = new File( 'Progdir:Assets/main.html' );
 	f.replacements = {
 		serverName: 'https://community.sky.computer/'
