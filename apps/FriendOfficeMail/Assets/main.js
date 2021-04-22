@@ -59,6 +59,13 @@ window.addEventListener( 'message', function( msg )
 	}
 	else if( message.command == 'register_with_friend' )
 	{
+		if( !Application.credentials )
+		{
+			Application.credentials = {
+				username: ge( 'loginUser' ).value,
+				password: ge( 'loginPass' ).value
+			};
+		}
 		Application.keyData.save( 'FriendOfficeMail', Application.credentials, false, function( e, d )
 		{
 			if( e == 'ok' )
