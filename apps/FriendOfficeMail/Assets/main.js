@@ -42,6 +42,7 @@ window.addEventListener( 'message', function( msg )
 	else if( message.command == 'register_with_friend' )
 	{
 		ge( 'MainFrame' ).style.opacity = 1;
+		document.body.removeChild( ge( 'Login' ) );
 	}
 } );
 
