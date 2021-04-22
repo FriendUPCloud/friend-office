@@ -43,19 +43,24 @@ window.addEventListener( 'message', function( msg )
 	
 	if( message.command == 'login_with_friend' )
 	{
-		console.log( 'Our credentials: ', Application.credentials );
-		
 		ge( 'MainFrame' ).style.opacity = 0;
-		let d = ge( 'Login' );
-		if( !d ) d = document.createElement( 'div' );
-		d.id = 'Login';
-		let f = new File( 'Progdir:Assets/login.html' );
-		f.onLoad = function( data )
+		if( Application.credentials )
 		{
-			d.innerHTML = data;
-			document.body.appendChild( d );
+			executeLogin( Application.credentials.username, Application.credentials.password );
 		}
-		f.load();
+		else
+		{	
+			let d = ge( 'Login' );
+			if( !d ) d = document.createElement( 'div' );
+			d.id = 'Login';
+			let f = new File( 'Progdir:Assets/login.html' );
+			f.onLoad = function( data )
+			{
+				d.innerHTML = data;
+				document.body.appendChild( d );
+			}
+			f.load();
+		}
 	}
 	else if( message.command == 'register_with_friend' )
 	{
@@ -78,12 +83,12 @@ window.addEventListener( 'message', function( msg )
 	}
 } );
 
-function executeLogin()
+function executeLogin( u, p )
 {
 	ge( 'MainFrame' ).contentWindow.postMessage( {
 		command: 'login',
-		username: ge( 'loginUser' ).value,
-		password: ge( 'loginPass' ).value
+		username: u ? u : ge( 'loginUser' ).value,
+		password: p ? p : ge( 'loginPass' ).value
 	}, '*' );
 }
 
