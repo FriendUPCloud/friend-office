@@ -25,7 +25,6 @@ Application.run = function( msg )
 		{
 			Application.credentials = false;
 		}
-		window.epat.checkSettings();
 	} );
 	
 	ge( 'MainFrame' ).style.opacity = 0;
