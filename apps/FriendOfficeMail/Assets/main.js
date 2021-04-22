@@ -19,3 +19,5 @@ window.addEventListener( 'message', function( msg )
 	console.log( 'We received a message!', msg );
 } );
 
+ge( 'MainFrame' ).postMessage( { 'testing': 'yes' }, '*' );
+
