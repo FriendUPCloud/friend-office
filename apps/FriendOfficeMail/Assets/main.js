@@ -14,8 +14,8 @@ Application.run = function( msg )
 {
 }
 
-window.onmessage = function( msg )
+window.addEventListener( 'message', function( msg )
 {
 	console.log( 'We received a message!', msg );
-}
+} );
 
