@@ -24,6 +24,9 @@ Application.run = function( msg )
 	}
 	
 	let f = new File( 'Progdir:Assets/main.html' );
+	f.replacements = {
+		serverName: 'https://community.sky.computer/'
+	};
 	f.i18n();
 	f.onLoad = function( data )
 	{
@@ -31,5 +34,4 @@ Application.run = function( msg )
 	}
 	f.load();
 }
-
 
