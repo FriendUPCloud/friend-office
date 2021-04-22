@@ -12,24 +12,5 @@
 
 Application.run = function( msg )
 {
-	let v = new View( {
-		title: 'Friend Mail',
-		width: 1280,
-		height: 800
-	} );
-	
-	v.onClose = function()
-	{
-		Application.quit();
-	}
-	
-	let f = new File( 'Progdir:Assets/main.html' );
-	f.i18n();
-	f.onLoad = function( data )
-	{
-		v.setContent( data );
-	}
-	f.load();
 }
-
 
