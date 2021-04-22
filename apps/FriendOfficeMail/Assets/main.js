@@ -28,6 +28,7 @@ window.addEventListener( 'message', function( msg )
 	
 	if( message.command == 'login_with_friend' )
 	{
+		ge( 'MainFrame' ).style.opacity = 0;
 		let d = ge( 'Login' );
 		if( !d ) d = document.createElement( 'div' );
 		d.id = 'Login';
