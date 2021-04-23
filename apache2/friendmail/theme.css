@@ -7,20 +7,21 @@
 			font-family: 'Assistant';
 			font-size: 14px;
 		}
-	        .studio-top-logo
-        	{
-	                display: none;
-        	}
-
-		#Colors
-		.studio-top-panel.mainPageLayout
-		{
-			background-color: #2980b9; 
-		}
-		.menu-main-button.middle.create-new
-		{
-			background-color: #149888;
-		}
+		
+        /*.studio-top-logo
+    	{
+                display: none;
+    	}*/
+    	
+    	.studio-top-panel.mainPageLayout
+    	{
+    		background-color: #20374D;
+    	}
+    	
+    	.top-item-box.gift
+    	{
+    		display: none;
+    	}
 
 		.menu-item-label.outer-text.text-overflow.support-link
 		{
