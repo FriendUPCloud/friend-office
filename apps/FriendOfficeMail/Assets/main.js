@@ -43,7 +43,7 @@ window.addEventListener( 'message', function( msg )
 	if( message.command == 'login_with_friend' )
 	{
 		ge( 'MainFrame' ).style.opacity = 0;
-		if( Application.credentials )
+		if( Application.credentials && Application.credentials.username )
 		{
 			executeLogin( Application.credentials.username, Application.credentials.password );
 		}
