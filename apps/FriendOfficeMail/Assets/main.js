@@ -40,7 +40,7 @@ window.addEventListener( 'message', function( msg )
 	let message = msg.data;
 	if( !message.command ) return;
 	
-	if( message.command == 'login_with_friend' )
+	function loginForm()
 	{
 		ge( 'MainFrame' ).style.opacity = 0;
 		if( Application.credentials && Application.credentials.username )
@@ -61,14 +61,26 @@ window.addEventListener( 'message', function( msg )
 			f.load();
 		}
 	}
+	
+	if( message.command == 'login_with_friend' )
+	{
+		loginForm();
+	}
 	else if( message.command == 'register_with_friend' )
 	{
 		if( !Application.credentials )
 		{
-			Application.credentials = {
-				username: ge( 'loginUser' ).value,
-				password: ge( 'loginPass' ).value
-			};
+			if( !ge( 'loginUser' ) )
+			{
+				return loginForm();
+			}
+			else
+			{
+				Application.credentials = {
+					username: ge( 'loginUser' ).value,
+					password: ge( 'loginPass' ).value
+				};
+			}
 		}
 		Application.keyData.save( 'FriendOfficeMail', Application.credentials, false, function( e, d )
 		{
