@@ -104,5 +104,3 @@ function executeLogin( u, p )
 	}, '*' );
 }
 
-
-
