@@ -17,7 +17,10 @@
 			a.innerHTML = 'Add Friend OS file';
 			a.id = 'FriendUploader_1';
 			a.onclick = function( e ) {
-				window.parent.postMessage( { command: 'friend_file_upload' }, '*' );
+				window.parent.postMessage( { 
+					command: 'friend_file_upload',
+					targetElement: 'fileupload'
+				}, '*' );
 				e.stopPropagation();
 			}
 			uploadDiv.insertBefore( uploadDiv.getElementsByTagName( 'a' )[0] );
@@ -75,7 +78,15 @@
 			}
 			// Receive file data
 			case 'filedata':
-				
+				// Need a target element
+				if( mes.targetElement && document.getElementById( mes.targetElement ) )
+				{
+					// 1. Convert data to upload
+					// 2. Temporarily redirect onload and replace it
+						// 2a. Notify user of success/failure
+						// 2b. Set onload back to temporary stored event
+					// 3. Upload to form
+				}
 				break;
 		}
 	} );
