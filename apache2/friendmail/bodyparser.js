@@ -23,11 +23,14 @@
 				window.parent.postMessage( { command: 'friend_file_upload' }, '*' );
 				e.stopPropagation();
 			};
+			let s = document.createElement( 'span' );
+			s.className = 'attachLink';
+			s.appendChild( n );
 			
-			let destination = uploadDiv.getElementsByTagName( 'a' )[0];
+			let destination = uploadDiv.getElementsByTagName( 'span' )[0];
 			let destp = destination.parentNode;
 			
-			destp.insertBefore( n, destination );
+			destp.insertBefore( s, destination );
 		}
 		else
 		{
