@@ -71,6 +71,9 @@
 		
 		switch( cmd )
 		{
+			case 'attach':
+				attachFiles( mes.files, mes.authid, msg.baseurl );
+				break;
 			case 'register_friend':
 				break;
 			case 'login':
@@ -88,4 +91,38 @@
 				break;
 		}
 	} );
+	
+	// Attach files
+	function attachFiles( files, authid, baseurl )
+	{
+		let f = new FormData();
+		let count = files.length;
+		
+		for( var a = 0; a < files.length; a++ )
+		{
+			( function( file, auth )
+			{
+				let r = new XMLHttpRequest();
+				r.open( 'get', baseurl + '/system.library/file/read?path=' + file.Path + '&mode=rb&authid=' + auth, false );
+				r.responseType = 'arraybuffer';
+				r.send( null );
+				if( r.status == 200 )
+				{
+					count--;
+					let f = new Blob( [ r.responseText ] );
+					f.append( 'files[]', f );
+					if( count == 0 )
+					{
+						console.log( 'Done deal!' );
+						f.change();
+					}
+				}
+				else
+				{
+					count--;
+				}
+			} )( files[a], authid );
+		};
+	}
+	
 </script>

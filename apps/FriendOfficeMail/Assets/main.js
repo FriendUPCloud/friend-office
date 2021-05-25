@@ -67,6 +67,7 @@ window.addEventListener( 'message', function( msg )
 	{
 		loginForm();
 	}
+	// Handle attachments
 	else if( message.command == 'friend_file_upload' )
 	{
 		new Filedialog( {
@@ -76,7 +77,16 @@ window.addEventListener( 'message', function( msg )
 			type: 'load',
 			triggerFunction: function( data )
 			{
-				console.log( 'Attachment result,', data );
+				if( data.length )
+				{
+					let m = {
+						command: 'attach',
+						authid: Application.authId,
+						baseurl: document.location.protocol + '//' + document.location.origin,
+						files: data
+					};
+					ge( 'MainFrame' ).contentWindow.postMessage( m, '*' );
+				}
 			}
 		} );
 	}
