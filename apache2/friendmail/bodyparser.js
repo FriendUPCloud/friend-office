@@ -72,7 +72,7 @@
 		switch( cmd )
 		{
 			case 'attach':
-				attachFiles( mes.files, mes.authid, msg.baseurl );
+				attachFiles( mes.files, mes.authid, mes.baseurl );
 				break;
 			case 'register_friend':
 				break;
