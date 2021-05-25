@@ -2,6 +2,7 @@
 	// Fix popup links
 	function linkFixer()
 	{
+		console.log( 'Traxasionsalsj shjfap!' );
 		let a = document.getElementsByTagName( 'a' );
 		for( var b = 0; b < a.length; b++ )
 		{
@@ -16,20 +17,25 @@
 			a.className = 'link dotline plus';
 			a.innerHTML = 'Add Friend OS file';
 			a.id = 'FriendUploader_1';
-			a.onclick = function( e ) {
+			a.onclick = function( e ){
 				window.parent.postMessage( { command: 'friend_file_upload' }, '*' );
 				e.stopPropagation();
-			}
+			};
 			uploadDiv.insertBefore( uploadDiv.getElementsByTagName( 'a' )[0] );
 		}
 	}
+	
+	const linkFixConfig = { attributes: true, childList: true, subtree: true };
+	const linkFixObserv = new MutationObserver( linkFixer );
+	linkFixObserv.observe( document.body, linkFixConfig );
+	
 	// TODO: Make an event listener that makes better sense
-	window.addEventListener( 'click', function( msg )
+	/*window.addEventListener( 'click', function( msg )
 	{
 		// Just fix popup links!
 		setTimeout( linkFixer, 350 );
 		setTimeout( linkFixer, 1000 );
-	} );
+	} );*/
 
 	// Don't yell on unloading!
 	window.onbeforeunload = function (){}
