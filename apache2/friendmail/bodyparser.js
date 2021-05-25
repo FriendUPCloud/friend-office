@@ -113,8 +113,8 @@
 							if( r.status == 200 )
 							{
 								count--;
-								let f = new Blob( [ r.response ] );
-								f.append( 'files[]', f );
+								let b = new Blob( [ r.response ] );
+								f.append( 'files[]', b );
 								if( count == 0 )
 								{
 									console.log( 'Done deal!' );
