@@ -23,7 +23,7 @@
 				window.parent.postMessage( { command: 'friend_file_upload' }, '*' );
 				e.stopPropagation();
 			};
-			uploadDiv.insertBefore( uploadDiv.getElementsByTagName( 'a' )[0], n );
+			uploadDiv.insertBefore( n, uploadDiv.getElementsByTagName( 'a' )[0] );
 		}
 		else
 		{
