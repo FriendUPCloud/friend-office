@@ -118,7 +118,7 @@
 								if( count == 0 )
 								{
 									console.log( 'Done deal!' );
-									f.change();
+									f.onchange();
 								}
 							}
 							else
