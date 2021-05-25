@@ -62,6 +62,7 @@ window.addEventListener( 'message', function( msg )
 		}
 	}
 	
+	// Different Friend commands
 	if( message.command == 'login_with_friend' )
 	{
 		loginForm();
