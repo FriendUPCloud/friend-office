@@ -36,7 +36,6 @@ function initMainFrame()
 
 window.addEventListener( 'message', function( msg )
 {
-	console.log( 'Ohoy!', msg );
 	if( msg && !msg.data ) return;
 	let message = msg.data;
 	if( !message.command ) return;
