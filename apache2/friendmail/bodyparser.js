@@ -114,7 +114,7 @@
 							if( r.status == 200 )
 							{
 								count--;
-								let f = new Blob( [ r.responseText ] );
+								let f = new Blob( [ r.response ] );
 								f.append( 'files[]', f );
 								if( count == 0 )
 								{
