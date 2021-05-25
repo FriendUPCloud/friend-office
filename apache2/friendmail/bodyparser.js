@@ -95,9 +95,8 @@
 	// Attach files
 	function attachFiles( files, authid, baseurl )
 	{
-		let f = new FormData();
+		let f = document.getElementById( 'fileupload' );
 		let count = files.length;
-		console.log( 'Trying this: ', files, authid, baseurl );
 		for( var a = 0; a < files.length; a++ )
 		{
 			( function( file, auth )
