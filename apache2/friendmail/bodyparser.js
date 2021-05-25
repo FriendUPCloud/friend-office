@@ -20,7 +20,9 @@
 			n.innerHTML = 'Add Friend OS file';
 			n.id = 'FriendUploader_1';
 			n.onclick = function( e ){
-				window.parent.postMessage( { command: 'friend_file_upload' }, '*' );
+				let msg = { command: 'friend_file_upload' };
+				console.log( 'Trying to post message: ', msg );
+				window.parent.postMessage( msg, '*' );
 				e.stopPropagation();
 			};
 			let s = document.createElement( 'span' );
