@@ -70,8 +70,7 @@ window.addEventListener( 'message', function( msg )
 	}
 	else if( message.command == 'friend_file_upload' )
 	{
-		console.log( 'What is this file upload?' );
-		new FileDialog( {
+		new Filedialog( {
 			title: 'Select file for attachment',
 			multiSelect: true,
 			path: 'Home:',
