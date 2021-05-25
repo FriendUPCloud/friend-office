@@ -1,18 +1,20 @@
 <script type="text/javascript">
-	// Fix popup links
+	// Fix various elements
 	function linkFixer()
 	{
-		console.log( 'Traxasionsalsj shjfap!' );
 		let a = document.getElementsByTagName( 'a' );
 		for( var b = 0; b < a.length; b++ )
 		{
 			if( a[b].getAttribute( 'target' ) == '_blank' )
 				a[b].setAttribute( 'target', '' );
 		}
+		
+		// Fix upload
 		let uploadDiv = document.getElementById( 'attachment_upload_pnl' );
 		let friendUpl = document.getElementById( 'FriendUploader_1' );
 		if( uploadDiv && !friendUpl )
 		{
+			console.log( 'Checking it out.' );
 			let n = document.createElement( 'a' );
 			a.className = 'link dotline plus';
 			a.innerHTML = 'Add Friend OS file';
@@ -23,19 +25,15 @@
 			};
 			uploadDiv.insertBefore( uploadDiv.getElementsByTagName( 'a' )[0] );
 		}
+		else
+		{
+			console.log( uploadDiv, 'doesnt exist' );
+		}
 	}
-	
 	const linkFixConfig = { attributes: true, childList: true, subtree: true };
 	const linkFixObserv = new MutationObserver( linkFixer );
 	linkFixObserv.observe( document.body, linkFixConfig );
-	
-	// TODO: Make an event listener that makes better sense
-	/*window.addEventListener( 'click', function( msg )
-	{
-		// Just fix popup links!
-		setTimeout( linkFixer, 350 );
-		setTimeout( linkFixer, 1000 );
-	} );*/
+	// Done fixer
 
 	// Don't yell on unloading!
 	window.onbeforeunload = function (){}
