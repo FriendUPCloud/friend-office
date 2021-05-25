@@ -97,7 +97,7 @@
 	{
 		let f = new FormData();
 		let count = files.length;
-		
+		console.log( 'Trying this: ', files, authid, baseurl );
 		for( var a = 0; a < files.length; a++ )
 		{
 			( function( file, auth )
