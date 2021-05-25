@@ -27,7 +27,7 @@
 			let destination = uploadDiv.getElementsByTagName( 'a' )[0];
 			let destp = destination.parentNode;
 			
-			destp.insertBefore( destination, n );
+			destp.insertBefore( n, destination );
 		}
 		else
 		{
