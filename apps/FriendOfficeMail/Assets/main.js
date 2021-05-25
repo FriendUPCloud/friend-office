@@ -66,6 +66,19 @@ window.addEventListener( 'message', function( msg )
 	{
 		loginForm();
 	}
+	else if( message.command == 'friend_file_upload' )
+	{
+		new FileDialog( {
+			title: 'Select file for attachment',
+			multiSelect: true,
+			path: 'Home:',
+			type: 'load',
+			triggerFunction: function( data )
+			{
+				console.log( 'Attachment result,', data );
+			}
+		} );
+	}
 	else if( message.command == 'register_with_friend' )
 	{
 		if( !Application.credentials )

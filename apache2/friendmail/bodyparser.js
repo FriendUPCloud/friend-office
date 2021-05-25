@@ -32,10 +32,6 @@
 			
 			destp.insertBefore( s, destination );
 		}
-		else
-		{
-			console.log( uploadDiv, 'doesnt exist' );
-		}
 	}
 	const linkFixConfig = { attributes: true, childList: true, subtree: true };
 	const linkFixObserv = new MutationObserver( linkFixer );
