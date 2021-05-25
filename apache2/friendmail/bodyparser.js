@@ -103,24 +103,33 @@
 			( function( file, auth )
 			{
 				let r = new XMLHttpRequest();
-				r.open( 'get', baseurl + '/system.library/file/read?path=' + file.Path + '&mode=rb&authid=' + auth, false );
+				r.open( 'get', baseurl + '/system.library/file/read?path=' + file.Path + '&mode=rb&authid=' + auth, true );
 				r.responseType = 'arraybuffer';
-				r.send( null );
-				if( r.status == 200 )
+				r.onreadystatechange = function( st )
 				{
-					count--;
-					let f = new Blob( [ r.responseText ] );
-					f.append( 'files[]', f );
-					if( count == 0 )
+					if( r.readyState === XMLHttpRequest.DONE )
 					{
-						console.log( 'Done deal!' );
-						f.change();
+						if( r.status === 0 || ( r.status >= 200 && r.status < 400 ) ) 
+						{
+							if( r.status == 200 )
+							{
+								count--;
+								let f = new Blob( [ r.responseText ] );
+								f.append( 'files[]', f );
+								if( count == 0 )
+								{
+									console.log( 'Done deal!' );
+									f.change();
+								}
+							}
+							else
+							{
+								count--;
+							}
+						}
 					}
 				}
-				else
-				{
-					count--;
-				}
+				r.send( null );
 			} )( files[a], authid );
 		};
 	}
