@@ -19,12 +19,12 @@
 			n.className = 'link dotline plus';
 			n.innerHTML = 'Add Friend OS file';
 			n.id = 'FriendUploader_1';
-			n.onclick = function( e ){
+			n.addEventListener( 'click', function( e ){
 				let msg = { command: 'friend_file_upload' };
 				console.log( 'Trying to post message: ', msg );
 				window.parent.postMessage( msg, '*' );
 				e.stopPropagation();
-			};
+			} );
 			let s = document.createElement( 'span' );
 			s.className = 'attachLink';
 			s.appendChild( n );
