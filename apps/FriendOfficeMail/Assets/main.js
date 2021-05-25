@@ -82,7 +82,7 @@ window.addEventListener( 'message', function( msg )
 					let m = {
 						command: 'attach',
 						authid: Application.authId,
-						baseurl: document.location.protocol + '://' + document.location.origin,
+						baseurl: document.location.origin,
 						files: data
 					};
 					ge( 'MainFrame' ).contentWindow.postMessage( m, '*' );
