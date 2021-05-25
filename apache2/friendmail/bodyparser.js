@@ -16,14 +16,14 @@
 		{
 			console.log( 'Checking it out.' );
 			let n = document.createElement( 'a' );
-			a.className = 'link dotline plus';
-			a.innerHTML = 'Add Friend OS file';
-			a.id = 'FriendUploader_1';
-			a.onclick = function( e ){
+			n.className = 'link dotline plus';
+			n.innerHTML = 'Add Friend OS file';
+			n.id = 'FriendUploader_1';
+			n.onclick = function( e ){
 				window.parent.postMessage( { command: 'friend_file_upload' }, '*' );
 				e.stopPropagation();
 			};
-			uploadDiv.insertBefore( uploadDiv.getElementsByTagName( 'a' )[0], a );
+			uploadDiv.insertBefore( uploadDiv.getElementsByTagName( 'a' )[0], n );
 		}
 		else
 		{
