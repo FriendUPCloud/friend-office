@@ -109,6 +109,7 @@ window.addEventListener( 'message', function( msg )
 						}
 						s.save( this.jax.response, data + message.filename, 'wb' );
 					}
+					f.send();
 				}
 			}
 		} );
