@@ -69,7 +69,7 @@ window.addEventListener( 'message', function( msg )
 			title: 'Select file for attachment',
 			multiSelect: true,
 			path: 'Home:',
-			dialogType: 'load',
+			type: 'load',
 			triggerFunction: function( data )
 			{
 				if( data.length )
@@ -91,7 +91,7 @@ window.addEventListener( 'message', function( msg )
 			title: 'Download attachment',
 			path: 'Home:',
 			multiSelect: false,
-			dialogType: 'save',
+			type: 'path',
 			triggerFunction: function( data )
 			{
 				console.log( 'Need more info: "' + data + '"' );
