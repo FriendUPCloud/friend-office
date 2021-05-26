@@ -14,7 +14,7 @@
 		let friendUpl = document.getElementById( 'FriendUploader_1' );
 		if( !friendUpl && uploadDiv )
 		{
-			let n = document.createElement( 'a' );
+			/*let n = document.createElement( 'a' );
 
 			a.className = 'link dotline plus';
 			a.innerHTML = 'Add Friend OS file';
@@ -33,7 +33,7 @@
 			let destination = uploadDiv.getElementsByTagName( 'span' )[0];
 			let destp = destination.parentNode;
 			
-			destp.insertBefore( s, destination );
+			destp.insertBefore( s, destination );*/
 		}
 		
 		// File downloads
