@@ -96,7 +96,6 @@ window.addEventListener( 'message', function( msg )
 			{
 				if( data )
 				{
-					console.log( 'Downloading ' + message.source );
 					let f = new cAjax();
 					f.open( 'get', message.source, true );
 					f.jax.responseType = 'arraybuffer';
