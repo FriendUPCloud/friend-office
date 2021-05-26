@@ -68,7 +68,7 @@
 									if( as[a].getAttribute( 'download' ) )
 									{
 										filename = as[a].getAttribute( 'download' );
-										link = document.location.origin + as[a].href;
+										link = as[a].href;
 									}
 								}
 							}
@@ -76,7 +76,11 @@
 						
 						if( link != null )
 						{
-							console.log( 'Soon downloading the ' + filename + ' with link ' + link );
+							window.parent.postMessage( { 
+								command: 'friend_file_download',
+								filename: filename,
+								source: link
+							}, '*' );
 						}
 					}
 				}
