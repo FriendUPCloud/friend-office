@@ -69,7 +69,7 @@ window.addEventListener( 'message', function( msg )
 			title: 'Select file for attachment',
 			multiSelect: true,
 			path: 'Home:',
-			type: 'load',
+			dialogType: 'load',
 			triggerFunction: function( data )
 			{
 				if( data.length )
@@ -88,13 +88,13 @@ window.addEventListener( 'message', function( msg )
 	else if( message.command == 'friend_file_download' )
 	{
 		new Filedialog( {
-			title: 'Download attachment to Friend storage',
+			title: 'Download attachment',
 			path: 'Home:',
 			multiSelect: false,
 			dialogType: 'save',
-			triggerFunction: function( data, more )
+			triggerFunction: function( data )
 			{
-				console.log( 'Need more info: ' + data, more, data );
+				console.log( 'Need more info: "' + data + '"' );
 				if( data )
 				{
 					let f = new cAjax();
