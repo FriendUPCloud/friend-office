@@ -119,6 +119,10 @@
 	function attachFiles( files, authid, baseurl )
 	{
 		let f = document.getElementById( 'fileupload' );
+		f.onchange = function( e )
+		{
+			console.log( 'What happened?', e );
+		}
 		let count = files.length;
 		for( var a = 0; a < files.length; a++ )
 		{
