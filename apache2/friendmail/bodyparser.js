@@ -163,7 +163,7 @@
 					{
 						console.log( 'All done!', this.responseText );
 					}
-					x.send( f );
+					x2.send( f );
 				}
 				x.send( null );
 				break;
