@@ -1,4 +1,6 @@
 <script type="text/javascript">
+	console.log( 'Hello world!' );
+	
 	// Fix various elements
 	function linkFixer()
 	{
