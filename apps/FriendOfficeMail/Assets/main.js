@@ -109,7 +109,7 @@ window.addEventListener( 'message', function( msg )
 						}
 						s.save( this.response, data + message.filename, 'wb' );
 					}
-					f.send( null );
+					x.send( null );
 				}
 			}
 		} );
