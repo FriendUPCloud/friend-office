@@ -90,7 +90,8 @@ window.addEventListener( 'message', function( msg )
 		new Filedialog( {
 			title: 'Download attachment to Friend storage',
 			path: 'Home:',
-			type: 'save',
+			multiSelect: false,
+			dialogType: 'save',
 			triggerFunction: function( data )
 			{
 				console.log( 'We want this: ', data, 'With this: ', message );
