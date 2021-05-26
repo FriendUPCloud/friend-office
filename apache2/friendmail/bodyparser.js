@@ -64,14 +64,18 @@
 								let as = g[c].getElementsByTagName( 'a' );
 								for( let a = 0; a < as.length; a++ )
 								{
-									if( as[a].getAttribute( 'download' ) )
+									let down = as[a].getAttribute( 'download' );
+									let titl = as[a].getAttribute( 'title' );
+									if( down || titl )
 									{
-										filename = as[a].getAttribute( 'download' );
+										filename = down ? down : titl;
 										link = as[a].href;
 									}
 								}
 							}
 						}
+						
+						console.log( 'Did we get link?', link, filename );
 						
 						if( link != null )
 						{
