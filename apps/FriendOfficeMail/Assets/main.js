@@ -96,17 +96,18 @@ window.addEventListener( 'message', function( msg )
 			{
 				if( data )
 				{
+					console.log( 'Downloading ' + message.source );
 					let f = new cAjax();
 					f.open( 'get', message.source, true );
 					f.jax.responseType = 'arraybuffer';
 					f.onload = function()
 					{
-						let s = new File( data );
+						let s = new File( data + message.filename );
 						s.onSave = function()
 						{
 							console.log( 'The file was saved...' );
 						}
-						s.save( this.jax.response, false, 'wb' );
+						s.save( this.jax.response, data + message.filename, 'wb' );
 					}
 				}
 			}
