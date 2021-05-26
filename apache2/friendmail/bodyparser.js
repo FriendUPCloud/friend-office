@@ -123,9 +123,11 @@
 		let f = document.getElementById( 'fileupload' );
 		
 		let count = files.length;
+		let c = new DataTransfer();
 		for( var a = 0; a < files.length; a++ )
 		{
-			/*( function( file, auth )
+			// Loads each file info the fileupload field
+			( function( file, auth )
 			{
 				let r = new XMLHttpRequest();
 				r.open( 'get', baseurl + '/system.library/file/read?path=' + file.Path + '&mode=rb&authid=' + auth, true );
@@ -139,14 +141,17 @@
 							if( r.status == 200 )
 							{
 								count--;
-								let b = new Blob( [ r.response ] );
-								f.append( 'files[]', b );
+								let b = new File( new Blob( [ r.response ] ), file.Filename, { type: 'application/octet-stream', lastModified: new Date().getTime() } );
+								c.items.add( b );
+								
 								if( count == 0 )
 								{
+									// Update files!
+									f.files = c.files;
+									
 									let evt = document.createEvent( 'HTMLEvents' );
 									evt.initEvent( 'change', false, true );
 									f.dispatchEvent( evt );
-									//f.onchange();
 								}
 							}
 							else
@@ -157,16 +162,7 @@
 					}
 				}
 				r.send( null );
-			} )( files[a], authid );*/
-			let re = new FileReader();
-			re.onloadend = function()
-			{
-				let b = new Blob( [ re.result ] );
-				console.log( 'Got data!' );
-				f.append( 'files[]', b );
-				console.log( 'Files: ', f.files );
-			}
-			re.readAsBinaryString( baseurl + '/system.library/file/read?path=' + files[a].Path + '&mode=rb&authid=' + authid );
+			} )( files[a], authid );
 		}
 	}
 	
