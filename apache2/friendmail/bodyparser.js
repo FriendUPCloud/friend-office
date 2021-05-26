@@ -55,8 +55,29 @@
 					ul[0].insertBefore( m, ul[0].getElementsByTagName( 'li' )[0] );
 					a.onclick = function()
 					{
+						// Find corresponding file
+						let link = null; let filename = null;
+						let g = document.getElementsByClassName( 'with-entity-menu' );
+						for( let c = 0; c < g.length; c++ )
+						{
+							if( g[c].getElementsByClassName( 'active' ) )
+							{
+								let as = g[c].getElementsByTagName( 'a' );
+								for( let a = 0; a < as.length; a++ )
+								{
+									if( as[a].getAttribute( 'download' ) )
+									{
+										filename = as[a].getAttribute( 'download' );
+										link = document.location.origin + as[a].href;
+									}
+								}
+							}
+						}
 						
-						console.log( 'Soon!' );
+						if( link != null )
+						{
+							console.log( 'Soon downloading the ' + filename + ' with link ' + link );
+						}
 					}
 				}
 				
