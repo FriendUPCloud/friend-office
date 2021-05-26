@@ -94,11 +94,11 @@ window.addEventListener( 'message', function( msg )
 			type: 'path',
 			triggerFunction: function( data )
 			{
-				console.log( 'Need more info: "' + data + '"' );
 				if( data )
 				{
 					let f = new cAjax();
 					f.open( 'get', message.source, true );
+					f.jax.responseType = 'arraybuffer';
 					f.onload = function()
 					{
 						let s = new File( data );
