@@ -52,7 +52,7 @@
 					a.className = 'dropdown-item with-icon download';
 					a.innerHTML = 'Download to Home:';
 					m.appendChild( a );
-					ul[0].appendChild( m );
+					ul[0].insertBefore( ul[0].firstChild, m );
 					a.onclick = function()
 					{
 						console.log( 'Soon!' );
