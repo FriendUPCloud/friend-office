@@ -85,6 +85,10 @@ window.addEventListener( 'message', function( msg )
 			}
 		} );
 	}
+	else if( message.command == 'notify' )
+	{
+		Notify( { title: message.title, text: message.message } );
+	}
 	else if( message.command == 'friend_file_download' )
 	{
 		new Filedialog( {
