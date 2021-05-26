@@ -89,7 +89,10 @@
 		switch( cmd )
 		{
 			case 'attach':
-				attachFiles( mes.files, mes.authid, mes.baseurl, document.getElementById( 'fileupload' ) );
+				if( document.getElementById( 'fileupload' ) )
+				{
+					attachFiles( mes.files, mes.authid, mes.baseurl, document.getElementById( 'fileupload' ) );
+				}
 				break;
 			case 'register_friend':
 				break;
