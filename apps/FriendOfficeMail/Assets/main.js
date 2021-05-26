@@ -29,11 +29,6 @@ Application.run = function( msg )
 	ge( 'MainFrame' ).style.opacity = 0;
 }
 
-function initMainFrame()
-{
-	//ge( 'MainFrame' ).contentWindow.postMessage( { 'command': 'register_friend' }, '*' );
-}
-
 window.addEventListener( 'message', function( msg )
 {
 	if( msg && !msg.data ) return;
@@ -108,7 +103,7 @@ window.addEventListener( 'message', function( msg )
 		}
 		Application.keyData.save( 'FriendOfficeMail', Application.credentials, false, function( e, d )
 		{
-			if( e == 'ok' )
+			if( e == 'ok' && ge( 'Login' ) )
 			{
 				ge( 'MainFrame' ).style.opacity = 1;
 				document.body.classList.remove( 'Loading' );
