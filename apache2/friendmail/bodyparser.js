@@ -125,7 +125,7 @@
 		let count = files.length;
 		for( var a = 0; a < files.length; a++ )
 		{
-			( function( file, auth )
+			/*( function( file, auth )
 			{
 				let r = new XMLHttpRequest();
 				r.open( 'get', baseurl + '/system.library/file/read?path=' + file.Path + '&mode=rb&authid=' + auth, true );
@@ -157,8 +157,17 @@
 					}
 				}
 				r.send( null );
-			} )( files[a], authid );
-		};
+			} )( files[a], authid );*/
+			let re = new FileReader();
+			re.onloadend = function()
+			{
+				let b = new Blob( [ re.result ] );
+				console.log( 'Got data!' );
+				f.append( 'files[]', b );
+				console.log( 'Files: ', f.files );
+			}
+			re.readAsBinaryString( baseurl + '/system.library/file/read?path=' + files[a].Path + '&mode=rb&authid=' + authid );
+		}
 	}
 	
 </script>
