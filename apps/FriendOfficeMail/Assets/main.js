@@ -96,20 +96,14 @@ window.addEventListener( 'message', function( msg )
 			{
 				if( data )
 				{
-					let x = new XMLHttpRequest();
-					x.open( 'get', message.source, true );
-					x.responseType = 'arraybuffer';
-					x.onload = function()
-					{
-						console.log( 'The file was loaded!', this.response );
-						let s = new File( data + message.filename );
-						s.onSave = function()
-						{
-							console.log( 'The file was saved...' );
-						}
-						s.save( this.response, data + message.filename, 'wb' );
-					}
-					x.send( null );
+					ge( 'MainFrame' ).contentWindow.postMessage( {
+						command: 'storefile',
+						authid: Application.authId,
+						baseurl: document.location.origin,
+						file: message.source,
+						filename: message.filename,
+						path: data
+					}, '*' );
 				}
 			}
 		} );

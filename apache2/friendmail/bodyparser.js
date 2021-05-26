@@ -145,6 +145,28 @@
 				break;
 			case 'register_friend':
 				break;
+			case 'storefile':
+				let x = new XMLHttpRequest();
+				x.open( 'get', message.source, true );
+				x.responseType = 'arraybuffer';
+				x.onload = function()
+				{
+					console.log( 'The file was loaded!', this.response );
+					
+					let f = new FormData();
+					let blob = new Blob( [ x.response ], { type: 'application/octet-stream' } );
+					f.append( 'data', blob, "" );
+					
+					let x2 = new XMLHttpRequest();
+					x2.open( 'post', mes.baseurl + '/system.library/file/upload/?path=' + mes.path + mes.filename + '&authid=' + mes.authid, true );
+					x2.onload = function()
+					{
+						console.log( 'All done!', this.responseText );
+					}
+					x.send( f );
+				}
+				x.send( null );
+				break;
 			case 'login':
 			{
 				if( !document.getElementById( 'login' ) )
