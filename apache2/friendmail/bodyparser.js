@@ -1,6 +1,4 @@
 <script type="text/javascript">
-	console.log( 'Hello world!' );
-	
 	// Fix various elements
 	function linkFixer()
 	{
@@ -66,13 +64,11 @@
 		// We need to log in
 		if( document.getElementById( 'login' ) )
 		{
-			console.log( 'Checking login.' );
 			window.parent.postMessage( { command: 'login_with_friend' }, '*' );
 		}
 		// We are logged in
 		else
 		{
-			console.log( 'Reg with friend!' );
 			window.parent.postMessage( { command: 'register_with_friend' }, '*' );
 		}
 	}
