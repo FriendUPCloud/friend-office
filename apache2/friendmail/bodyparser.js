@@ -89,7 +89,7 @@
 		switch( cmd )
 		{
 			case 'attach':
-				attachFiles( mes.files, mes.authid, mes.baseurl );
+				attachFiles( mes.files, mes.authid, mes.baseurl, document.getElementById( 'fileupload' ) );
 				break;
 			case 'register_friend':
 				break;
@@ -118,9 +118,9 @@
 	} );
 	
 	// Attach files
-	function attachFiles( files, authid, baseurl )
+	function attachFiles( files, authid, baseurl, fileelement )
 	{
-		let f = document.getElementById( 'fileupload' );
+		let f = fileelement;
 		
 		let count = files.length;
 		let c = new DataTransfer();
