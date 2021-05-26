@@ -8,19 +8,14 @@
 			if( a[b].getAttribute( 'target' ) == '_blank' )
 				a[b].setAttribute( 'target', '' );
 		}
-<<<<<<< HEAD
-		// File uploads
-=======
 		
-		// Fix upload
->>>>>>> dd78d47a98e996047b60c64e7b200c7b8d58078f
+		// File uploads
 		let uploadDiv = document.getElementById( 'attachment_upload_pnl' );
 		let friendUpl = document.getElementById( 'FriendUploader_1' );
 		if( uploadDiv && !friendUpl )
 		{
-			console.log( 'Checking it out.' );
 			let n = document.createElement( 'a' );
-<<<<<<< HEAD
+
 			a.className = 'link dotline plus';
 			a.innerHTML = 'Add Friend OS file';
 			a.id = 'FriendUploader_1';
@@ -29,15 +24,6 @@
 					command: 'friend_file_upload',
 					targetElement: 'fileupload'
 				}, '*' );
-=======
-			n.className = 'link dotline plus';
-			n.innerHTML = 'Add Friend OS file';
-			n.id = 'FriendUploader_1';
-			n.onclick = function( e ){
-				let msg = { command: 'friend_file_upload' };
-				console.log( 'Trying to post message: ', msg );
-				window.parent.postMessage( msg, '*' );
->>>>>>> dd78d47a98e996047b60c64e7b200c7b8d58078f
 				e.stopPropagation();
 			};
 			let s = document.createElement( 'span' );
