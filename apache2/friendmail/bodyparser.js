@@ -69,7 +69,7 @@
 									if( down || titl )
 									{
 										filename = down ? down : titl;
-										link = as[a].href;
+										link = as[a].href.split( 'viewdocument.' ).join( 'download.' );
 									}
 								}
 							}
