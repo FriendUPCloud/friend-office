@@ -100,8 +100,9 @@ window.addEventListener( 'message', function( msg )
 					let f = new cAjax();
 					f.open( 'get', message.source, true );
 					f.jax.responseType = 'arraybuffer';
-					f.onload = function()
+					f.onload = function( data )
 					{
+						console.log( 'The file was loaded!', this.jax.response, this.responseText() );
 						let s = new File( data + message.filename );
 						s.onSave = function()
 						{
