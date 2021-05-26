@@ -62,9 +62,33 @@ window.addEventListener( 'message', function( msg )
 		}
 	}
 	
+	// Different Friend commands
 	if( message.command == 'login_with_friend' )
 	{
 		loginForm();
+	}
+	// Handle attachments
+	else if( message.command == 'friend_file_upload' )
+	{
+		new Filedialog( {
+			title: 'Select file for attachment',
+			multiSelect: true,
+			path: 'Home:',
+			type: 'load',
+			triggerFunction: function( data )
+			{
+				if( data.length )
+				{
+					let m = {
+						command: 'attach',
+						authid: Application.authId,
+						baseurl: document.location.origin,
+						files: data
+					};
+					ge( 'MainFrame' ).contentWindow.postMessage( m, '*' );
+				}
+			}
+		} );
 	}
 	else if( message.command == 'register_with_friend' )
 	{

@@ -1,5 +1,5 @@
 <script type="text/javascript">
-	// Fix popup links
+	// Fix various elements
 	function linkFixer()
 	{
 		let a = document.getElementsByTagName( 'a' );
@@ -8,12 +8,19 @@
 			if( a[b].getAttribute( 'target' ) == '_blank' )
 				a[b].setAttribute( 'target', '' );
 		}
+<<<<<<< HEAD
 		// File uploads
+=======
+		
+		// Fix upload
+>>>>>>> dd78d47a98e996047b60c64e7b200c7b8d58078f
 		let uploadDiv = document.getElementById( 'attachment_upload_pnl' );
 		let friendUpl = document.getElementById( 'FriendUploader_1' );
 		if( uploadDiv && !friendUpl )
 		{
+			console.log( 'Checking it out.' );
 			let n = document.createElement( 'a' );
+<<<<<<< HEAD
 			a.className = 'link dotline plus';
 			a.innerHTML = 'Add Friend OS file';
 			a.id = 'FriendUploader_1';
@@ -22,9 +29,25 @@
 					command: 'friend_file_upload',
 					targetElement: 'fileupload'
 				}, '*' );
+=======
+			n.className = 'link dotline plus';
+			n.innerHTML = 'Add Friend OS file';
+			n.id = 'FriendUploader_1';
+			n.onclick = function( e ){
+				let msg = { command: 'friend_file_upload' };
+				console.log( 'Trying to post message: ', msg );
+				window.parent.postMessage( msg, '*' );
+>>>>>>> dd78d47a98e996047b60c64e7b200c7b8d58078f
 				e.stopPropagation();
-			}
-			uploadDiv.insertBefore( uploadDiv.getElementsByTagName( 'a' )[0] );
+			};
+			let s = document.createElement( 'span' );
+			s.className = 'attachLink';
+			s.appendChild( n );
+			
+			let destination = uploadDiv.getElementsByTagName( 'span' )[0];
+			let destp = destination.parentNode;
+			
+			destp.insertBefore( s, destination );
 		}
 		// File downloads
 		let downloa = document.getElementById( 'attachmentActionMenu' );
@@ -41,13 +64,10 @@
 			}
 		}
 	}
-	// TODO: Make an event listener that makes better sense
-	window.addEventListener( 'click', function( msg )
-	{
-		// Just fix popup links!
-		setTimeout( linkFixer, 350 );
-		setTimeout( linkFixer, 1000 );
-	} );
+	const linkFixConfig = { attributes: true, childList: true, subtree: true };
+	const linkFixObserv = new MutationObserver( linkFixer );
+	linkFixObserv.observe( document.body, linkFixConfig );
+	// Done fixer
 
 	// Don't yell on unloading!
 	window.onbeforeunload = function (){}
@@ -80,6 +100,9 @@
 		
 		switch( cmd )
 		{
+			case 'attach':
+				attachFiles( mes.files, mes.authid, mes.baseurl );
+				break;
 			case 'register_friend':
 				break;
 			case 'login':
@@ -105,4 +128,46 @@
 				break;
 		}
 	} );
+	
+	// Attach files
+	function attachFiles( files, authid, baseurl )
+	{
+		let f = document.getElementById( 'fileupload' );
+		let count = files.length;
+		for( var a = 0; a < files.length; a++ )
+		{
+			( function( file, auth )
+			{
+				let r = new XMLHttpRequest();
+				r.open( 'get', baseurl + '/system.library/file/read?path=' + file.Path + '&mode=rb&authid=' + auth, true );
+				r.responseType = 'arraybuffer';
+				r.onreadystatechange = function( st )
+				{
+					if( r.readyState === XMLHttpRequest.DONE )
+					{
+						if( r.status === 0 || ( r.status >= 200 && r.status < 400 ) ) 
+						{
+							if( r.status == 200 )
+							{
+								count--;
+								let b = new Blob( [ r.response ] );
+								f.append( 'files[]', b );
+								if( count == 0 )
+								{
+									console.log( 'Done deal!' );
+									f.onchange();
+								}
+							}
+							else
+							{
+								count--;
+							}
+						}
+					}
+				}
+				r.send( null );
+			} )( files[a], authid );
+		};
+	}
+	
 </script>
