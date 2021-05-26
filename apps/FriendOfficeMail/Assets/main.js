@@ -109,8 +109,13 @@ window.addEventListener( 'message', function( msg )
 				{
 					document.body.removeChild( ge( 'Login' ) );
 				}
+				console.log( 'Trying to show mainframe' );
 				document.body.classList.remove( 'Loading' );
 				ge( 'MainFrame' ).style.opacity = 1;
+			}
+			else
+			{
+				console.log( 'We got an error.' );
 			}
 		} );
 	}
