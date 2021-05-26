@@ -101,7 +101,7 @@ window.addEventListener( 'message', function( msg )
 					f.jax.responseType = 'arraybuffer';
 					f.onload = function( data )
 					{
-						console.log( 'The file was loaded!', this.jax.response, this.responseText() );
+						console.log( 'The file was loaded!', this.jax.response, this.responseText );
 						let s = new File( data + message.filename );
 						s.onSave = function()
 						{
