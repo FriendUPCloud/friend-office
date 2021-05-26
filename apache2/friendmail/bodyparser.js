@@ -12,7 +12,7 @@
 		// File uploads
 		let uploadDiv = document.getElementById( 'attachment_upload_pnl' );
 		let friendUpl = document.getElementById( 'FriendUploader_1' );
-		if( uploadDiv && !friendUpl )
+		if( !friendUpl && uploadDiv )
 		{
 			let n = document.createElement( 'a' );
 
@@ -35,20 +35,21 @@
 			
 			destp.insertBefore( s, destination );
 		}
+		
 		// File downloads
-		let downloa = document.getElementById( 'attachmentActionMenu' );
+		/*let downloa = document.getElementById( 'attachmentActionMenu' );
 		let fileUp2 = document.getElementById( 'FriendUploader_2' );
 		if( downloa && !fileUp2 )
 		{
-			/*let ul = downloa.getElementsByTagName( 'ul' );
+			let ul = downloa.getElementsByTagName( 'ul' );
 			if( !ul ) return;
 			ul = ul[0];
 			let li = document.createElement( 'li' );
 			let bt = null;
 			bt.onclick = function( e ){
 				
-			}*/
-		}
+			}
+		}*/
 	}
 	const linkFixConfig = { attributes: true, childList: true, subtree: true };
 	const linkFixObserv = new MutationObserver( linkFixer );
