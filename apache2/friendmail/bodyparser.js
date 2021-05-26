@@ -147,7 +147,7 @@
 				break;
 			case 'storefile':
 				let x = new XMLHttpRequest();
-				x.open( 'get', message.source, true );
+				x.open( 'get', mes.source, true );
 				x.responseType = 'arraybuffer';
 				x.onload = function()
 				{
