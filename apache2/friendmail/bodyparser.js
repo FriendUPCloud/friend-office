@@ -49,7 +49,7 @@
 					m.id = 'downloadToFriend';
 					let a = document.createElement( 'a' );
 					a.className = 'dropdown-item with-icon download';
-					a.innerHTML = 'Download to Home:';
+					a.innerHTML = 'Download to Friend storage';
 					m.appendChild( a );
 					ul[0].insertBefore( m, ul[0].getElementsByTagName( 'li' )[0] );
 					a.onclick = function()
