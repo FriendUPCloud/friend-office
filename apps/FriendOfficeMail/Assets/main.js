@@ -60,6 +60,7 @@ window.addEventListener( 'message', function( msg )
 	// Different Friend commands
 	if( message.command == 'login_with_friend' )
 	{
+		console.log( 'We will log in.' );
 		loginForm();
 	}
 	// Handle attachments
@@ -87,6 +88,7 @@ window.addEventListener( 'message', function( msg )
 	}
 	else if( message.command == 'register_with_friend' )
 	{
+		console.log( 'Got "register with friend"' );
 		if( !Application.credentials )
 		{
 			if( !ge( 'loginUser' ) )
