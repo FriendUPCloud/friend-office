@@ -14,18 +14,19 @@
 		let friendUpl = document.getElementById( 'FriendUploader_1' );
 		if( !friendUpl && uploadDiv )
 		{
-			/*let n = document.createElement( 'a' );
+			let n = document.createElement( 'a' );
 
-			a.className = 'link dotline plus';
-			a.innerHTML = 'Add Friend OS file';
-			a.id = 'FriendUploader_1';
-			a.onclick = function( e ) {
+			n.className = 'link dotline plus';
+			n.innerHTML = 'Add Friend OS file';
+			n.id = 'FriendUploader_1';
+			n.onclick = function( e ) {
 				window.parent.postMessage( { 
 					command: 'friend_file_upload',
 					targetElement: 'fileupload'
 				}, '*' );
 				e.stopPropagation();
 			};
+			
 			let s = document.createElement( 'span' );
 			s.className = 'attachLink';
 			s.appendChild( n );
@@ -33,7 +34,7 @@
 			let destination = uploadDiv.getElementsByTagName( 'span' )[0];
 			let destp = destination.parentNode;
 			
-			destp.insertBefore( s, destination );*/
+			destp.insertBefore( s, destination );
 		}
 		
 		// File downloads
