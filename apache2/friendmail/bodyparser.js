@@ -141,7 +141,7 @@
 							if( r.status == 200 )
 							{
 								count--;
-								let b = new File( new Blob( [ r.response ] ), file.Filename, { type: 'application/octet-stream', lastModified: new Date().getTime() } );
+								let b = new File( [ new Blob( [ r.response ] ) ], file.Filename, { type: 'application/octet-stream', lastModified: new Date().getTime() } );
 								c.items.add( b );
 								
 								if( count == 0 )
