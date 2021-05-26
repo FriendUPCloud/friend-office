@@ -96,20 +96,20 @@ window.addEventListener( 'message', function( msg )
 			{
 				if( data )
 				{
-					let f = new cAjax();
-					f.open( 'get', message.source, true );
-					f.jax.responseType = 'arraybuffer';
-					f.onload = function( data )
+					let x = new XMLHttpRequest();
+					x.open( 'get', message.source, true );
+					x.responseType = 'arraybuffer';
+					x.onload = function()
 					{
-						console.log( 'The file was loaded!', this.jax.response, this.responseText );
+						console.log( 'The file was loaded!', this.response );
 						let s = new File( data + message.filename );
 						s.onSave = function()
 						{
 							console.log( 'The file was saved...' );
 						}
-						s.save( this.jax.response, data + message.filename, 'wb' );
+						s.save( this.response, data + message.filename, 'wb' );
 					}
-					f.send();
+					f.send( null );
 				}
 			}
 		} );
