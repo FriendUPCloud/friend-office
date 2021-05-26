@@ -37,6 +37,31 @@
 			destp.insertBefore( s, destination );
 		}
 		
+		// Add custom menu
+		if( !document.getElementById( 'downloadToFriend' ) )
+		{
+			if( document.getElementById( 'attachmentActionMenu' ) )
+			{
+				let ul = document.getElementById( 'attachmentActionMenu' ).getElementsByTagName( 'ul' );
+				if( ul && ul.length )
+				{
+				
+					let m = document.createElement( 'li' );
+					m.id = 'downloadToFriend';
+					let a = document.createElement( 'a' );
+					a.className = 'dropdown-item with-icon download';
+					a.innerHTML = 'Download to Home:';
+					m.appendChild( a );
+					ul[0].appendChild( m );
+					a.onclick = function()
+					{
+						console.log( 'Soon!' );
+					}
+				}
+				
+			}
+		}
+		
 		// File downloads
 		/*let downloa = document.getElementById( 'attachmentActionMenu' );
 		let fileUp2 = document.getElementById( 'FriendUploader_2' );
