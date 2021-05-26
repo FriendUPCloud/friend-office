@@ -45,7 +45,6 @@
 				let ul = document.getElementById( 'attachmentActionMenu' ).getElementsByTagName( 'ul' );
 				if( ul && ul.length )
 				{
-				
 					let m = document.createElement( 'li' );
 					m.id = 'downloadToFriend';
 					let a = document.createElement( 'a' );
@@ -84,7 +83,6 @@
 						}
 					}
 				}
-				
 			}
 		}
 		

@@ -85,6 +85,18 @@ window.addEventListener( 'message', function( msg )
 			}
 		} );
 	}
+	else if( message.command == 'friend_file_download' )
+	{
+		new Filedialog( {
+			title: 'Download attachment to Friend storage',
+			path: 'Home:',
+			type: 'save',
+			triggerFunction: function( data )
+			{
+				console.log( 'We want this: ', data, 'With this: ', message );
+			}
+		} );
+	}
 	else if( message.command == 'register_with_friend' )
 	{
 		if( !Application.credentials )
