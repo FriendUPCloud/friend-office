@@ -103,11 +103,14 @@ window.addEventListener( 'message', function( msg )
 		}
 		Application.keyData.save( 'FriendOfficeMail', Application.credentials, false, function( e, d )
 		{
-			if( e == 'ok' && ge( 'Login' ) )
+			if( e == 'ok' )
 			{
-				ge( 'MainFrame' ).style.opacity = 1;
+				if( ge( 'Login' ) )
+				{
+					document.body.removeChild( ge( 'Login' ) );
+				}
 				document.body.classList.remove( 'Loading' );
-				document.body.removeChild( ge( 'Login' ) );
+				ge( 'MainFrame' ).style.opacity = 1;
 			}
 		} );
 	}
