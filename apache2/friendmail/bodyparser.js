@@ -75,8 +75,6 @@
 							}
 						}
 						
-						console.log( 'Did we get link?', link, filename );
-						
 						if( link != null )
 						{
 							window.parent.postMessage( { 
