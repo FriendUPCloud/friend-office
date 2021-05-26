@@ -94,7 +94,21 @@ window.addEventListener( 'message', function( msg )
 			dialogType: 'save',
 			triggerFunction: function( data )
 			{
-				console.log( 'We want this: ', data, 'With this: ', message );
+				console.log( 'Need more info: ' + data, data );
+				if( data )
+				{
+					let f = new cAjax();
+					f.open( 'get', message.source, true );
+					f.onload = function()
+					{
+						let s = new File( data );
+						s.onSave = function()
+						{
+							console.log( 'The file was saved...' );
+						}
+						s.save( this.jax.response, false, 'wb' );
+					}
+				}
 			}
 		} );
 	}
