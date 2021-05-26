@@ -121,10 +121,7 @@
 	function attachFiles( files, authid, baseurl )
 	{
 		let f = document.getElementById( 'fileupload' );
-		f.onchange = function( e )
-		{
-			document.getElementsByTagName( 'form' )[0].submit();
-		}
+		
 		let count = files.length;
 		for( var a = 0; a < files.length; a++ )
 		{
@@ -146,8 +143,10 @@
 								f.append( 'files[]', b );
 								if( count == 0 )
 								{
-									console.log( 'Done deal!' );
-									f.onchange();
+									let evt = document.createEvent( 'HTMLEvents' );
+									evt.initEvent( 'change', false, true );
+									f.dispatchEvent( evt );
+									//f.onchange();
 								}
 							}
 							else
