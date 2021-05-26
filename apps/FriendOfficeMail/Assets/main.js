@@ -92,9 +92,9 @@ window.addEventListener( 'message', function( msg )
 			path: 'Home:',
 			multiSelect: false,
 			dialogType: 'save',
-			triggerFunction: function( data )
+			triggerFunction: function( data, more )
 			{
-				console.log( 'Need more info: ' + data, data );
+				console.log( 'Need more info: ' + data, more, data );
 				if( data )
 				{
 					let f = new cAjax();
