@@ -73,6 +73,8 @@
 				left: 0;
 				height: calc(100vh - 50px);
 				transition: left 0.25s;
+				overflow: auto;
+				overflow-x: hidden;
 			}
 		}
 
