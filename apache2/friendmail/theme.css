@@ -30,7 +30,9 @@
 		
 		#studio_productListPopupPanel li.documents,
 		#studio_productListPopupPanel li.feed,
-		#studio_productListPopupPanel li.apps
+		#studio_productListPopupPanel li.apps,
+		.studio-top-panel.mainPageLayout li.feed,
+		.search-options-box.clearFix .search-option-box + .search-option-box
 		{
 			display: none;
 		}
