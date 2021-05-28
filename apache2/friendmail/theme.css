@@ -31,7 +31,7 @@
 		/* Mobile stuff */
 		@media screen and (max-width: 512px)
 		{
-			.studio-container, .studio-container *
+			.studio-container, .studio-container > *
 			{
 				grid-template-areas: none;
 				grid-template-columns: none;
