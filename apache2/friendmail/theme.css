@@ -39,12 +39,26 @@
 				grid-gap: 0;
 			}
 			
+			html #studioPageContent
+			{
+				min-width: 100%;
+			}
+			
 			.studio-container header,
 			.studio-container nav,
+			html #studio_sidePanel,
 			.studio-container main
 			{
 				position: fixed;
 				width: 100vw;
+			}
+			
+			body:not(.Navmode)
+			{
+				html .studio-container nav
+				{
+					display: none;
+				}
 			}
 			
 			.studio-container header
