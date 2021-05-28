@@ -28,7 +28,7 @@
 			display: none;
 		}
 
-		/* Mobile stuff */
+		/* Mobile stuff ----------------------------------------------------- */
 		@media screen and (max-width: 512px)
 		{
 			.studio-container, .studio-container > *
@@ -64,6 +64,14 @@
 				top: 0;
 				left: 0;
 				height: 50px;
+				z-index: 1999;
+			}
+			
+			#studio_productListPopupPanel
+			{
+				position: fixed;
+				top: 50px;
+				height: calc(100vh - 60px);
 			}
 			
 			.studio-container nav,
