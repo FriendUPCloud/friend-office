@@ -27,6 +27,13 @@
 		{
 			display: none;
 		}
+		
+		#studio_productListPopupPanel li.documents,
+		#studio_productListPopupPanel li.feed,
+		#studio_productListPopupPanel li.apps
+		{
+			display: none;
+		}
 
 		/* Mobile stuff ----------------------------------------------------- */
 		@media screen and (max-width: 512px)
