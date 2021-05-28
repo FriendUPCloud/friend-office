@@ -69,9 +69,9 @@
 			
 			#studio_productListPopupPanel
 			{
-				position: fixed;
-				top: 50px;
-				height: calc(100vh - 60px);
+				position: fixed !important;
+				top: 60px !important;
+				height: calc(100vh - 82px);
 			}
 			
 			.studio-container nav,
