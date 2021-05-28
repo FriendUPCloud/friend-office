@@ -28,5 +28,40 @@
 			display: none;
 		}
 
+		/* Mobile stuff */
+		@media screen and (max-width: 512px)
+		{
+			.studio-container, .studio-container *
+			{
+				grid-template-areas: none;
+				grid-template-columns: none;
+				grid-template-rows: none;
+				grid-gap: 0;
+			}
+			
+			.studio-container header,
+			.studio-container nav,
+			.studio-container main
+			{
+				position: fixed;
+				width: 100vw;
+			}
+			
+			.studio-container header
+			{
+				top: 0;
+				left: 0;
+				height: 50px;
+			}
+			
+			.studio-container nav,
+			.studio-container main
+			{
+				top: 50px;
+				left: 0;
+				height: calc(100vh - 50px);
+			}
+		}
+
 	</style>
 
