@@ -40,6 +40,7 @@
 		/* Mobile stuff ----------------------------------------------------- */
 		@media screen and (max-width: 512px)
 		{
+			/* Extra buttons */
 			.mobile-buttons
 			{
 			    display: block;
@@ -58,6 +59,7 @@
 				background-color: rgba(0,0,0,0.3);
 				border-radius: 7px;
 			}
+			/* Done extra buttons */
 			
 			.studio-container, .studio-container > *
 			{
