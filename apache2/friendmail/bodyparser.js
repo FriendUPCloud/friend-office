@@ -2,11 +2,27 @@
 	// Fix various elements
 	function linkFixer()
 	{
+		// Fix links
 		let a = document.getElementsByTagName( 'a' );
-		for( var b = 0; b < a.length; b++ )
+		for( let b = 0; b < a.length; b++ )
 		{
+			// TODO: Make exceptions in some cases
 			if( a[b].getAttribute( 'target' ) == '_blank' )
 				a[b].setAttribute( 'target', '' );
+		}
+		
+		// Fix div buttons
+		let ent = document.getElementsByClassName( 'entity-menu' );
+		for( let b = 0; b < ent.length; b++ )
+		{
+			if( !ent.mouseup )
+			{
+				ent.mouseup = true;
+				ent.addEventListener( 'mouseup', function( e )
+				{
+					console.log( 'This is it (data): ' + this.getAttribute( 'data_id' ) );
+				} );
+			}
 		}
 		
 		// File uploads
@@ -36,6 +52,9 @@
 			
 			destp.insertBefore( s, destination );
 		}
+		
+		// Make sure that attachment menus are registered with active state
+		
 		
 		// Add custom menu
 		if( !document.getElementById( 'downloadToFriend' ) )
@@ -87,21 +106,6 @@
 				}
 			}
 		}
-		
-		// File downloads
-		/*let downloa = document.getElementById( 'attachmentActionMenu' );
-		let fileUp2 = document.getElementById( 'FriendUploader_2' );
-		if( downloa && !fileUp2 )
-		{
-			let ul = downloa.getElementsByTagName( 'ul' );
-			if( !ul ) return;
-			ul = ul[0];
-			let li = document.createElement( 'li' );
-			let bt = null;
-			bt.onclick = function( e ){
-				
-			}
-		}*/
 	}
 	const linkFixConfig = { attributes: true, childList: true, subtree: true };
 	const linkFixObserv = new MutationObserver( linkFixer );
