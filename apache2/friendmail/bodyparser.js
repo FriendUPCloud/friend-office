@@ -254,4 +254,26 @@
 		}
 	}
 	
+	// Mobile specific javascript functionality
+	if( document.body.classList.contains( 'mobile' ) )
+	{
+		window.Friend.mobileMode = true;
+	}
+	if( window.Friend.mobileMode )
+	{
+		if( !window.Friend.mobileButtons )
+		{
+			let b = document.createElement( 'div' );
+			window.Friend.mobileButtons = b;
+			b.innerHTML = '\
+				<div class=""><a href="#">New e-mail</a></div>\
+			';
+			let cont = document.querySelector( '.studio-top-panel.mainPageLayout' );
+			if( cont )
+			{
+				cont.appendChild( b );
+			}
+		}
+	}
+	
 </script>
