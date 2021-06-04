@@ -42,18 +42,21 @@
 		{
 			.mobile-buttons
 			{
-				display: block;
-				float: right;
+			    display: block;
+				width: calc(100vw - 120px);
+				position: absolute;
+				right: 10px;
+				text-align: right;
 			}
 			.mobile-buttons a
 			{
-				    padding: 4px 8px;
-					margin: 6px;
-					display: inline-block;
-					color: white;
-					text-decoration: none;
-					background-color: rgba(0,0,0,0.3);
-					border-radius: 7px;
+			    padding: 4px 8px;
+				margin: 6px;
+				display: inline-block;
+				color: white;
+				text-decoration: none;
+				background-color: rgba(0,0,0,0.3);
+				border-radius: 7px;
 			}
 			
 			.studio-container, .studio-container > *
