@@ -1,4 +1,6 @@
 <script type="text/javascript">
+	window.Friend = window.Friend ? window.Friend : {};
+	
 	// Fix various elements
 	function linkFixer()
 	{
@@ -18,11 +20,10 @@
 			if( !ent[b].mouseup )
 			{
 				ent[b].mouseup = true;
-				console.log( 'Adding a thing: ', ent[b] );
 				ent[b].addEventListener( 'mouseup', function( e )
 				{
-					console.log( 'Foo bar.' );
-					console.log( 'This is it (data): ' + this.getAttribute( 'data_id' ) );
+					window.Friend.currentEntityMenu = ent[b];
+					window.Friend.currentEntityData = this.getAttribute( 'data_id' );
 				} );
 			}
 		}
@@ -76,33 +77,40 @@
 					a.onclick = function()
 					{
 						// Find corresponding file
-						let link = null; let filename = null;
-						let g = document.getElementsByClassName( 'with-entity-menu' );
-						for( let c = 0; c < g.length; c++ )
+						if( window.Friend.currentEntityData )
 						{
-							if( g[c].getElementsByClassName( 'active' ) )
+							let eda = window.Friend.currentEntityData;
+							let link = null; let filename = null;
+							let g = document.getElementsByClassName( 'with-entity-menu' );
+							for( let c = 0; c < g.length; c++ )
 							{
-								let as = g[c].getElementsByTagName( 'a' );
-								for( let a = 0; a < as.length; a++ )
+								let compeda = g[c].getAttribute( 'data_id' );
+								if( compeda && compeda == eda )
 								{
-									let down = as[a].getAttribute( 'download' );
-									let titl = as[a].getAttribute( 'title' );
-									if( down || titl )
+									let as = g[c].getElementsByTagName( 'a' );
+									for( let a = 0; a < as.length; a++ )
 									{
-										filename = down ? down : titl;
-										link = as[a].href.split( 'viewdocument.' ).join( 'download.' );
+										let down = as[a].getAttribute( 'download' );
+										let titl = as[a].getAttribute( 'title' );
+										if( down || titl )
+										{
+											filename = down ? down : titl;
+											link = as[a].href.split( 'viewdocument.' ).join( 'download.' );
+											break;
+										}
 									}
+									break;
 								}
 							}
-						}
 						
-						if( link != null )
-						{
-							window.parent.postMessage( { 
-								command: 'friend_file_download',
-								filename: filename,
-								source: link
-							}, '*' );
+							if( link != null )
+							{
+								window.parent.postMessage( { 
+									command: 'friend_file_download',
+									filename: filename,
+									source: link
+								}, '*' );
+							}
 						}
 					}
 				}
