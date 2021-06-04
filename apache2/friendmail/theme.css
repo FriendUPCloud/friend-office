@@ -40,6 +40,22 @@
 		/* Mobile stuff ----------------------------------------------------- */
 		@media screen and (max-width: 512px)
 		{
+			.mobile-buttons
+			{
+				display: block;
+				float: right;
+			}
+			.mobile-buttons a
+			{
+				    padding: 4px 8px;
+					margin: 6px;
+					display: inline-block;
+					color: white;
+					text-decoration: none;
+					background-color: rgba(0,0,0,0.3);
+					border-radius: 7px;
+			}
+			
 			.studio-container, .studio-container > *
 			{
 				grid-template-areas: none;
