@@ -15,11 +15,13 @@
 		let ent = document.getElementsByClassName( 'entity-menu' );
 		for( let b = 0; b < ent.length; b++ )
 		{
-			if( !ent.mouseup )
+			if( !ent[b].mouseup )
 			{
-				ent.mouseup = true;
-				ent.addEventListener( 'mouseup', function( e )
+				ent[b].mouseup = true;
+				console.log( 'Adding a thing: ', ent[b] );
+				ent[b].addEventListener( 'mouseup', function( e )
 				{
+					console.log( 'Foo bar.' );
 					console.log( 'This is it (data): ' + this.getAttribute( 'data_id' ) );
 				} );
 			}
