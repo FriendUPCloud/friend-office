@@ -41,7 +41,7 @@
 		/* Mobile stuff ----------------------------------------------------- */
 		@media screen and (max-width: 512px)
 		{
-			/* Extra buttons */
+			/* Loading animation */
 			
 			#firstLoader
 			{
@@ -63,6 +63,42 @@
 			{
 				display: none;
 			}
+			
+			/* Mobile mail listing */
+			
+			body .messages
+			{
+				display: block;
+			}
+			
+			body .messages .row
+			{
+				height: auto;
+				display: block;
+			}
+			
+			body .messages .row:after
+			{
+				content: " ";
+				display: block;
+				clear: both;
+			}
+			
+			body .messages .row > div
+			{
+				float: left;
+			}
+			
+			body .messages .row > div.subject
+			{
+				clear: both;
+				max-width: 100%;
+				text-overflow: ellipsis;
+				overflow: hidden;
+			}
+			
+			
+			/* Extra buttons */
 			
 			.mobile-buttons
 			{
