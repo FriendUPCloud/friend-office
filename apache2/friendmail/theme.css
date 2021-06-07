@@ -101,7 +101,7 @@
 			body .messages .row > div.importance
 			{
 				float: right;
-				margin: 0 0 0 0;
+				margin: 8px 0 0 0;
 			}
 			
 			.messages .row .subject a > span 
