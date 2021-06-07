@@ -266,12 +266,23 @@
 			let b = document.createElement( 'div' );
 			window.Friend.mobileButtons = b;
 			b.innerHTML = '\
-				<div class="mobile-buttons"><a class="email" href="#">New e-mail</a></div>\
+				<div class="mobile-buttons"><a class="email" href="javascript:void(0)">New e-mail</a></div>\
 			';
 			let cont = document.querySelector( '.studio-top-panel.mainPageLayout' );
 			if( cont )
 			{
 				cont.appendChild( b );
+				let as = cont.getElementsByTagName( 'a' );
+				for( let b = 0; b < as.length; b++ )
+				{
+					if( as[b].className == 'email' )
+					{
+						as[b].onclick = function()
+						{
+							document.getElementById( 'createNewMailBtn' ).click();
+						}
+					}
+				}
 			}
 		}
 	}

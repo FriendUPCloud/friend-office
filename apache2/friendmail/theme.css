@@ -98,7 +98,7 @@
 			body:not(.Navmode) .studio-container nav
 			{
 				left: 100vw;
-				/*: none;*/
+				display: none;
 			}
 			
 			.studio-container header
