@@ -266,7 +266,7 @@
 			let b = document.createElement( 'div' );
 			window.Friend.mobileButtons = b;
 			b.innerHTML = '\
-				<div class="mobile-buttons"><a href="#">New e-mail</a></div>\
+				<div class="mobile-buttons"><a class="email" href="#">New e-mail</a></div>\
 			';
 			let cont = document.querySelector( '.studio-top-panel.mainPageLayout' );
 			if( cont )
