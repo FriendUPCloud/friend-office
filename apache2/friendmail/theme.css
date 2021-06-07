@@ -114,10 +114,10 @@
 			body .messages .row > div.date
 			{
 				clear: both;
-				margin-bottom: 5px;
+				margin-bottom: 8px;
 				margin-left: 34px;
-				background: linear-gradient(9deg, #ACBAC7, #ACBAC755);
-				padding-right: 6px;
+				background: linear-gradient(9deg, #ACBAC755, #ACBAC722);
+				padding-right: 3px;
 				border-radius: 11px 0 0 11px;
 				/* padding-right: 37px; */
 				float: left;
@@ -126,8 +126,9 @@
 			
 			body .messages .row > div.time
 			{
-				background: linear-gradient(9deg, #ACBAC7, #ACBAC755);
+				background: linear-gradient(9deg, #ACBAC755, #ACBAC722);
 				border-radius: 0 11px 11px 0;
+				padding-left: 3px;
 				height: 25px;
 			}
 			
