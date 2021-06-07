@@ -92,11 +92,15 @@
 			body .messages .row > div.subject
 			{
 				clear: both;
-				max-width: 100%;
+				max-width: calc(100% - 20px);
 				text-overflow: ellipsis;
 				overflow: hidden;
 			}
 			
+			.messages .row .subject > a
+			{
+				white-space: nowrap;
+			}
 			
 			/* Extra buttons */
 			
@@ -182,6 +186,12 @@
 				transition: left 0.25s;
 				overflow: auto;
 				overflow-x: hidden;
+			}
+			
+			.studio-container main
+			{
+			    padding: 10px;
+				box-sizing: border-box;
 			}
 		}
 
