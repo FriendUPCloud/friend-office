@@ -122,6 +122,7 @@
 				/* padding-right: 37px; */
 				float: left;
 				height: 25px;
+				border-bottom: 1px solid #acbac7;
 			}
 			
 			body .messages .row > div.time
@@ -130,6 +131,8 @@
 				border-radius: 0 11px 11px 0;
 				padding-left: 3px;
 				height: 25px;
+				border-bottom: 1px solid #acbac7;
+				border-right: 1px solid #acbac7;
 			}
 			
 			body .messages .row > div > a
