@@ -43,6 +43,13 @@
 		{
 			/* Extra buttons */
 			
+			#firstLoader
+			{
+				position: fixed;
+				left: calc(50% - 50px);
+				top: calc(50% - 50px);
+			}
+			
 			.mobile-buttons
 			{
 			    display: block;
