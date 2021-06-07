@@ -107,8 +107,26 @@
 			body .messages .row > div.date
 			{
 				clear: both;
-				
+				margin-left: 28px;
+				background-color: #ACBAC7;
+				padding-right: 6px;
+				border-radius: 11px 0 0 11px;
+				/* padding-right: 37px; */
+				float: left;
+				height: 25px;
 			}
+			
+			body .messages .row > div.time
+			{
+				background-color: #ACBAC7;
+				border-radius: 0 11px 11px 0;
+				height: 25px;
+			}
+			
+			body .messages .row > div > a
+			{
+				line-height: 26px;
+			}	
 			
 			.messages .row .subject > a
 			{
