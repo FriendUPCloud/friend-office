@@ -46,8 +46,22 @@
 			#firstLoader
 			{
 				position: fixed;
-				left: calc(50% - 50px);
-				top: calc(50% - 50px);
+				left: calc(50% - 32px);
+				top: calc(50% - 32px);
+			}
+			
+			#firstLoader .loader-page img,
+			#firstLoader .loader-page
+			{
+				top: 0;
+				left: 0;
+				margin-top: 0;
+				margin-left: 0;
+			}
+			
+			#firstLoader .loader-page .text
+			{
+				display: none;
 			}
 			
 			.mobile-buttons
