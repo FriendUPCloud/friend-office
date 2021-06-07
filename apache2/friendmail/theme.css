@@ -75,6 +75,7 @@
 			{
 				height: auto;
 				display: block;
+				clear: both;
 			}
 			
 			body .messages .row:after
@@ -97,9 +98,26 @@
 				overflow: hidden;
 			}
 			
+			body .messages .row > div.important
+			{
+				float: right;
+				margin: 8px 0 0 0;
+			}
+			
+			body .messages .row > div.date
+			{
+				clear: both;
+				
+			}
+			
 			.messages .row .subject > a
 			{
 				white-space: nowrap;
+			}
+			
+			.messages .row .date > a
+			{
+				padding-right: 5px;
 			}
 			
 			/* Extra buttons */
