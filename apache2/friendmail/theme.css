@@ -104,9 +104,9 @@
 				margin: 0 0 0 0;
 			}
 			
-			.messages .row.new .subject a > span 
+			.messages .row .subject a > span 
 			{
-				margin-left: 30px;
+				margin-left: 34px;
 				top: -4px;
 				position: relative;
 			}
@@ -115,7 +115,7 @@
 			{
 				clear: both;
 				margin-bottom: 5px;
-				margin-left: 30px;
+				margin-left: 34px;
 				background: linear-gradient(9deg, #ACBAC7, #ACBAC755);
 				padding-right: 6px;
 				border-radius: 11px 0 0 11px;
