@@ -65,8 +65,8 @@
 			
 			.mobile-buttons a.email:before
 			{
-				content: "\f044";
-				font-family: fontawesome;
+				content: "\f0f6";
+				font-family: forkawesome;
 				color: white;
 				margin: 0 5px 0 0;
 			}
