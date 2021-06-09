@@ -9,13 +9,21 @@
 	}, '*' );
 	window.pingTimeo = setTimeout( function()
 	{
-		document.body.innerHTML = '<h1>404</h1>';
+		document.body.innerHTML = '<div style="padding: 20px"><h1>Transferring you</h1><p>You are not being transferred to your login page.</p></div>';
 		document.body.style.display = '';
 		let p = document.createElement( 'iframe' );
 		p.src = '/Auth.aspx?t=logout';
 		p.style.visibility = 'hidden';
 		p.style.pointerEvents = 'none';
 		document.body.appendChild( p );
+		
+		// Redirect
+		setTimeout( function()
+		{
+			let base = document.location.origin.split( '//' );
+			let domain = base[1].split( '.' );
+			document.location.href = base[0] + '//' + domain[1] + '.' + domain[2];
+		}, 150 );
 	}, 150 );
 	// Done checking
 	
