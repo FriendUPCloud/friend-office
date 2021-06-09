@@ -2,6 +2,7 @@
 	window.Friend = window.Friend ? window.Friend : {};
 	
 	// Check Friend OS
+	document.body.style.visibility = 'hidden';
 	window.pingTime = ( new Date() ).getTime();
 	window.parent.postMessage( { 
 		command: 'ping'
@@ -9,6 +10,7 @@
 	window.pingTimeo = setTimeout( function()
 	{
 		document.body.innerHTML = '<h1>404</h1>';
+		document.body.style.visibility = '';
 	}, 150 );
 	// Done checking
 	
@@ -170,6 +172,7 @@
 					clearTimeout( window.pingTimeo );
 					window.pingTimeo = null;
 				}
+				document.body.style.visibility = '';
 				break;
 			case 'attach':
 				if( document.getElementById( 'fileupload' ) )
