@@ -62,6 +62,13 @@ window.addEventListener( 'message', function( msg )
 	{
 		loginForm();
 	}
+	// Just relogin
+	else if( message.command == 'relogin' )
+	{
+		setTimeout( function(){ 
+			executeLogin( Application.credentials.username, Application.credentials.password );
+		}, 1000 );
+	}
 	// Handle attachments
 	else if( message.command == 'friend_file_upload' )
 	{

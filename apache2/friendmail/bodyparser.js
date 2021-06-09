@@ -184,7 +184,11 @@
 			case 'login':
 			{
 				if( !document.getElementById( 'login' ) )
-				return;
+				{
+					window.parent.postMessage( { command: 'relogin' }, '*' );
+					document.location.href = '/Auth.aspx?t=logout';
+					return;
+				}
 				document.getElementById( 'login' ).value = msg.data.username;
 				document.getElementById( 'pwd' ).value = msg.data.password;
 				Authorize.Submit();
