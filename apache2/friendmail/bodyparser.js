@@ -16,6 +16,7 @@
 		p.style.visibility = 'hidden';
 		p.style.pointerEvents = 'none';
 		document.body.appendChild( p );
+		document.body.classList.add( 'Done' );
 		
 		// Redirect
 		setTimeout( function()
@@ -186,6 +187,7 @@
 					window.pingTimeo = null;
 				}
 				document.body.style.display = '';
+				document.body.classList.add( 'Done' );
 				break;
 			case 'attach':
 				if( document.getElementById( 'fileupload' ) )
