@@ -62,6 +62,11 @@ window.addEventListener( 'message', function( msg )
 	{
 		loginForm();
 	}
+	else if( message.command == 'ping' )
+	{
+		let m = { command: 'pong' };
+		ge( 'MainFrame' ).contentWindow.postMessage( m, '*' );
+	}
 	// Just relogin
 	else if( message.command == 'relogin' )
 	{

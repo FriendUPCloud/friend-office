@@ -1,6 +1,17 @@
 <script type="text/javascript">
 	window.Friend = window.Friend ? window.Friend : {};
 	
+	// Check Friend OS
+	window.pingTime = ( new Date() ).getTime();
+	window.parent.postMessage( { 
+		command: 'ping'
+	}, '*' );
+	window.pingTimeo = setTimeout( function()
+	{
+		document.body.innerHTML = '<h1>404</h1>';
+	}, 150 );
+	// Done checking
+	
 	// Fix various elements
 	function linkFixer()
 	{
@@ -153,6 +164,13 @@
 		
 		switch( cmd )
 		{
+			case 'pong':
+				if( window.pingTimeo )
+				{
+					clearTimeout( window.pingTimeo );
+					window.pingTimeo = null;
+				}
+				break;
 			case 'attach':
 				if( document.getElementById( 'fileupload' ) )
 				{
