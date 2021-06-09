@@ -66,7 +66,7 @@ window.addEventListener( 'message', function( msg )
 	else if( message.command == 'relogin' )
 	{
 		setTimeout( function(){ 
-			executeLogin();
+			executeLogin( window.credentials.username, window.credentials.password );
 		}, 1000 );
 	}
 	// Handle attachments
@@ -156,10 +156,15 @@ window.addEventListener( 'message', function( msg )
 function executeLogin( u, p )
 {
 	document.body.classList.add( 'Loading' );
-	ge( 'MainFrame' ).contentWindow.postMessage( {
-		command: 'login',
+	window.credentials = {
 		username: u ? u : ge( 'loginUser' ).value,
 		password: p ? p : ge( 'loginPass' ).value
+	};
+		
+	ge( 'MainFrame' ).contentWindow.postMessage( {
+		command: 'login',
+		username: window.credentials.username,
+		password: window.credentials.password
 	}, '*' );
 }
 
