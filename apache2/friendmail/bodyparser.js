@@ -185,7 +185,6 @@
 			{
 				if( !document.getElementById( 'login' ) )
 				{
-					console.log( 'We are not really here... Relogin' );
 					window.parent.postMessage( { command: 'relogin' }, '*' );
 					document.location.href = '/Auth.aspx?t=logout';
 					return;

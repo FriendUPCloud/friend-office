@@ -66,7 +66,7 @@ window.addEventListener( 'message', function( msg )
 	else if( message.command == 'relogin' )
 	{
 		setTimeout( function(){ 
-			executeLogin( Application.credentials.username, Application.credentials.password );
+			executeLogin();
 		}, 1000 );
 	}
 	// Handle attachments
