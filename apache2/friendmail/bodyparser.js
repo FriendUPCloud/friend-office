@@ -28,8 +28,7 @@
 				document.location.href = base[0] + '//' + domain[1] + '.' + domain[2];
 			}, 150 );
 		}, 150 );
-	}
-	/*
+	/*}
 	// Check if this is a in-friend area or not
 	function publicArea()
 	{
