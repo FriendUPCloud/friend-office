@@ -19,12 +19,12 @@
 		document.body.classList.add( 'Done' );
 		
 		// Redirect
-		setTimeout( function()
+		/*setTimeout( function()
 		{
 			let base = document.location.origin.split( '//' );
 			let domain = base[1].split( '.' );
 			document.location.href = base[0] + '//' + domain[1] + '.' + domain[2];
-		}, 150 );
+		}, 150 );*/
 	}, 150 );
 	// Done checking
 	
