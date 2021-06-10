@@ -2,42 +2,30 @@
 	window.Friend = window.Friend ? window.Friend : {};
 	
 	// Check Friend OS
-	/*if( !publicArea() )
-	{*/
-		document.body.style.display = 'none';
-		window.pingTime = ( new Date() ).getTime();
-		window.parent.postMessage( { 
-			command: 'ping'
-		}, '*' );
-		window.pingTimeo = setTimeout( function()
-		{
-			document.body.innerHTML = '<div style="padding: 20px"><h1>Transferring you</h1><p>You are not being transferred to your login page.</p></div>';
-			document.body.style.display = '';
-			let p = document.createElement( 'iframe' );
-			p.src = '/Auth.aspx?t=logout';
-			p.style.visibility = 'hidden';
-			p.style.pointerEvents = 'none';
-			document.body.appendChild( p );
-			document.body.classList.add( 'Done' );
-			
-			// Redirect
-			setTimeout( function()
-			{
-				let base = document.location.origin.split( '//' );
-				let domain = base[1].split( '.' );
-				document.location.href = base[0] + '//' + domain[1] + '.' + domain[2];
-			}, 150 );
-		}, 150 );
-	/*}
-	// Check if this is a in-friend area or not
-	function publicArea()
+	document.body.style.display = 'none';
+	window.pingTime = ( new Date() ).getTime();
+	window.parent.postMessage( { 
+		command: 'ping'
+	}, '*' );
+	window.pingTimeo = setTimeout( function()
 	{
-		let isPublic = false;
-		if( document.title.indexOf( 'Authorization' ) >= 0 )
-			isPublic = true;
-		return isPublic;
-	}
-	*/
+		document.body.innerHTML = '<div style="padding: 20px"><h1>Transferring you</h1><p>You are not being transferred to your login page.</p></div>';
+		document.body.style.display = '';
+		let p = document.createElement( 'iframe' );
+		p.src = '/Auth.aspx?t=logout';
+		p.style.visibility = 'hidden';
+		p.style.pointerEvents = 'none';
+		document.body.appendChild( p );
+		document.body.classList.add( 'Done' );
+		
+		// Redirect
+		setTimeout( function()
+		{
+			let base = document.location.origin.split( '//' );
+			let domain = base[1].split( '.' );
+			document.location.href = base[0] + '//' + domain[1] + '.' + domain[2];
+		}, 150 );
+	}, 150 );
 	// Done checking
 	
 	// Fix various elements
