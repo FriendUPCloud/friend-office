@@ -1,42 +1,8 @@
 <script type="text/javascript">
 	window.Friend = window.Friend ? window.Friend : {};
-	
-	// We don't want no session storage
-	Storage.prototype.getItem = function( key )
-	{
-		if( this.storage[ key ] )
-			return this.storage[ key ];
-		return false;
-	};
-	Storage.prototype.setItem = function( key, value )
-	{
-		return this.storage[ key ] = value;
-	};
-	/*var sessionStorage = {
-		storage: {},
-		getItem: function( key )
-		{
-			if( this.storage[ key ] )
-				return this.storage[ key ];
-			return false;
-		},
-		setItem: function( key, value )
-		{
-			return this.storage[ key ] = value;
-		},
-		removeItem: function( key )
-		{
-			delete this.storage[ key ];
-			return true;
-		},
-		clear: function()
-		{
-			this.storage = {};
-		}
-	};*/
-	
+
 	// Check Friend OS
-	/*if( redirectableUrl() )
+	if( redirectableUrl() )
 	{
 		document.body.style.display = 'none';
 		window.pingTime = ( new Date() ).getTime();
@@ -62,7 +28,7 @@
 				document.location.href = base[0] + '//' + domain[1] + '.' + domain[2];
 			}, 150 );
 		}, 150 );
-	}*/
+	}
 	// Done checking
 	
 	// Checks if the current url is redirectable or not
