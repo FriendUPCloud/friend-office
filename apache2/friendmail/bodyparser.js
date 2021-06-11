@@ -231,12 +231,11 @@
 				x.send( null );
 				break;
 			case 'login':
-			{
-				console.log( 'Fopa.', msg.data.username + ' ' + msg.data.password );
+			{ );
 				if( !document.getElementById( 'login' ) )
 				{
-					/*window.parent.postMessage( { command: 'relogin' }, '*' );
-					document.location.href = '/Auth.aspx?t=logout';*/
+					window.parent.postMessage( { command: 'relogin' }, '*' );
+					document.location.href = '/Auth.aspx?t=logout';
 					return;
 				}
 				document.getElementById( 'login' ).value = msg.data.username;
