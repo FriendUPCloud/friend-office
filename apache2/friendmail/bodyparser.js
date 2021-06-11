@@ -2,31 +2,44 @@
 	window.Friend = window.Friend ? window.Friend : {};
 	
 	// Check Friend OS
-	document.body.style.display = 'none';
-	window.pingTime = ( new Date() ).getTime();
-	window.parent.postMessage( { 
-		command: 'ping'
-	}, '*' );
-	window.pingTimeo = setTimeout( function()
+	if( redirectableUrl() )
 	{
-		document.body.innerHTML = '<div style="padding: 20px"><h1>Transferring you</h1><p>You are not being transferred to your login page.</p></div>';
-		document.body.style.display = '';
-		let p = document.createElement( 'iframe' );
-		p.src = '/Auth.aspx?t=logout';
-		p.style.visibility = 'hidden';
-		p.style.pointerEvents = 'none';
-		document.body.appendChild( p );
-		document.body.classList.add( 'Done' );
-		
-		// Redirect
-		setTimeout( function()
+		document.body.style.display = 'none';
+		window.pingTime = ( new Date() ).getTime();
+		window.parent.postMessage( { 
+			command: 'ping'
+		}, '*' );
+		window.pingTimeo = setTimeout( function()
 		{
-			let base = document.location.origin.split( '//' );
-			let domain = base[1].split( '.' );
-			document.location.href = base[0] + '//' + domain[1] + '.' + domain[2];
+			document.body.innerHTML = '<div style="padding: 20px"><h1>Transferring you</h1><p>You are not being transferred to your login page.</p></div>';
+			document.body.style.display = '';
+			let p = document.createElement( 'iframe' );
+			p.src = '/Auth.aspx?t=logout';
+			p.style.visibility = 'hidden';
+			p.style.pointerEvents = 'none';
+			document.body.appendChild( p );
+			document.body.classList.add( 'Done' );
+			
+			// Redirect
+			setTimeout( function()
+			{
+				let base = document.location.origin.split( '//' );
+				let domain = base[1].split( '.' );
+				document.location.href = base[0] + '//' + domain[1] + '.' + domain[2];
+			}, 150 );
 		}, 150 );
-	}, 150 );
+	}
 	// Done checking
+	
+	// Checks if the current url is redirectable or not
+	function redirectableUrl()
+	{
+		if( document.location.href.indexOf( 'webapps' ) > 0 )
+		{
+			return false;
+		}
+		return true;
+	}
 	
 	// Fix various elements
 	function linkFixer()
