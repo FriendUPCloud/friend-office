@@ -34,7 +34,7 @@
 	// Checks if the current url is redirectable or not
 	function redirectableUrl()
 	{
-		if( document.location.href.indexOf( 'webapps' ) > 0 )
+		if( document.location.href.indexOf( 'web-apps' ) > 0 )
 		{
 			return false;
 		}
