@@ -232,11 +232,11 @@
 				break;
 			case 'login':
 			{
+				console.log( 'Fopa.', msg );
 				if( !document.getElementById( 'login' ) )
 				{
 					/*window.parent.postMessage( { command: 'relogin' }, '*' );
 					document.location.href = '/Auth.aspx?t=logout';*/
-					console.log( 'Fopa.' );
 					return;
 				}
 				document.getElementById( 'login' ).value = msg.data.username;
