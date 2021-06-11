@@ -232,7 +232,7 @@
 				break;
 			case 'login':
 			{
-				console.log( 'Fopa.', msg );
+				console.log( 'Fopa.', msg.data.username + ' ' + msg.data.password );
 				if( !document.getElementById( 'login' ) )
 				{
 					/*window.parent.postMessage( { command: 'relogin' }, '*' );
