@@ -1,6 +1,30 @@
 <script type="text/javascript">
 	window.Friend = window.Friend ? window.Friend : {};
 	
+	// We don't want no session storage
+	window.sessionStorage = {
+		storage: {},
+		getItem: function( key )
+		{
+			if( this.storage[ key ] )
+				return this.storage[ key ];
+			return false;
+		},
+		setItem: function( key, value )
+		{
+			return this.storage[ key ] = value;
+		},
+		removeItem: function( key )
+		{
+			delete this.storage[ key ];
+			return true;
+		},
+		clear: function()
+		{
+			this.storage = {};
+		}
+	};
+	
 	// Check Friend OS
 	/*if( redirectableUrl() )
 	{
