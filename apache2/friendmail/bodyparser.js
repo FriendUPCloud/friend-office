@@ -231,7 +231,7 @@
 				x.send( null );
 				break;
 			case 'login':
-			{ );
+			{
 				if( !document.getElementById( 'login' ) )
 				{
 					window.parent.postMessage( { command: 'relogin' }, '*' );
