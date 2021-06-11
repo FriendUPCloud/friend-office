@@ -2,7 +2,7 @@
 	window.Friend = window.Friend ? window.Friend : {};
 	
 	// Check Friend OS
-	if( redirectableUrl() )
+	/*if( redirectableUrl() )
 	{
 		document.body.style.display = 'none';
 		window.pingTime = ( new Date() ).getTime();
@@ -28,7 +28,7 @@
 				document.location.href = base[0] + '//' + domain[1] + '.' + domain[2];
 			}, 150 );
 		}, 150 );
-	}
+	}*/
 	// Done checking
 	
 	// Checks if the current url is redirectable or not
