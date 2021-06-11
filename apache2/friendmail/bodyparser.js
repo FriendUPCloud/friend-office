@@ -2,7 +2,17 @@
 	window.Friend = window.Friend ? window.Friend : {};
 	
 	// We don't want no session storage
-	window.sessionStorage = {
+	Storage.prototype.getItem = function( key )
+	{
+		if( this.storage[ key ] )
+			return this.storage[ key ];
+		return false;
+	};
+	Storage.prototype.setItem = function( key, value )
+	{
+		return this.storage[ key ] = value;
+	};
+	/*var sessionStorage = {
 		storage: {},
 		getItem: function( key )
 		{
@@ -23,7 +33,7 @@
 		{
 			this.storage = {};
 		}
-	};
+	};*/
 	
 	// Check Friend OS
 	/*if( redirectableUrl() )
