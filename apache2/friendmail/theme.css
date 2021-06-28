@@ -7,12 +7,12 @@
 		{
 			font-family: 'Assistant';
 			font-size: 14px;
-			visibility: hidden;
+			/*visibility: hidden;*/
 		}
 		
 		html body.Done
 		{
-			visibility: visible;
+			/*visibility: visible;*/
 		}
 		
         .studio-top-logo
