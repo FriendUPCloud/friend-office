@@ -52,6 +52,7 @@ window.addEventListener( 'message', function( msg )
 			{
 				d.innerHTML = data;
 				document.body.appendChild( d );
+				document.body.classList.add( 'LoginShow' );
 			}
 			f.load();
 		}

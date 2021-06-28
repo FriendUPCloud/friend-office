@@ -1,4 +1,4 @@
-#MainFrame
+#MainFrame, #Login
 {
 	border: 0;
 	margin: 0;
@@ -11,17 +11,8 @@
 	transition: opacity 0.25s;
 }
 
-#Login
+.LoginShow #Login
 {
-	position: absolute;
-	top: 60px;
-	left: calc(50% - 200px);
-	width: 400px;
-	height: 270px;
-	padding: 30px;
-	box-sizing: border-box;
-	border-radius: 10px;
-	background-color: #f0f0f0;
-	color: black;
+	opacity: 1;
 }
 
