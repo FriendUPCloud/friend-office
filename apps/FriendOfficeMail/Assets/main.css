@@ -11,3 +11,33 @@
 	transition: opacity 0.25s;
 }
 
+.LoginShow #Login
+{
+	opacity: 1;
+}
+
+
+#Login .LoginField, 
+#Login .SignupField
+{
+	display: block;
+	float: left;
+	width: 35%;
+	box-sizing: border-box;
+	background-color: #f8f8f8;
+	border-radius: 3px;
+	box-shadow: 0px 2px 10px rgba(0,0,0,0.2);
+	margin: 60px 5% 0 10%;
+	padding: 30px;
+	min-height: 280px;
+}
+
+#Login .SignupField
+{
+	margin: 60px 10% 0 5%;
+}
+
+#Login .SignupField button
+{
+	margin: 20px 0;
+}
