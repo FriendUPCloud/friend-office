@@ -33,3 +33,29 @@
 	width: 60%;
 }
 
+#Login .LoginField:after, 
+#Login .SignupField:after,
+#Login .Info:after
+{
+	content: " ";
+	display: block;
+	clear: both;
+}
+
+#Login .LeftField, #Login .RightField
+{
+	float: left;
+	width: 50%;
+	box-sizing: border-box;
+}
+
+#Login .LeftField
+{
+	padding-right: 10px;
+}
+
+#Login .RightField
+{
+	padding-left: 10px;
+}
+
