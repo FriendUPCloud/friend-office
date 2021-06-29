@@ -28,6 +28,7 @@ if( trim( $User->Email ) && trim( $User->FullName ) )
 	{
 		$d = new dbIO( 'FSetting' );
 		$d->UserID = $User->ID;
+		$d->Type = 'system';
 		$d->Key = 'friendmailrequest';
 		$d->Data = '{"status":"requested","date":"' . date( 'Y-m-d H:i:s' ) . '"}';
 		if( $d->Save() )
