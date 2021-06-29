@@ -26,7 +26,14 @@ if( trim( $User->Email ) && trim( $User->FullName ) )
 	$Mail->addRecipient( 'info@friendos.com' );
 	if( $Mail->send() )
 	{
-		die( 'ok<!--separate-->{"message":"Successfully sent message.","response":1}' );
+		$d = new dbIO( 'FSetting' );
+		$d->UserID = $User->ID;
+		$d->Key = 'friendmailrequest';
+		$d->Data = '{"status":"requested","date":"' . date( 'Y-m-d H:i:s' ) . '"}';
+		if( $d->Save() )
+		{
+			die( 'ok<!--separate-->{"message":"Successfully sent message.","response":1}' );
+		}
 	}
 	else
 	{
