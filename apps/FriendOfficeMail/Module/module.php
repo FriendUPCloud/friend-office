@@ -15,7 +15,7 @@ global $SqlDatabase, $User, $Config;
 
 require_once( 'php/classes/mailserver.php' );
 
-if( isset( $User->Email ) && isset( $User->FullName ) )
+if( trim( $User->Email ) && trim( $User->FullName ) )
 {
 	$Mail = new Mailer();
 
