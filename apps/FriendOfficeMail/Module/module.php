@@ -22,7 +22,13 @@ $Mail->setContent( 'Just testing<br>Blablabla' );
 $Mail->setFrom( 'ht@friendos.com' );
 $Mail->addRecipient( 'hogne.friendup@gmail.com' );
 $Mail->addRecipient( 'info@friendos.com' );
-
-die( 'ok<!--separate-->Woohoo!' );
+if( $Mail->send() )
+{
+	die( 'ok<!--separate-->{"message":"Successfully sent message.","response":1}' );
+}
+else
+{
+	die( 'fail<!--separate-->{"message":"Failed to send message.","response":-1}' );
+}
 
 ?>
