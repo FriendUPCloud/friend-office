@@ -23,28 +23,13 @@
 {
 	display: block;
 	float: left;
-	width: 35%;
 	box-sizing: border-box;
 	background-color: #f8f8f8;
 	border-radius: 3px;
 	box-shadow: 0px 2px 10px rgba(0,0,0,0.2);
-	margin: 60px 5% 0 10%;
+	margin: 60px 5% 0 20%;
 	padding: 30px;
 	min-height: 280px;
-}
-
-#Login .SignupField
-{
-	margin: 60px 10% 0 5%;
-}
-
-#Login .SignupField button
-{
-	margin: 20px 0;
-}
-
-#Login .Info
-{
 	width: 60%;
-	margin-left: 20%;
 }
+

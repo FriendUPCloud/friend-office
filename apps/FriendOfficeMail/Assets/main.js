@@ -43,18 +43,46 @@ window.addEventListener( 'message', function( msg )
 			executeLogin( Application.credentials.username, Application.credentials.password );
 		}
 		else
-		{	
-			let d = ge( 'Login' );
-			if( !d ) d = document.createElement( 'div' );
-			d.id = 'Login';
-			let f = new File( 'Progdir:Assets/login.html' );
-			f.onLoad = function( data )
+		{
+			let s = new Module( 'system' );
+			s.onExecuted = function( rc, rd )
 			{
-				d.innerHTML = data;
-				document.body.appendChild( d );
-				document.body.classList.add( 'LoginShow' );
+				if( rc == 'ok' )
+				{
+					let d = ge( 'Login' );
+					if( !d ) 
+					{
+						d = document.createElement( 'div' );
+						d.id = 'Login';
+						document.body.appendChild( d );
+					}
+					let f = new File( 'Progdir:Assets/login.html' );
+					f.onLoad = function( data )
+					{
+						d.innerHTML = data;
+						document.body.classList.add( 'LoginShow' );
+					}
+					f.load();
+				}
+				else
+				{
+					let d = ge( 'Login' );
+					if( !d )
+					{
+						d = document.createElement( 'div' );
+						d.id = 'Login';
+						document.body.appendChild( d );
+					}
+					let f = new File( 'Progdir:Assets/request_account.html' );
+					f.onLoad = function( data )
+					{
+						d.innerHTML = data;
+						document.body.classList.add( 'LoginShow' );
+					}
+					f.load();
+				}
 			}
-			f.load();
+			s.execute( 'getsetting', { 'setting' : 'friendmailrequest' } );
 		}
 	}
 	
