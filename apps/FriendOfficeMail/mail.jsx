@@ -31,27 +31,6 @@ Application.run = function( msg )
 					command: 'quit'
 				}
 			]
-		},
-		{
-			name: 'Navigation',
-			items: [
-				{
-					name: 'Inbox',
-					command: 'mail_inbox'
-				},
-				{
-					name: 'Drafts',
-					command: 'mail_draft'
-				},
-				{
-					name: 'Sent',
-					command: 'mail_sent'
-				},
-				{
-					name: 'Trash',
-					command: 'mail_trash'
-				}
-			]
 		}
 	] );
 	
@@ -59,6 +38,8 @@ Application.run = function( msg )
 	{
 		Application.quit();
 	}
+	
+	this.mainView = v;
 	
 	// Set the main template
 	let f = new File( 'Progdir:Assets/main.html' );
@@ -71,5 +52,44 @@ Application.run = function( msg )
 		v.setContent( data );
 	}
 	f.load();
+}
+
+Application.receiveMessage = function( msg )
+{
+	if( msg.command == 'setitems' )
+	{
+		this.mainView.setMenuItems( [
+			{
+				name: 'File',
+				items: [
+					{
+						name: 'Quit',
+						command: 'quit'
+					}
+				]
+			},
+			{
+				name: 'Navigation',
+				items: [
+					{
+						name: 'Inbox',
+						command: 'mail_inbox'
+					},
+					{
+						name: 'Drafts',
+						command: 'mail_draft'
+					},
+					{
+						name: 'Sent',
+						command: 'mail_sent'
+					},
+					{
+						name: 'Trash',
+						command: 'mail_trash'
+					}
+				]
+			}
+		] );
+	}
 }
 

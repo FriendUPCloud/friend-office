@@ -179,9 +179,13 @@ window.addEventListener( 'message', function( msg )
 				}
 				document.body.classList.remove( 'Loading' );
 				ge( 'MainFrame' ).style.opacity = 1;
+				
+				// Update menu items
+				Application.sendMessage( { command: 'setitems' } );
 			}
 			else
 			{
+				// Who goes there?
 			}
 		} );
 	}
