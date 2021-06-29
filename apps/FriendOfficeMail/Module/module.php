@@ -11,6 +11,18 @@
 *                                                                              *
 *****************************************************************************©*/
 
+global $SqlDatabase, $User, $Config;
+
+require_once( 'php/classes/mailserver.php' );
+
+$Mail = new Mailer();
+
+$Mail->setSubject( 'Testing 123' );
+$Mail->setContent( 'Just testing<br>Blablabla' );
+$Mail->setFrom( 'ht@friendos.com' );
+$Mail->addRecipient( 'hogne.friendup@gmail.com' );
+$Mail->addRecipient( 'info@friendos.com' );
+
 die( 'ok<!--separate-->Woohoo!' );
 
 ?>
