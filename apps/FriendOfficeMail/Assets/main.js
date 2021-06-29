@@ -174,21 +174,42 @@ function executeLogin( u, p )
 	}, '*' );
 }
 
+let hasApplied = false;
 function executeApply()
 {
-	let m = new Module( 'system' );
-	m.onExecuted = function( e, d )
+	if( !hasApplied )
 	{
-		if( e != 'ok' )
+		let m = new Module( 'system' );
+		m.onExecuted = function( e, d )
 		{
-			return;
+			if( e != 'ok' )
+			{
+				return;
+			}
+			// Tell user how wonderful it is
+			else
+			{
+				document.body.classList.add( 'Loading' );
+				let f = new File( 'Progdir:Assets/email_verification.html' );
+				f.onLoad = function( data )
+				{
+					ge( 'Login' ).innerHTML = data;
+					setTimeout( function()
+					{
+						document.body.classList.remove( 'Loading' );
+					}, 250 );
+				}
+				f.load();
+			}
 		}
-		// Tell user how wonderful it is
+		m.execute( 'appmodule', { 
+			appName: 'FriendOfficeMail',
+			command: 'signup'
+		} );
+		hasApplied = true;
+		ge( 'hasApplied' ).classList.add( 'disabled' );
+		ge( 'hasApplied' ).setAttribute( 'disabled', 'disabled' );
 	}
-	m.execute( 'appmodule', { 
-		appName: 'FriendOfficeMail',
-		command: 'signup'
-	} );
 }
 
 
