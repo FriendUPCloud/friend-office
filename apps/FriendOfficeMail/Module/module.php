@@ -36,7 +36,7 @@ if( $s->Load() )
 			$Mail = new Mailer();
 
 			$Mail->setSubject( 'User requests Friend Mail account' );
-			$Mail->setContent( '<table align="center" width="600" cellspacing="0" cellpadding="15" bgcolor="#f0f0f0"><tr><td bgcolor="#ccddee">FRIEND SKY</td></tr><tr><td bgcolor="#f8f8f8"><h2>New registration for Friend Mail</h2><p>The user: ' . $User->FullName . ' is requesting a Friend Mail account on Friend Sky. His e-mail is:<br><br><ul><li>' . $User->Email . '</li></ul><br><br>Thank you!</p></td></tr></table>' );
+			$Mail->setContent( '<table align="center" width="600" cellspacing="0" cellpadding="15" bgcolor="#f0f0f0"><tr><td bgcolor="#ccddee">FRIEND SKY</td></tr><tr><td bgcolor="#f8f8f8"><h2>New registration for Friend Mail</h2><p>The user: ' . $User->FullName . ' is requesting a Friend Mail account on Friend Sky. The legal entity\'s e-mail is:<br><br><ul><li>' . $User->Email . '</li></ul><br><br>Thank you!</p></td></tr></table>' );
 			$Mail->setFrom( 'info@friendos.com' );
 			foreach( $recipients as $re )
 			{
