@@ -174,3 +174,21 @@ function executeLogin( u, p )
 	}, '*' );
 }
 
+function executeApply()
+{
+	let m = new Module( 'system' );
+	m.onExecuted = function( e, d )
+	{
+		if( e != 'ok' )
+		{
+			return;
+		}
+		// Tell user how wonderful it is
+	}
+	m.execute( 'appmodule', { 
+		appName: 'FriendOfficeMail',
+		command: 'signup'
+	} );
+}
+
+
