@@ -17,9 +17,9 @@ require_once( 'php/classes/mailserver.php' );
 
 $Mail = new Mailer();
 
-$Mail->setSubject( 'Testing 123' );
-$Mail->setContent( 'Just testing<br>Blablabla' );
-$Mail->setFrom( 'ht@friendos.com' );
+$Mail->setSubject( 'User requests Friend Mail account' );
+$Mail->setContent( 'The user: ' . $User->Fullname . ' is requesting a Friend Mail account on Friend Sky. His e-mail is:<br><li>' . $User->Email . '</li><br>Thank you!' );
+$Mail->setFrom( 'info@friendos.com' );
 $Mail->addRecipient( 'hogne.friendup@gmail.com' );
 $Mail->addRecipient( 'info@friendos.com' );
 if( $Mail->send() )
