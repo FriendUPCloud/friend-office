@@ -82,7 +82,11 @@ window.addEventListener( 'message', function( msg )
 					f.load();
 				}
 			}
-			s.execute( 'getsetting', { 'setting' : 'friendmailrequest' } );
+			let data = JSON.stringify( {
+				'state': 'request',
+				'date' : ( new Date() ).getTime()
+			} );
+			s.execute( 'getsetting', { 'setting': 'friendmailrequest', 'data': data } );
 		}
 	}
 	
