@@ -184,6 +184,11 @@ function executeApply()
 		{
 			if( e != 'ok' )
 			{
+				let j = JSON.parse( d );
+				if( j.response == 2 )
+				{
+					Alert( 'Error in profile', 'Your user profile is missing full name or email. Please correct this before applying.' );
+				}
 				return;
 			}
 			// Tell user how wonderful it is
