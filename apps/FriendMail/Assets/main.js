@@ -169,7 +169,7 @@ window.addEventListener( 'message', function( msg )
 				};
 			}
 		}
-		Application.keyData.save( 'FriendOfficeMail', Application.credentials, false, function( e, d )
+		Application.keyData.save( 'FriendMail', Application.credentials, false, function( e, d )
 		{
 			if( e == 'ok' )
 			{
@@ -240,7 +240,7 @@ function executeApply()
 			}
 		}
 		m.execute( 'appmodule', { 
-			appName: 'FriendOfficeMail',
+			appName: 'FriendMail',
 			command: 'signup'
 		} );
 		hasApplied = true;
