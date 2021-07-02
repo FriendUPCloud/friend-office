@@ -67,7 +67,7 @@ Application.receiveMessage = function( msg )
 						command: 'quit'
 					}
 				]
-			},
+			}/*,
 			{
 				name: 'Navigation',
 				items: [
@@ -88,7 +88,7 @@ Application.receiveMessage = function( msg )
 						command: 'mail_trash'
 					}
 				]
-			}
+			}*/
 		] );
 	}
 }
