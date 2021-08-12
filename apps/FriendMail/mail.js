@@ -68,6 +68,10 @@ Application.receiveMessage = function( msg )
 				name: 'File',
 				items: [
 					{
+						name: 'About',
+						command: 'about'
+					},
+					{
 						name: 'Quit',
 						command: 'quit'
 					}
