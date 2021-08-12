@@ -1,0 +1,22 @@
+i18n_spreadsheet          : Friend Office Regneark
+i18n_error                : Feil
+i18n_invalid_configuration : Ugyldig konfigurasjon.
+i18n_nofile_selected      : Ingen fil(er) valgt
+i18n_openfile             : Åpne regneark
+i18n_newfile              : Nytt regneark
+i18n_nofileselected       : Ingen fil(er) valgt
+i18n_file                 : Fil
+i18n_save                 : Lagre regneark
+i18n_save_as              : Lagre regneark som
+i18n_quit                 : Avslutt
+i18n_invalid_filetype     : Denne dokumenttypen kan ikke åpnes
+
+i18n_insert               : Sett inn
+i18n_insert_image         : Sett inn bilde
+i18n_new_sheet            : Legg til ark
+
+i18n_spreadsheet_was_saved_prefix : Ditt regneark
+i18n_spreadsheet_was_saved_suffix : ble lagret.
+
+i18n_error_saving        : Feil oppsto ved lagring
+i18n_error_saving_text   : Kunne ikke lagre regnearket.

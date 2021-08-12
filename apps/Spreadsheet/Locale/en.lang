@@ -1,0 +1,77 @@
+i18n_spreadsheet          : Friend Office Spreadsheet
+i18n_error                : Error
+i18n_invalid_configuration : Invalid configuration.
+i18n_nofile_selected      : No file selected
+i18n_openfile             : Load 
+i18n_newfile              : New spreadsheet
+i18n_nofileselected       : No file selected
+i18n_file                 : File
+i18n_save                 : Save
+i18n_save_as              : Save as
+i18n_reload_document      : Revert
+
+i18n_quit                 : Quit
+i18n_invalid_filetype     : This kind of file cannot be opened with Spreadsheet
+i18n_close                : Close
+i18n_dontsave             : Don't save
+i18n_cancel               : Cancel
+
+i18n_you_are_offline      : You are offline
+i18n_you_are_offline_desc : Currently, you can not edit your document as you are experiencing network issues. Please check later.
+
+i18n_reload_document_confirm : Are you sure you want to reload the document. All unsaved changes will be lost.
+
+
+i18n_insert               : Insert
+i18n_insert_image         : Insert image
+i18n_new_sheet            : Add worksheet
+
+i18n_document_seems_being_edited_title  : WARNING!
+i18n_document_seems_being_edited_prefix : The spreadsheet is locked by 
+i18n_document_seems_being_edited_suffix : . But coediting is unavailable for the session. You can ask the session participant(s) to restart the session to re-enable coediting.
+i18n_editcopy                           : Edit a copy
+i18n_view_last_saved_version            : View the last saved version
+i18n_override_session                   : Take over!
+i18n_document_seems_being_edited_suffix_override : . You can override that session and take over the document.
+
+i18n_spreadsheet_was_saved_prefix : Your spreadsheet 
+i18n_spreadsheet_was_saved_suffix : was saved.
+i18n_no_files_selected    : No files selected
+i18n_no_image_to_insert   : No image to insert.
+
+i18n_error_saving        : Error saving spreadsheet
+i18n_error_saving_text   : Could not save your spreadsheet.
+
+i18n_file_is_locked               : File is locked for editing
+i18n_file_is_locked_by            : The file is currently being edited by 
+i18n_file_is_locked_by_yourself   : WARNING! You are currently editing this file in another session.
+
+i18n_could_not_lock_file          : Could not set file lock
+i18n_could_not_lock_file_msg      : If you file is on a shared drive, others users might overwrite your changes.
+
+i18n_help                         : Help
+i18n_show_document_information    : Show document information
+
+i18n_joining_coediting            : You are joining a coediting session
+i18n_joining_coediting_desc       : Others user(s) are editing this document already. You join their active session. The session initiator is 
+
+i18n_opening					  : Opening 
+i18n_unsaved_changes              : You have unsaved changes
+i18n_really_quit                  : Save your changes first?
+
+i18n_printed                      : Document printed
+i18n_printed_text                 : Your document has been sent to the printer
+
+i18n_error_printing               : ERROR during print
+i18n_error_printing_text          : The document could not be printed: 
+
+i18n_already_printing             : Print job is in progress
+i18n_already_printing_text        : Please wait for the current process to be finished before you start a new print.
+i18n_print_savefirst              : Please save your document first
+i18n_print_savefirst_text         : In order to print you need to save your document first.
+
+i18n_printing                     : Printing you document
+i18n_printing_text                : You document is being sent to the printer.
+
+i18n_check_sas                    : Check collaborative editing
+i18n_could_not_join               : Could not join session. Retrying.

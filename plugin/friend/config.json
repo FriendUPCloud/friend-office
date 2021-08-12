@@ -1,0 +1,27 @@
+{
+    "name" : "TEST Friend Workspace Integration",
+    "guid" : "asc.{BA2BB87B-9F03-4160-8411-3AB4A5C71C39}",
+    "baseUrl" : "",
+	"isSystem" :  true,
+    "variations" : [
+        {
+            "description" : "testfriendworkspace",
+            "url"         : "index.html",
+
+            "icons"           : ["icon.png", "icon@2x.png", "icon2.png", "icon2@2x.png"],
+            "isViewer"        : false,
+            "EditorsSupport"  : ["word", "cell", "slide"],
+            "isVisual"        : false,
+            "isModal"         : false,
+            "isInsideMode"    : true,
+            "isCustomWindow"  : true,
+            "initDataType"    : "none",
+            "initData"        : "",
+            "initOnSelectionChanged" : false,
+            "isUpdateOleOnResize" : true,
+            "buttons"         : [],
+			"isSystem" :  true,
+            "size" : [10000, 10000]
+        }
+    ]
+}

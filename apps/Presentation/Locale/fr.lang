@@ -1,0 +1,12 @@
+i18n_presentation         : OnlyOffice Presentation Editor
+i18n_error                : Error
+i18n_invalid_configuration : Invalid configuration.
+i18n_nofile_selected      : No file selected
+i18n_openfile             : Load document
+i18n_nofileselected       : No file selected
+i18n_file                 : File
+i18n_newfile              : New document
+i18n_save                 : Save document
+i18n_save                 : Save document as
+i18n_quit                 : Quit
+i18n_invalid_filetype     : This kind of file cannot be opened with Presentation
