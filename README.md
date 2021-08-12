@@ -27,6 +27,11 @@ In addition to the client applications, the friendoffice server module handles s
  Friend Office front-end software is released under the AGPLv3 license - 
  see the LICENSE file for more information.
  
+ Friend Mail front-end software is released under the Apache2 license. Read
+ more about this license here:
+ 
+ https://www.apache.org/licenses/LICENSE-2.0
+ 
  Friend Office modules are released
  under the LGPL license. Read the license here:
  
