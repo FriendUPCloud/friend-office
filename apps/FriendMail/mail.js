@@ -48,7 +48,7 @@ Application.run = function( msg )
 	// Set the main template
 	let f = new File( 'Progdir:Assets/main.html' );
 	f.replacements = {
-		serverName: 'https://community.sky.computer/'
+		serverName: 'https://mail.friendsky.cloud/'
 	};
 	f.i18n();
 	f.onLoad = function( data )
