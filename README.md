@@ -1,3 +1,5 @@
+![Friend Office preview image](https://github.com/friendupcloud/friend-office/blob/master/foffice.jpg?raw=true)
+
 # Friend Office
 Friend Office client applications and server modules.
 
