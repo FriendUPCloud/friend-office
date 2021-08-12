@@ -7,6 +7,10 @@ Friend Office is a suite of client applications that make use of the Only Office
 
 In addition to the client applications, the friendoffice server module handles server-side interctions with the Community Server.
 
+## Friend Sky
+
+Friend Office can be tested on https://friendsky.cloud - signup is free.
+
 ## Contents
 
 ### Apps
