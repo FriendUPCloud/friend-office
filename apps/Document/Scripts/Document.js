@@ -48,13 +48,14 @@ Application.run = function( msg )
 		{
 			name: i18n( 'i18n_file' ),
 			items: [
-				{ name: i18n( 'i18n_newfile' ), command : 'new' },
-				{ name: i18n( 'i18n_openfile' ), command : 'open' },
-				{ name: i18n( 'i18n_save' ), command : 'save' },
-				{ name: i18n( 'i18n_save_as' ), command : 'save_as' },
+				{ name: i18n( 'i18n_about' ), cmomand: 'about' },
+				{ name: i18n( 'i18n_newfile' ), command: 'new' },
+				{ name: i18n( 'i18n_openfile' ), command: 'open' },
+				{ name: i18n( 'i18n_save' ), command: 'save' },
+				{ name: i18n( 'i18n_save_as' ), command: 'save_as' },
 				//{ name: i18n( 'i18n_save_as_pdf' ), command : 'save_as_pdf' },
 				//{ name: i18n( 'i18n_reload_document' ), command: 'reload_document' },
-				{ name: i18n( 'i18n_quit' ), command : 'ask_quit' }
+				{ name: i18n( 'i18n_quit' ), command: 'ask_quit' }
 			]
 		},
 		{

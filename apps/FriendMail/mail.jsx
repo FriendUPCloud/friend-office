@@ -27,6 +27,10 @@ Application.run = function( msg )
 			name: 'File',
 			items: [
 				{
+					name: 'About',
+					command: 'about'
+				},
+				{
 					name: 'Quit',
 					command: 'quit'
 				}
@@ -54,6 +58,7 @@ Application.run = function( msg )
 	f.load();
 }
 
+let abw = null;
 Application.receiveMessage = function( msg )
 {
 	if( msg.command == 'setitems' )
@@ -90,6 +95,25 @@ Application.receiveMessage = function( msg )
 				]
 			}*/
 		] );
+	}
+	else if( msg.command == 'about' )
+	{
+		if( abw ) return abw.activate();
+		abw = new View( {
+			title: 'About Friend Mail',
+			width: 500,
+			height: 500
+		} );
+		let f = new File( 'Progdir:Assets/about.html' );
+		f.onLoad = function( data )
+		{
+			abw.setContent( data );
+		}
+		f.load();
+		abw.onClose = function()
+		{
+			abw = null;
+		}
 	}
 }
 
