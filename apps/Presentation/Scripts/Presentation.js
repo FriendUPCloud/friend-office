@@ -132,7 +132,7 @@ Application.checkDocumentInstances = function( path )
 Application.receiveMessage = function( msg )
 {
 	if( !msg ) return;
-
+	let self = this;
 	if( msg.message )
 	{
 		switch( msg.message.command )
