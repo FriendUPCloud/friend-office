@@ -48,7 +48,7 @@ Application.run = function( msg )
 		{
 			name: i18n( 'i18n_file' ),
 			items: [
-				{ name: i18n( 'i18n_about' ), cmomand: 'about' },
+				{ name: i18n( 'i18n_about' ), command: 'about' },
 				{ name: i18n( 'i18n_newfile' ), command: 'new' },
 				{ name: i18n( 'i18n_openfile' ), command: 'open' },
 				{ name: i18n( 'i18n_save' ), command: 'save' },
@@ -147,6 +147,7 @@ Application.checkDocumentInstances = function( path )
 Application.receiveMessage = function( msg )
 {
 	if( !msg ) return;
+	let self = this;
 
 	if( msg.message )
 	{
@@ -199,6 +200,29 @@ Application.receiveMessage = function( msg )
 
 	switch( msg.command )
 	{
+		case 'about':
+		{
+			if( this.abw )
+			{
+				return this.abw.activate();
+			}
+			this.abw = new View( {
+				title: 'About Friend Office Document',
+				width: 500,
+				height: 500
+			} );
+			this.abw.onClose = function()
+			{
+				self.abw = null;
+			}
+			let f = new File( 'Progdir:Templates/About.html' );
+			f.onLoad = function( data )
+			{
+				self.abw.setContent( data );
+			}
+			f.load();
+			break;
+		}
 		case 'ask_quit':
 			this.checkState();
 			break;
