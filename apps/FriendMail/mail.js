@@ -61,15 +61,12 @@ Application.run = function( msg )
 	console.log( 'Getting app settings.' );
 	m.onExecuted = function( e, d )
 	{
-		v.setContent( 'Ok: ' + d );
-		console.log( 'Response: ', e, d );
-		/*if( e == 'ok' )
+		if( e == 'ok' )
 		{
 			try
 			{
 				let setts = JSON.parse( d );
-				console.log( 'What is it?', setts );
-				
+
 				// Set the main template
 				let f = new File( 'Progdir:Assets/main.html' );
 				f.replacements = {
@@ -85,14 +82,11 @@ Application.run = function( msg )
 			// JSON error
 			catch( e )
 			{
-				console.log( 'Ouch!' );
 				Application.quit();
 			}
+			return;
 		}
-		else
-		{
-			Application.quit();
-		}*/
+		Application.quit();
 	}
 	m.execute( 'appmodule', { 
 		appName: 'FriendMail',
