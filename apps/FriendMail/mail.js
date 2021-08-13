@@ -55,9 +55,11 @@ Application.run = function( msg )
 	
 	this.mainView = v;
 	
+	console.log( 'Trying to get settings.' );
 	let m = new Module( 'system' );
 	m.onExecuted = function( e, d )
 	{
+		console.log( 'Response: ', e, d );
 		if( e == 'ok' )
 		{
 			try
