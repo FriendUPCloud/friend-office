@@ -12,21 +12,43 @@
 
 Application.credentials = false;
 
+// Login retries
+let retries = 3;
+
 Application.run = function( msg )
 {
-	Application.keyData.get( function( e, d )
+	this.intr = setInterval( function()
 	{
-		if( e == 'ok' && d && d[0].Data )
+		if( retries-- == 0 )
 		{
-			Application.credentials = d[0].Data;
+			Application.displayConnectionError();
+			return clearInterval( Application.intr );
 		}
-		else
+		Application.keyData.get( function( e, d )
 		{
-			Application.credentials = false;
-		}
-	} );
+			if( e == 'ok' && d && d[0].Data )
+			{
+				Application.credentials = d[0].Data;
+			}
+			else
+			{
+				Application.credentials = false;
+			}
+		} );
+	}, 800 );
 	
 	ge( 'MainFrame' ).style.opacity = 0;
+}
+
+// Show an alert and quit
+Application.displayConnectionError = function()
+{
+	Alert( 'Could not connect to server', 'Friend Mail cannot access its authentication database and will quit.' );
+	
+	setTimeout( function()
+	{
+		Application.quit();
+	}, 3000 );
 }
 
 window.addEventListener( 'message', function( msg )
