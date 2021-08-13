@@ -26,10 +26,15 @@ Application.run = function( msg )
 		}
 		Application.keyData.get( function( e, d )
 		{
+			// Completed - no need to poll....
+			clearInterval( Application.intr );
+			
+			// OK! Cool
 			if( e == 'ok' && d && d[0].Data )
 			{
 				Application.credentials = d[0].Data;
 			}
+			// Failed
 			else
 			{
 				Application.credentials = false;
