@@ -20,6 +20,8 @@
 	}
 **/
 
+console.log( 'Did I load???' );
+
 Application.run = function( msg )
 {
 	this.setApplicationName( 'Friend Mail' );
