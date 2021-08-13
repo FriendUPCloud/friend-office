@@ -15,6 +15,30 @@ global $SqlDatabase, $User, $Config;
 
 require_once( 'php/classes/mailserver.php' );
 
+if( isset( $args->args ) && isset( $args->args->command ) )
+{
+	switch( $args->args->command )
+	{
+		// Application settings
+		case 'settings':
+			$s = new dbIO( 'FSetting' );
+			$s->Type = 'friendmail';
+			$s->UserID = '-1';
+			$s->Key = 'settings';
+			if( $s->Load() )
+			{
+				die( 'ok<!--separate-->' . trim( $s->Data ) );
+			}
+			die( 'fail<!--separate-->{"response":-1,"message":"Failed to load settings"}' );
+			break;
+		default:
+			break;
+	}
+}
+
+
+// TODO: We should not get here.... if we're not supposed to get here...
+
 // Load server config
 $s = new dbIO( 'FSetting' );
 $s->Type = 'friendmail';

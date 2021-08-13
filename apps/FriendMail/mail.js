@@ -10,6 +10,16 @@
 *                                                                              *
 *****************************************************************************©*/
 
+/**
+	Friend Mail uses data in Server app as a requirement
+	type: friendmail
+	key: settings
+	properties: {
+		key: server,
+		value: myserver.com
+	}
+**/
+
 Application.run = function( msg )
 {
 	this.setApplicationName( 'Friend Mail' );
@@ -45,17 +55,43 @@ Application.run = function( msg )
 	
 	this.mainView = v;
 	
-	// Set the main template
-	let f = new File( 'Progdir:Assets/main.html' );
-	f.replacements = {
-		serverName: 'https://mail.friendsky.cloud/'
-	};
-	f.i18n();
-	f.onLoad = function( data )
+	let m = new Module( 'system' );
+	m.onExecuted = function( e, d )
 	{
-		v.setContent( data );
+		if( e == 'ok' )
+		{
+			try
+			{
+				let setts = JSON.parse( d );
+				console.log( 'What is it?', d );
+				
+				// Set the main template
+				let f = new File( 'Progdir:Assets/main.html' );
+				f.replacements = {
+					serverName: 'https://mail.friendsky.cloud/'
+				};
+				f.i18n();
+				f.onLoad = function( data )
+				{
+					v.setContent( data );
+				}
+				f.load();
+			}
+			// JSON error
+			catch( e )
+			{
+				Application.quit();
+			}
+		}
+		else
+		{
+			Application.quit();
+		}
 	}
-	f.load();
+	m.execute( 'appmodule', { 
+		appName: 'FriendMail',
+		command: 'settings'
+	} );
 }
 
 let abw = null;
