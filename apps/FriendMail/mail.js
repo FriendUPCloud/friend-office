@@ -61,6 +61,7 @@ Application.run = function( msg )
 	console.log( 'Getting app settings.' );
 	m.onExecuted = function( e, d )
 	{
+		v.setContent( 'Ok: ' + d );
 		console.log( 'Response: ', e, d );
 		/*if( e == 'ok' )
 		{
