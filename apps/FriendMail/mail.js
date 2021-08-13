@@ -60,7 +60,7 @@ Application.run = function( msg )
 	m.onExecuted = function( e, d )
 	{
 		console.log( 'Response: ', e, d );
-		if( e == 'ok' )
+		/*if( e == 'ok' )
 		{
 			try
 			{
@@ -70,7 +70,7 @@ Application.run = function( msg )
 				// Set the main template
 				let f = new File( 'Progdir:Assets/main.html' );
 				f.replacements = {
-					serverName: 'https://mail.friendsky.cloud/'
+					serverName: setts.server
 				};
 				f.i18n();
 				f.onLoad = function( data )
@@ -89,7 +89,7 @@ Application.run = function( msg )
 		else
 		{
 			Application.quit();
-		}
+		}*/
 	}
 	m.execute( 'appmodule', { 
 		appName: 'FriendMail',
