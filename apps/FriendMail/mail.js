@@ -55,8 +55,8 @@ Application.run = function( msg )
 	
 	this.mainView = v;
 	
-	console.log( 'Trying to get settings.' );
 	let m = new Module( 'system' );
+	console.log( 'Getting app settings.' );
 	m.onExecuted = function( e, d )
 	{
 		console.log( 'Response: ', e, d );
@@ -65,7 +65,7 @@ Application.run = function( msg )
 			try
 			{
 				let setts = JSON.parse( d );
-				console.log( 'What is it?', d );
+				console.log( 'What is it?', setts );
 				
 				// Set the main template
 				let f = new File( 'Progdir:Assets/main.html' );
@@ -82,6 +82,7 @@ Application.run = function( msg )
 			// JSON error
 			catch( e )
 			{
+				console.log( 'Ouch!' );
 				Application.quit();
 			}
 		}
