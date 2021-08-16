@@ -55,10 +55,7 @@ Application.run = function( msg )
 	
 	this.mainView = v;
 	
-	v.setContent( 'Testing now..' );
-	
 	let m = new Module( 'system' );
-	console.log( 'Getting app settings.' );
 	m.onExecuted = function( e, d )
 	{
 		if( e == 'ok' )

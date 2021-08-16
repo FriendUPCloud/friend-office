@@ -234,10 +234,12 @@
 			{
 				if( !document.getElementById( 'login' ) )
 				{
+					console.log( 'Asking to relogin!' );
 					window.parent.postMessage( { command: 'relogin' }, '*' );
 					document.location.href = '/Auth.aspx?t=logout';
 					return;
 				}
+				console.log( 'We are doing the login.' );
 				document.getElementById( 'login' ).value = msg.data.username;
 				document.getElementById( 'pwd' ).value = msg.data.password;
 				Authorize.Submit();
