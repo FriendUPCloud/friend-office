@@ -1333,6 +1333,8 @@ Application.sasidReady = function( result )
 	}
 	else if( result.SASID )
 	{
+		console.log( 'Not host, checking fileinfo: ' + Application.fileInfo );
+		
 		// we are not host, but ended on our own session... see for other users and compare them to our lock list.
 		// we promote oourselves to "host" and set our new session to be the current SAS for this document
 		Application.isHost = true;
