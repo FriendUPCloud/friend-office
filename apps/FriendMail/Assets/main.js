@@ -14,6 +14,7 @@ Application.credentials = false;
 
 // Login retries
 let retries = 3;
+let applicationCredsLoaded = false;
 
 Application.run = function( msg )
 {
@@ -39,6 +40,7 @@ Application.run = function( msg )
 			{
 				Application.credentials = false;
 			}
+			applicationCredsLoaded = true;
 		} );
 	}, 800 );
 	
@@ -64,6 +66,10 @@ window.addEventListener( 'message', function( msg )
 	
 	function loginForm()
 	{
+		if( !applicationCredsLoaded )
+		{
+			return setTimeout( function(){ loginForm(); }, 100 );
+		}
 		ge( 'MainFrame' ).style.opacity = 0;
 		if( Application.credentials && Application.credentials.username )
 		{
