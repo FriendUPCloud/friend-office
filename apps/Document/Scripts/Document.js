@@ -1313,7 +1313,7 @@ Application.sasidReady = function( result )
 		// seems we joined a session, continue as planned.
 		Application.bindClientEvents();
 		//do a double check for the host.
-		console.log( 'Do a double check for the host: ' + Application.fileInfo );
+		console.log( 'Do a double check for the host: ', Application.fileInfo );
 		Application.sas.send( {type:'check',data:Application.fileInfo } );
 		Application.sasBackup = setTimeout( Application.noPositiveSASResponse, 3000 );
 		Application.startSASKeepAlive();
@@ -1333,7 +1333,7 @@ Application.sasidReady = function( result )
 	}
 	else if( result.SASID )
 	{
-		console.log( 'Not host, checking fileinfo: ' + Application.fileInfo );
+		console.log( 'Not host, checking fileinfo: ', Application.fileInfo );
 		
 		// we are not host, but ended on our own session... see for other users and compare them to our lock list.
 		// we promote oourselves to "host" and set our new session to be the current SAS for this document
