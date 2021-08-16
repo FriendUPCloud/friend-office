@@ -182,6 +182,13 @@ window.addEventListener( 'message', function( msg )
 	}
 	else if( message.command == 'register_with_friend' )
 	{
+		// If we haven't checked login - we need to log out!
+		if( !Application.loginCheck )
+		{
+			executeLogout();
+			Application.loginCheck = true;
+			return loginForm();
+		}
 		if( !Application.credentials )
 		{
 			if( !ge( 'loginUser' ) )
@@ -218,14 +225,20 @@ window.addEventListener( 'message', function( msg )
 	}
 } );
 
+function executeLogout()
+{
+	ge( 'MainFrame' ).contentWindow.postMessage( {
+		command: 'logout'
+	} );
+}
+
 function executeLogin( u, p )
 {
 	document.body.classList.add( 'Loading' );
 	window.credentials = {
 		username: u ? u : ge( 'loginUser' ).value,
 		password: p ? p : ge( 'loginPass' ).value
-	};
-		
+	};	
 	ge( 'MainFrame' ).contentWindow.postMessage( {
 		command: 'login',
 		username: window.credentials.username,
