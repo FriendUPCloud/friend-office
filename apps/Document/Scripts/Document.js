@@ -1313,6 +1313,7 @@ Application.sasidReady = function( result )
 		// seems we joined a session, continue as planned.
 		Application.bindClientEvents();
 		//do a double check for the host.
+		console.log( 'Do a double check for the host: ' + Application.fileInfo );
 		Application.sas.send( {type:'check',data:Application.fileInfo } );
 		Application.sasBackup = setTimeout( Application.noPositiveSASResponse, 3000 );
 		Application.startSASKeepAlive();
