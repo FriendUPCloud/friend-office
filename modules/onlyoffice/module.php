@@ -39,6 +39,7 @@ if( $level = $SqlDatabase->FetchObject( '
 else $level = false;
 
 $Logger->log( '[FRIENDOFFICE] Module called, datestamp ' . date ( 'Y-m-d H:i:s' ) );
+$Logger->log( '[FRIENDOFFICE] What did we ask?' . print_r( $args, 1 );
 
 // -----------------------------------------------------------------------------
 if( $args->command )
@@ -384,7 +385,7 @@ if( $args->command )
 							if( $ru ) $f3->SetAuthContext('servertoken',$ru->ServerToken);
 							
 							$saveresult = $f3->Save( $f->GetContent() );
-							$Logger->log( '[ONLYOFFICE] Saved lock info: ' . $f3->path . ' (' . $lockFileName . ')' . print_r( $args->args->fileinfo, 1 ) . 'Result: ' . $saveresult . "\n---\n" );
+							$Logger->log( '[FRIENDOFFICE] Saved lock info: ' . $f3->path . ' (' . $lockFileName . ')' . print_r( $args->args->fileinfo, 1 ) . 'Result: ' . $saveresult . "\n---\n" );
 							
 							if( $args->command == 'set_file_lock' && $saveresult )
 							{
