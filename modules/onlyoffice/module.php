@@ -252,10 +252,13 @@ if( $args->command )
 					
 					if( $f->Load( $path ) )
 					{
-						
 						$fd = new Door( reset( explode( ':', $path ) ) . ':', 'servertoken', $ru->ServerToken);
 						$fileok = true;
 					}
+				}
+				else
+				{
+					$Logger->log( '[FRIENDOFFICE] Could not load user ' . $owner . ' which means $f is false.' );
 				}
 			}
 
