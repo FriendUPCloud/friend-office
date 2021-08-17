@@ -38,8 +38,8 @@ if( $level = $SqlDatabase->FetchObject( '
 }
 else $level = false;
 
-$Logger->log( '[FRIENDOFFICE] Module called, datestamp ' . date ( 'Y-m-d H:i:s' ) );
-$Logger->log( '[FRIENDOFFICE] What did we ask?' . print_r( $args, 1 ) );
+//$Logger->log( '[FRIENDOFFICE] Module called, datestamp ' . date ( 'Y-m-d H:i:s' ) );
+//$Logger->log( '[FRIENDOFFICE] What did we ask?' . print_r( $args, 1 ) );
 
 // -----------------------------------------------------------------------------
 if( $args->command )
@@ -97,14 +97,14 @@ if( $args->command )
 		
 		case 'save_document':
 		
-			$Logger->log( '[FRIENDOFFICE] ' . date("Y-m-d H:i:s") . ' onlyoffice save_document called ' .  print_r( $args->args,1 ) );
+			//$Logger->log( '[FRIENDOFFICE] ' . date("Y-m-d H:i:s") . ' onlyoffice save_document called ' .  print_r( $args->args,1 ) );
 			//basic check for valid input
 			if( !isset( $args->args->diskpath )||!isset( $args->args->path ) ) die( 'fail<!--separate-->{"result":"400","message":"invalid request"}' );
 
 			//make sure we dont fiddle around with shadow file pathes			
 			$diskpath = getOriginalFilePath( $args->args->diskpath );
 			
-			$Logger->log('DISKPATH ' . $diskpath );
+			//$Logger->log('DISKPATH ' . $diskpath );
 			
 			$c = curl_init();
 			
@@ -117,10 +117,10 @@ if( $args->command )
 			curl_close( $c );
 						
 						
-			$Logger->log( '[FRIENDOFFICE]  We save a document to '. $diskpath . ' and it has bytes ' . strlen( $r ) );
+			//$Logger->log( '[FRIENDOFFICE]  We save a document to '. $diskpath . ' and it has bytes ' . strlen( $r ) );
 			if( strlen( $r ) )
 			{	
-				$Logger->log( '[FRIENDOFFICE] Result of save: ' . $r );
+				//$Logger->log( '[FRIENDOFFICE] Result of save: ' . $r );
 				$f = new File( $diskpath );
 				$saveresult = $f->Save( $r );
 				//$Logger->log( '[FRIENDOFFICE]  saved a file here line 118 ' .  print_r( $saveresult ));
@@ -129,12 +129,12 @@ if( $args->command )
 					//$Logger->log( '[friendoffice] Really saved from URL '. $args->args->path .' to ' . $diskpath );
 					die( 'ok<!--separate-->{"result":"1","message":"Saved","path":"' . $diskpath . '"}' );
 				}
-				$Logger->log( '[FRIENDOFFICE] Could not save to ' . $diskpath );
+				//$Logger->log( '[FRIENDOFFICE] Could not save to ' . $diskpath );
 				die( 'fail<!--separate-->{"result":"0","message":"Failed to save document"}' );
 			}
 			else
 			{
-				$Logger->log( '[FRIENDOFFICE] CURL failed!');
+				//$Logger->log( '[FRIENDOFFICE] CURL failed!');
 			}
 			break;
 		
@@ -147,11 +147,11 @@ if( $args->command )
 
 			
 
-			$Logger->log( '[friendoffice] load_document_info for file '. $args->args->diskpath .' do we have source path? ' . ( $args->args->sourcepath?$args->args->sourcepath:'no') );
+			//$Logger->log( '[friendoffice] load_document_info for file '. $args->args->diskpath .' do we have source path? ' . ( $args->args->sourcepath?$args->args->sourcepath:'no') );
 			
 			$fileok = $f = $fd = false;
 			
-			$Logger->log( '[friendoffice] load_document_info 1a');
+			//$Logger->log( '[friendoffice] load_document_info 1a');
 			
 			//check for virtual file stuff
 			if( $args->args->sourcepath && strpos($args->args->sourcepath, '::') !== false )
@@ -166,12 +166,12 @@ if( $args->command )
 				
 				if( $ru->Load() && $ru->ServerToken )
 				{
-					$Logger->log( '[FRIENDOFFICE] Owner loaded (' . $owner . ')' );
+					//$Logger->log( '[FRIENDOFFICE] Owner loaded (' . $owner . ')' );
 					$f = new File( $path );
 					$f->SetAuthContext( 'servertoken', $ru->ServerToken );
 					if( $f->Load( $path ) )
 					{
-						$Logger->log( '[friendoffice] File is ok, it loaded.' );
+						//$Logger->log( '[friendoffice] File is ok, it loaded.' );
 						$p = explode( ':', $path ); $p = reset( $p );
 						$fd = new Door( $p . ':', 'servertoken', $ru->ServerToken );
 						$fileok = true;
