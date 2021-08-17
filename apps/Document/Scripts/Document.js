@@ -737,7 +737,8 @@ Application.checkFileLock = function( fileItem )
 	{
 		if( e == 'ok' )
 		{
-			var fileinfo = false;
+			let fileinfo = false;
+			console.log( '[FriendOffice] OK, we could check file lock.' );
 			try
 			{
 				fileinfo = JSON.parse( d );
@@ -752,12 +753,16 @@ Application.checkFileLock = function( fileItem )
 				
 					Application.previousFileLock = ( fileinfo.lock_document_key ? fileinfo.lock_document_key : false );
 	
+					console.log( '[FriendOffice] Previous file lock: ' + Application.previousFileLock );
+	
 					//check if we are joining an active document that has been saved before we joined....
 					if( fileinfo.active_file_lock && fileinfo.lock_document_key && fileinfo.lock_document_key != Application.createFileKey( Application.fileItem ) )
 					{
 						//check if we can join the coediting session
+						console.log( '[FriendOffice] Checking if we can join coediting - shadowcopy -> ' + fileinfo.shadowcopy + '/shadowfile -> ' + fileinfo.shadowfile );
 						if( fileinfo.shadowcopy && fileinfo.shadowfile )
 						{
+							console.log( '[FriendOffice] Checking document session with sasid: ' + fileinfo.sasid );
 							Application.checkDocumentSession( fileinfo.sasid );
 							return;
 						}
@@ -968,10 +973,12 @@ Application.revalidateFileLock = function()
 	{
 		if( e == 'ok' )
 		{
-			var fileinfo = false;
+			console.log( '[FriendOffice] revalidateFileLock - We could load document info.' );
+			let fileinfo = false;
 			try
 			{
 				fileinfo = JSON.parse( d );
+				console.log( 'We got file info: ', fileinfo );
 				if( !( fileinfo.lock_document_key && Application.fileInfo.lock_document_key == fileinfo.lock_document_key ) )
 				{
 					// this might happen if somebody sneaked into the lock file after we tried to set our lock... we will just join that other 

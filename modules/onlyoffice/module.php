@@ -164,9 +164,9 @@ if( $args->command )
 				$ru = new dbIO('FUser');
 				$ru->ID = $owner;
 				
-
 				if( $ru->Load() && $ru->ServerToken )
 				{
+					$Logger->log( '[FRIENDOFFICE] Owner loaded (' . $owner . ')' );
 					$f = new File( $path );
 					$f->SetAuthContext( 'servertoken', $ru->ServerToken );
 					if( $f->Load( $path ) )
