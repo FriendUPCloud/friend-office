@@ -322,7 +322,7 @@ if( $args->command )
 					}
 
 					// Write lock info
-					$Logger->log( '[FRIENDOFFICE] Writing lock info: ' . $f->path );
+					$Logger->log( '[FRIENDOFFICE] Writing lock info: ' . print_r( $f->path, 1 ) );
 					$saveresult = writeLockInfo($f->path, $fd->ID, $fileinfo );
 
 					if( $saveresult )
