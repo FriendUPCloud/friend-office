@@ -384,6 +384,7 @@ if( $args->command )
 							if( $ru ) $f3->SetAuthContext('servertoken',$ru->ServerToken);
 							
 							$saveresult = $f3->Save( $f->GetContent() );
+							$Logger->log( '[ONLYOFFICE] Saved lock info: ' . $f3->path . ' (' . $lockFileName . ')' . print_r( $args->args->fileinfo, 1 ) . 'Result: ' . $saveresult . "\n---\n" );
 							
 							if( $args->command == 'set_file_lock' && $saveresult )
 							{
@@ -415,6 +416,7 @@ if( $args->command )
 					}
 					else
 					{
+						$Logger->log( '[friendoffice] Error 500' );
 						die( 'fail<!--separate-->{"error":"500","errormessage":"Could not save fileinfo in line 300"}' );
 					}
 				}
