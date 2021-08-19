@@ -9,7 +9,7 @@ In addition to the client applications, the "friendoffice" server module handles
 
 ## Friend Sky
 
-Friend Office can be tested on https://friendsky.cloud - signup is free.
+OnlyOffice for Friend OS can be tested on https://friendsky.cloud - signup is free.
 
 ## Contents
 
