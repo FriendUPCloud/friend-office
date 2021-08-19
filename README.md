@@ -1,11 +1,11 @@
-![Friend Office preview image](https://github.com/friendupcloud/friend-office/blob/main/foffice.jpg?raw=true)
+![OnlyOffice for Friend OS preview image](https://github.com/friendupcloud/friend-office/blob/main/foffice.jpg?raw=true)
 
-# Friend Office
-Friend Office client applications and server modules.
+# OnlyOffice for Friend OS
+Friend's OnlyOffice client applications and server modules.
 
-Friend Office is a suite of client applications that make use of the Only Office Community Server to bring e-mail, calendar and collaborative office features to the Friend OS.
+OnlyOffice for Friend OS is a suite of client applications that make use of the Only Office Community Server to bring e-mail, calendar and collaborative office features to the Friend OS.
 
-In addition to the client applications, the friendoffice server module handles server-side interctions with the Community Server.
+In addition to the client applications, the "friendoffice" server module handles server-side interctions with the Community Server.
 
 ## Friend Sky
 
