@@ -15,10 +15,10 @@ OnlyOffice for Friend OS can be tested on https://friendsky.cloud - signup is fr
 
 ### Apps
 
- * Document
- * Spreadsheet
- * Presentation
- * Friend Mail
+ * Document - OnlyOffice document editor
+ * Spreadsheet - OnlyOffice spreadsheet editor
+ * Presentation - OnlyOffice presentation designer
+ * FriendMail - OnlyOffice mail and calendar
  
 ### Module
  
