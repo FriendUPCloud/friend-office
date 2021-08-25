@@ -525,9 +525,6 @@ Application.loadFile = function( file )
 					Application.quit();
 					return;
 				}
-			}
-			else
-			{
 				Notify( {
 					title: i18n( 'i18n_error' ),
 					text:  i18n( 'i18n_nofileselected' )

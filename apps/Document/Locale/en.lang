@@ -4,6 +4,7 @@ i18n_document             : OnlyOffice Document
 i18n_error                : Error
 i18n_invalid_configuration: Invalid configuration.
 i18n_nofile_selected      : No file selected
+i18n_no_valid_file_selected : No valid file selected
 i18n_openfile             : Open
 i18n_newfile              : New document
 i18n_nofileselected       : No file selected
