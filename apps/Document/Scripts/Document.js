@@ -153,7 +153,6 @@ Application.receiveMessage = function( msg )
 	{
 		switch( msg.message.command )
 		{
-
 			case 'setwindowactive':
 				if( msg.message.path == Application.documentPath )
 				{
@@ -303,18 +302,19 @@ Application.receiveMessage = function( msg )
 			break;
 
 		case 'save_as':
-			var currentPath = Application.currentFilename;
+		{
+			let currentPath = Application.currentFilename;
 			if( currentPath )
 			{
 				if( currentPath.indexOf( '/' ) > 0 )
 				{
-					var p = currentPath.split( '/' );
+					let p = currentPath.split( '/' );
 					p.pop();
 					currentPath = p.join( '/' ) + '/';
 				}
 				else if( currentPath.indexOf( ':' ) > 0 )
 				{
-					var q = currentPath.split( ':' );
+					let q = currentPath.split( ':' );
 					q.pop();
 					currentPath = q.join( ':' ) + ':';
 				}
@@ -325,7 +325,7 @@ Application.receiveMessage = function( msg )
 				}
 			}
 
-			var flags = {
+			let flags = {
 
 				path: currentPath,
 				type: 'save',
@@ -338,7 +338,7 @@ Application.receiveMessage = function( msg )
 				{
 					if( path )
 					{
-						for(i = 0; i < Application.validFiles.length; i++)
+						for( let i = 0; i < Application.validFiles.length; i++ )
 						{
 							if( path.indexOf('.' + Application.validFiles[ i ]) > 1 )
 							{
@@ -354,8 +354,9 @@ Application.receiveMessage = function( msg )
 			}
 
 			// Open the file dialog view window
-			var f =  new Filedialog( flags );
-			break;
+			let f =  new Filedialog( flags );
+		}
+		break;
 
 		case 'save_as_pdf':
 			Application.saveAsPDF();
@@ -400,7 +401,7 @@ Application.onQuit = function()
 		//console.log('release lock for ' + Application.fileItem.Path, );
 		Application.fileInfo.user_to_release = Application.username;
 
-		var mr = new Module( 'onlyoffice' );
+		let mr = new Module( 'onlyoffice' );
 		mr.onExecuted = function( e, d )
 		{
 			//console.log('lock should have been removed...',e,d);
@@ -418,7 +419,7 @@ Application.releaseFileLockAndQuit = function()
 		//console.log('release lock for ' + Application.fileItem.Path, );
 		Application.fileInfo.user_to_release = Application.username;
 
-		var mr = new Module( 'onlyoffice' );
+		let mr = new Module( 'onlyoffice' );
 		mr.onExecuted = function( e, d )
 		{
 			Application.quit();
@@ -436,7 +437,7 @@ Application.saveAsPDF = function()
 	//we have a file that is saved on the server
 	if( Application.fileInfo && Application.fileInfo.active_file_lock )
 	{
-		var m = new Module( 'onlyoffice' );
+		let m = new Module( 'onlyoffice' );
 		m.onExecuted = function( e, d )
 		{
 			console.log('save_as_pdf came back',e,d);
@@ -454,7 +455,7 @@ Application.saveAsPDF = function()
 Application.openFile = function( filePath, closeCurrentApp = false )
 {
 
-	for(i = 0; i < Application.validFiles.length; i++)
+	for( let i = 0; i < Application.validFiles.length; i++ )
 	{
 		if( filePath.indexOf('.' + Application.validFiles[ i ]) > 1 )
 		{
@@ -491,7 +492,7 @@ Application.loadFile = function( file )
 	}
 
 	// Open a load file dialog and return selected files
-	var description = {
+	let description = {
 		multiSelect: false,
 		path: 'Mountlist:',
 		type: 'load',
@@ -539,7 +540,7 @@ Application.saveFile = function()
 // Save a file with a new filename
 Application.saveFileAs = function( newpath )
 {
-	var newkey = Application.createFileKey( false );
+	let newkey = Application.createFileKey( false );
 	Application.documentView.sendMessage( { command: 'save_as', newpath: newpath, newkey: newkey } );
 }
 
@@ -548,12 +549,12 @@ Application.saveFileAs = function( newpath )
 */
 Application.loadSettings = function()
 {
-	var m = new Module( 'onlyoffice' );
+	let m = new Module( 'onlyoffice' );
 	m.onExecuted = function( e, d )
 	{
 		if( e == 'ok' )
 		{
-			var tmp;
+			let tmp;
 			try
 			{
 				tmp = JSON.parse( d );
@@ -592,7 +593,7 @@ Application.createView = function( fileToOpen )
 	if( !Application.documentView )
 	{
 		// Make a new window with some flags
-		var v = new View( {
+		let v = new View( {
 			title: i18n( 'i18n_document' ),
 			width: 1280,
 			height: 1024,
@@ -670,8 +671,8 @@ Application.checkAndOpenFile = function( fileItem )
 	// File item is just a path
 	if( typeof( fileItem ) == 'string' && fileItem.indexOf( ':' ) > 0 )
 	{
-		var tmp = fileItem;
-		var filename;
+		let tmp = fileItem;
+		let filename;
 		if( tmp.indexOf( ':' ) )
 		{
 			filename = tmp.split( ':' )[1];
@@ -693,12 +694,12 @@ Application.checkAndOpenFile = function( fileItem )
 	//save it into application property
 	Application.fileItem = fileItem;
 
-	var l = new Library( 'system.library' );
+	let l = new Library( 'system.library' );
 	l.onExecuted = function( e, d )
 	{
 		if(e == 'ok')
 		{
-			var efi = false;
+			let efi = false;
 			try
 			{
 				efi = JSON.parse(d);
@@ -732,7 +733,7 @@ Application.checkAndOpenFile = function( fileItem )
 
 Application.checkFileLock = function( fileItem )
 {
-	var m = new Module( 'onlyoffice' );
+	let m = new Module( 'onlyoffice' );
 	m.onExecuted = function( e, d )
 	{
 		if( e == 'ok' )
@@ -811,9 +812,9 @@ Application.lockFileForEditing = function( fileItem, fileinfo )
 	if( Application.fileInfo && Application.fileInfo.active_lock_user && Application.fileInfo.active_lock_user.length > 0 )
 	{
 		editstatus = 'LOCKED';
-		for(i=0;i< Application.fileInfo.active_lock_user.length; i++ )
+		for( let i = 0; i < Application.fileInfo.active_lock_user.length; i++ )
 		{
-			if( Application.fileInfo.active_lock_user[i] ==  Application.username )
+			if( Application.fileInfo.active_lock_user[i] == Application.username )
 			{
 				editstatus = Application.fileInfo.active_lock_user.length > 1 ? 'COLLIDING_SESSION' : 'OPEN';
 			}
@@ -832,7 +833,7 @@ Application.fileisLocked = function()
 {
 	if( !Application.notEditing ) return;
 
-	var msgtext = i18n('i18n_document_seems_being_edited_prefix') + ' ' + Application.fileInfo.active_lock_user.join(', ') + i18n('i18n_document_seems_being_edited_suffix');
+	let msgtext = i18n('i18n_document_seems_being_edited_prefix') + ' ' + Application.fileInfo.active_lock_user.join(', ') + i18n('i18n_document_seems_being_edited_suffix');
 	
 	Confirm(i18n('i18n_document_seems_being_edited_title'),msgtext,function( result )
 	{
@@ -867,7 +868,7 @@ Application.askforOverride = function(fileItem, fileinfo)
 {
 	if( !Application.notEditing ) return;
 
-	var msgtext = i18n('i18n_document_seems_being_edited_prefix') + ' ' + Application.fileInfo.active_lock_user.join(', ') + i18n('i18n_document_seems_being_edited_suffix_override');
+	let msgtext = i18n('i18n_document_seems_being_edited_prefix') + ' ' + Application.fileInfo.active_lock_user.join(', ') + i18n('i18n_document_seems_being_edited_suffix_override');
 	
 	Confirm(i18n('i18n_document_seems_being_edited_title'),msgtext,function( result )
 	{
@@ -919,7 +920,7 @@ Application.lockCreateInfoFile = function( fileItem, fileinfo, forcemode = false
 	if(fileinfo.fileinfo == 0) delete fileinfo.fileinfo;
 
 	//set lock and open....
-	var m = new Module( 'onlyoffice' );
+	let m = new Module( 'onlyoffice' );
 	m.onExecuted = function( e, d )
 	{
 		//console.log('file lock set?', d);
@@ -941,7 +942,7 @@ Application.setUserViewID = function( docViewID )
 	if( Application.fileInfo && !Application.fileInfo.original_path ) return;
 	
 	//set lock and open....
-	var m = new Module( 'onlyoffice' );
+	let m = new Module( 'onlyoffice' );
 	m.onExecuted = function( e, d )
 	{
 		//console.log('file lock set?', d);
@@ -968,7 +969,7 @@ Application.setUserViewID = function( docViewID )
 */
 Application.revalidateFileLock = function()
 {
-	var m = new Module( 'onlyoffice' );
+	let m = new Module( 'onlyoffice' );
 	m.onExecuted = function( e, d )
 	{
 		if( e == 'ok' )
@@ -1007,9 +1008,9 @@ Application.revalidateFileLock = function()
 Application.tryAgain = function(errmsg)
 {
 	if( errmsg ) console.log(errmsg);
-	var nextTryPath = Application.documentPath;
-	var quitme = Application.quit;
-	var wrap = function()
+	let nextTryPath = Application.documentPath;
+	let quitme = Application.quit;
+	let wrap = function()
 	{
 		//Notify( {'title':i18n('i18n_error'),'text':i18n('i18n_unexpected_error_retrying')} );
 		Application.quit();
@@ -1046,7 +1047,7 @@ Application.loadFileIntoEditor = function( fileItem, fileInfo, mode )
 	// Called with false, meaning, new file!
 	if( !fileItem )
 	{
-		var f = new File( 'Progdir:Templates/Document.html' );
+		let f = new File( 'Progdir:Templates/Document.html' );
 		f.onLoad = function( data )
 		{
 			// Add the file and set the new file
@@ -1054,7 +1055,7 @@ Application.loadFileIntoEditor = function( fileItem, fileInfo, mode )
 			Application.documentView.setFlag( 'title', 'New document' );
 
 
-			var fileKey = Application.createFileKey(false);
+			let fileKey = Application.createFileKey(false);
 			Application.documentView.setContent( data, function()
 			{
 				if( Application.printServerSide ) Application.documentView.sendMessage( { 'command': 'setprint', 'target': 'server' } );
@@ -1088,7 +1089,7 @@ Application.loadFileIntoEditor = function( fileItem, fileInfo, mode )
 		Notify( {'title': i18n( 'i18n_error' ), 'text': i18n( 'i18n_nofile_selected' ) } );
 		return false;
 	}
-	var ext = fileItem.Filename.split( '.' ).pop();
+	let ext = fileItem.Filename.split( '.' ).pop();
 
 	if( Application.validFiles.indexOf( ext ) > -1 )
 	{
@@ -1097,7 +1098,7 @@ Application.loadFileIntoEditor = function( fileItem, fileInfo, mode )
 		Application.currentFilename = fileItem.Path;
 
 		// Load a file from the same dir as the jsx file is located
-		var f = new File( 'Progdir:Templates/Document.html' );
+		let f = new File( 'Progdir:Templates/Document.html' );
 		f.onLoad = function( data )
 		{
 
@@ -1106,7 +1107,7 @@ Application.loadFileIntoEditor = function( fileItem, fileInfo, mode )
 			{
 				if( Application.printServerSide ) Application.documentView.sendMessage( { 'command': 'setprint', 'target': 'server' } );
 
-				var documentKey = ( fileItem.fileKey );
+				let documentKey = ( fileItem.fileKey );
 				Application.documentView.sendMessage( { 'command' : 'setpath', 'path': fileItem.SourcePath ? fileItem.SourcePath : fileItem.Path} );
 				Application.documentView.sendMessage( { 'command' : 'setkey', 'key': documentKey } );
 				Application.documentView.sendMessage( { 'command' : 'sethost', 'host':  Application.friendDomain } );
@@ -1146,7 +1147,7 @@ Application.loadFileIntoEditor = function( fileItem, fileInfo, mode )
 */
 Application.createFileKey = function( fileItem )
 {
-	var str = '';
+	let str = '';
 	if( !fileItem )
 	{
 		str = 'newdoc' + Application.userId + ( new Date().getTime() ) + Math.random();
@@ -1156,8 +1157,8 @@ Application.createFileKey = function( fileItem )
 		str = (fileItem.DateModified ? fileItem.DateModified + '-' : '' + new Date().getTime() )  + fileItem.Path ;
 	}
 
-	var hash = 5381;
-	for( var a = 0; a < str.length; a++ )
+	let hash = 5381;
+	for( let a = 0; a < str.length; a++ )
 	{
 		hash += ( ( str.charCodeAt( a ) * a ) << 8 );
 	}
@@ -1174,7 +1175,7 @@ Application.addUserToFileLock = function( fileItem, currentInfo )
 	Application.userAddedToFileLock = true; // a bit presumptios... but we avoid doing this too often :)
 
 	//set lock and open....
-	var m = new Module( 'onlyoffice' );
+	let m = new Module( 'onlyoffice' );
 	m.onExecuted = function( e, d )
 	{
 		//console.log('user added to file lock?',e, d);
@@ -1198,7 +1199,7 @@ Application.addUserToFileLock = function( fileItem, currentInfo )
 		}
 	}
 
-	var newinfo = {};
+	let newinfo = {};
 	newinfo.addUserToLockOnly = true;
 	newinfo.lock_document_key = currentInfo.lock_document_key;
 	newinfo.userToAdd = Application.username;
@@ -1225,8 +1226,8 @@ Application.showDocumentInformation = function()
 			invisible: false
 		} );
 
-		var s = '';
-		var prop = false;
+		let s = '';
+		let prop = false;
 		if( Application.fileItem )
 		{
 			s += '<h3>Document information:</h3><ul>';
@@ -1253,7 +1254,7 @@ Application.showDocumentInformation = function()
 		}
 
 		// Load a file from the same dir as the jsx file is located
-		var f = new File( 'Progdir:Templates/DocumentInfo.html' );
+		let f = new File( 'Progdir:Templates/DocumentInfo.html' );
 		f.onLoad = function( data )
 		{
 			// Set it as window content
@@ -1296,7 +1297,7 @@ Application.checkDocumentSession = function( sasID = null )
 	}
 	
 	console.log('init SAS ID',sasID, Application.isHost );
-	var conf = {
+	let conf = {
 		sasid   : sasID,
 		onevent : Application.socketMessage 
 	};
@@ -1426,7 +1427,7 @@ Application.sasKeepAlive = function()
 		Application.checksas = null;
 	};
 	
-	var conf = {
+	let conf = {
 		sasid   : Application.sasid,
 		onevent : Application.socketMessage 
 	};
@@ -1460,7 +1461,7 @@ Application.sasKeepAliveCheck = function( result )
 
 Application.reInitSAS = function()
 {
-	var conf = {
+	let conf = {
 		sasid   : Application.sasid,
 		onevent : Application.socketMessage,
 		sessiontype : "open",
