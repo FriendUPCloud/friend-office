@@ -109,7 +109,8 @@ Application.receiveMessage = function( msg )
 			break;
 
 		case 'file_saved':
-			var fn;
+		{
+			let fn;
 			if( Application.documentInfo && Application.documentInfo.original_name )
 			{
 				fn = Application.documentInfo.original_name
@@ -121,8 +122,8 @@ Application.receiveMessage = function( msg )
 			}
 			Application.sendMessage( {	command: 'saveresponse', response: 'success',	filename: fn, savemode: Application.saveMode } );
 			Application.saveMode = false;
-			break;
-
+		}
+		break;
 		case 'background_save':
 			if( Application.documentPath && Application.documentPath.indexOf( ':' ) > 0 )
 			{
@@ -224,7 +225,7 @@ Application.resetBackgroundSaveTimeout = function( donttriggernewone )
 Application.showOverlay = function( title, description )
 {
 	// Steal focus
-	var inp = document.createElement( 'input' );
+	let inp = document.createElement( 'input' );
 	inp.style.position = 'absolute';
 	inp.style.opacity = 0;
 	document.body.appendChild( inp );
@@ -234,8 +235,7 @@ Application.showOverlay = function( title, description )
 	if( window.editor )
 		window.editor.asc_setViewMode( true )
 	
-	
-	var self = this;
+	let self = this;
 	if( !this.viewoverlay )
 	{
 		let d = document.createElement( 'div' );
@@ -254,11 +254,11 @@ Application.hideOverlay = function( title, description )
 		window.editor.asc_setViewMode( false );
 	
 	// Remove overlay
-	var self = this;
+	let self = this;
 	if( this.viewoverlay )
 	{
 		this.viewoverlay.classList.remove( 'Showing' );
-		var s = this.viewoverlay;
+		let s = this.viewoverlay;
 		this.viewoverlay = null;
 		setTimeout( function(){ document.body.removeChild( s ); }, 250 );
 	}
@@ -274,8 +274,8 @@ document.body.onoffline = function()
 
 Application.setPrintingServerSide = function()
 {
-	var editor = false;
-	var ooi  = document.getElementById("oocontainer");
+	let editor = false;
+	let ooi  = document.getElementById("oocontainer");
 	if( ooi ) editor = ooi.getElementsByTagName('iframe')[0].contentWindow;
 	if( editor ) editor.postMessage('{"command":"setserversideprint"}','*');
 
@@ -283,8 +283,8 @@ Application.setPrintingServerSide = function()
 
 Application.alignText = function( direction )
 {
-	var editor = false;
-	var ooi  = document.getElementById("oocontainer");
+	let editor = false;
+	let ooi  = document.getElementById("oocontainer");
 
 	if( ooi ) editor = ooi.getElementsByTagName('iframe')[0].contentWindow;
 	else console.log('we dont have an element with ID oocontainer ?????');
@@ -297,8 +297,8 @@ Application.alignText = function( direction )
 
 Application.insertPageBreak = function()
 {
-	var editor = false;
-	var ooi  = document.getElementById("oocontainer");
+	let editor = false;
+	let ooi  = document.getElementById("oocontainer");
 
 	if( ooi ) editor = ooi.getElementsByTagName('iframe')[0].contentWindow;
 	else console.log('we dont have an element with ID oocontainer ?????');
@@ -315,8 +315,8 @@ Application.backgroundSave = function()
 	Application.sendMessage({'command':'init_autosave_delay'});
 	setTimeout(function(){
 
-		var editor = false;
-		var ooi  = document.getElementById("oocontainer");
+		let editor = false;
+		let ooi  = document.getElementById("oocontainer");
 	
 		if( ooi ) editor = ooi.getElementsByTagName('iframe')[0].contentWindow;
 		if( editor)
@@ -329,8 +329,8 @@ Application.backgroundSave = function()
 Application.loadImage = function()
 {
 
-	var editor = false;
-	var ooi  = document.getElementById("oocontainer");
+	let editor = false;
+	let ooi  = document.getElementById("oocontainer");
 
 	if( ooi ) editor = ooi.getElementsByTagName('iframe')[0].contentWindow;
 	else console.log('we dont have an element with ID oocontainer ?????');
@@ -340,7 +340,7 @@ Application.loadImage = function()
 		Application.ooEditor = editor;
 
 		// Open a load file dialog and return selected files
-		var description = {
+		let description = {
 			suffix: [ 'png','jpg','jpeg','gif' ], // same as 10 lines below !!!
 			triggerFunction: function( items )
 			{
@@ -350,9 +350,9 @@ Application.loadImage = function()
 				{
 					//console.log('go through our items here...')
 					//we do file extensio based parsing for now... and insert all files we deem valid :)
-					var ext = '';
-					var valid_extensions = [ 'png','jpg','jpeg','gif' ];
-					for(var i = 0; i < items.length; i++)
+					let ext = '';
+					let valid_extensions = [ 'png','jpg','jpeg','gif' ];
+					for(let i = 0; i < items.length; i++)
 					{
 						ext = (items[i].Filename.match(/\.([^.]*?)(?=\?|#|$)/) || [])[1];
 						
@@ -360,7 +360,7 @@ Application.loadImage = function()
 						{
 							
 							//URL here follow same schema as loadDocument method uses for loading a document into the editor							
-							var imageURL = Application.friendHost + "/fileaccess/getfile/"+ encodeURIComponent( items[i].Path ) +"/user/" + Application.username  + '/' + Application.authId + '/' + Application.viewId;
+							let imageURL = Application.friendHost + "/fileaccess/getfile/"+ encodeURIComponent( items[i].Path ) +"/user/" + Application.username  + '/' + Application.authId + '/' + Application.viewId;
 							editor.postMessage('{"command":"insert_image_from_url","image_url":"'+ imageURL +'"}','*');
 
 							//we only insert one image at a time...
@@ -384,7 +384,7 @@ Application.loadImage = function()
 			mainView: Application.viewId
 		}
 		// Open the file dialog view window
-		var d = new Filedialog( description );
+		let d = new Filedialog( description );
 		
 	}
 	else console.log('we dont have an the editor?');
@@ -440,11 +440,11 @@ Application.loadDocument = function()
 		Application.quit();
 	}
 	
-	var ext = Application.fileName.split( '.' ).pop();
+	let ext = Application.fileName.split( '.' ).pop();
 
 	Application.documentURL = Application.friendHost + "/fileaccess/getfile/"+ encodeURIComponent( Application.documentPath ) +"/user/" + Application.username + '/' + Application.authId + '/' + Application.viewId;
 
-	var pconfig = {
+	let pconfig = {
 	    "document": {
 	        "fileType": "docx",
 	        "key": Application.documentKey,
@@ -512,7 +512,7 @@ Application.loadDocument = function()
 		{
 			if( msg.path == Application.documentPath )
 			{
-				var fn = msg.path.split( ':' )[1];
+				let fn = msg.path.split( ':' )[1];
 				if( fn.indexOf( '/' ) > 0 )
 					fn = fn.split( '/' ).pop();
 			}
@@ -608,7 +608,7 @@ Application.onStateChange = function( evt )
 // When downloading as, check response
 Application.onDownloadAs = function( evt )
 {
-	var dpath = Application.documentPath;
+	let dpath = Application.documentPath;
 
 	if( Application.saveMode == 'saveas' )
 	{
@@ -619,12 +619,12 @@ Application.onDownloadAs = function( evt )
 	if( dpath.indexOf( '.docx' ) <= 0 )
 		dpath += '.docx';
 	
-	var m = new Module( 'onlyoffice' );
+	let m = new Module( 'onlyoffice' );
 	m.onExecuted = function( e, d )
 	{
 		if( e == 'ok' )
 		{
-			var fn;
+			let fn;
 			if( Application.saveAsPath )
 			{
 				fn = Application.saveAsPath.indexOf(":") != -1 ? Application.saveAsPath.split( ':' )[1] : '';
@@ -701,10 +701,10 @@ Application.printFileServerSide = function()
 	}
 
 	// here we should have a saved document ready to be printed - tell the server to get it done.
-	var tmp = Application.api_interface.split('/');
-	var conversionServiceURL = tmp[0] + "//" + tmp[2] + '/ConvertService.ashx'; // [1] is empty due to the // in the URL
+	let tmp = Application.api_interface.split('/');
+	let conversionServiceURL = tmp[0] + "//" + tmp[2] + '/ConvertService.ashx'; // [1] is empty due to the // in the URL
 	
-	var cdata = {
+	let cdata = {
 	    "async": false,
 	    "filetype": "docx",
 	    "key": Application.userId + '_print_' + new Date().getTime(),//Application.documentKey,
@@ -713,7 +713,7 @@ Application.printFileServerSide = function()
 	    "url": Application.documentURL
 	}
 	
-	var m = new Module( 'onlyoffice' );
+	let m = new Module( 'onlyoffice' );
 	m.onExecuted = function( e, d )
 	{
 		if( e == 'ok' )
@@ -721,7 +721,7 @@ Application.printFileServerSide = function()
 			printFilePath = '';
 			try
 			{
-				var tmp = JSON.parse( d );
+				let tmp = JSON.parse( d );
 				printFilePath = decodeURIComponent( tmp.conversionresult );
 				console.log('Printing this file: ' + printFilePath );
 			}
@@ -738,7 +738,7 @@ Application.printFileServerSide = function()
 				return;
 			}
 			
-			var print = new Printdialog( {
+			let print = new Printdialog( {
 				file: printFilePath
 			}, printCallBack );
 			
