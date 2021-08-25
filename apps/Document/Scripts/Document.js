@@ -347,8 +347,13 @@ Application.receiveMessage = function( msg )
 							}
 						}
 					}
-
-					Notify({'title':i18n('i18n_error'),'text':i18n('i18n_nofileselected')});
+					else
+					{
+						Notify( {
+							title: i18n( 'i18n_error' ),
+							text:  i18n( 'i18n_nofileselected' )
+						} );
+					}
 
 				}
 			}
@@ -523,7 +528,10 @@ Application.loadFile = function( file )
 			}
 			else
 			{
-				Notify({'title':i18n('i18n_error'),'text':i18n('i18n_nofileselected')});
+				Notify( {
+					title: i18n( 'i18n_error' ),
+					text:  i18n( 'i18n_nofileselected' )
+				} );
 			}
 		}
 	}
