@@ -346,15 +346,11 @@ Application.receiveMessage = function( msg )
 								return;
 							}
 						}
-					}
-					else
-					{
 						Notify( {
 							title: i18n( 'i18n_error' ),
-							text:  i18n( 'i18n_nofileselected' )
+							text:  i18n( 'i18n_no_valid_file_selected' )
 						} );
 					}
-
 				}
 			}
 
@@ -527,7 +523,7 @@ Application.loadFile = function( file )
 				}
 				Notify( {
 					title: i18n( 'i18n_error' ),
-					text:  i18n( 'i18n_nofileselected' )
+					text:  i18n( 'i18n_no_valid_file_selected' )
 				} );
 			}
 		}
