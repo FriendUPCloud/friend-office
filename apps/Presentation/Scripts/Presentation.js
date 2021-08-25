@@ -190,7 +190,7 @@ Application.receiveMessage = function( msg )
 				return this.abw.activate();
 			}
 			this.abw = new View( {
-				title: 'About Friend Office Presentation',
+				title: 'About OnlyOffice Presentation',
 				width: 500,
 				height: 500
 			} );

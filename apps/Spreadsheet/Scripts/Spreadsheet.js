@@ -191,7 +191,7 @@ Application.receiveMessage = function( msg )
 				return this.abw.activate();
 			}
 			this.abw = new View( {
-				title: 'About Friend Office Spreadsheet',
+				title: 'About OnlyOffice Spreadsheet',
 				width: 500,
 				height: 500
 			} );
