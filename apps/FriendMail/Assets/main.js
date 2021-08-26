@@ -164,13 +164,14 @@ window.addEventListener( 'message', function( msg )
 	{
 		Notify( { title: message.title, text: message.message } );
 	}
+	// Saving a single attachment
 	else if( message.command == 'friend_file_download' )
 	{
 		new Filedialog( {
 			title: 'Download attachment',
 			path: 'Home:',
 			multiSelect: false,
-			type: 'path',
+			type: 'save',
 			rememberPath: true,
 			triggerFunction: function( data )
 			{
