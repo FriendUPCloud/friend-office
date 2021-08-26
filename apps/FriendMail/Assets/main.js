@@ -169,7 +169,7 @@ window.addEventListener( 'message', function( msg )
 	{
 		let fn = message.filename;
 		let suff = false;
-		if( fn.indexOf( '.' )
+		if( fn.indexOf( '.' ) )
 		{
 			suff = fn.split( '.' );
 			suff = suff[ suff.length - 1 ];
