@@ -144,6 +144,7 @@ window.addEventListener( 'message', function( msg )
 			multiSelect: true,
 			path: 'Home:',
 			type: 'load',
+			rememberPath: true,
 			triggerFunction: function( data )
 			{
 				if( data.length )
@@ -170,6 +171,7 @@ window.addEventListener( 'message', function( msg )
 			path: 'Home:',
 			multiSelect: false,
 			type: 'path',
+			rememberPath: true,
 			triggerFunction: function( data )
 			{
 				if( data )
