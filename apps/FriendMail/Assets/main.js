@@ -167,11 +167,20 @@ window.addEventListener( 'message', function( msg )
 	// Saving a single attachment
 	else if( message.command == 'friend_file_download' )
 	{
+		let fn = message.filename;
+		let suff = false;
+		if( fn.indexOf( '.' )
+		{
+			suff = fn.split( '.' );
+			suff = suff[ suff.length - 1 ];
+		}
 		new Filedialog( {
 			title: 'Download attachment',
 			path: 'Home:',
+			filename: message.filename,
 			multiSelect: false,
 			type: 'save',
+			suffix: suff,
 			rememberPath: true,
 			triggerFunction: function( data )
 			{
@@ -182,7 +191,7 @@ window.addEventListener( 'message', function( msg )
 						authid: Application.authId,
 						baseurl: document.location.origin,
 						file: message.source,
-						filename: message.filename,
+						filename: '',
 						path: data
 					}, '*' );
 				}
