@@ -1,2 +1,5 @@
 
 i18n_about                : Om applikasjonen
+i18n_select_target_folder : Velg mappe
+file_open_path            : Velg mappe
+
