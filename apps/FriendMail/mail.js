@@ -137,7 +137,7 @@ Application.receiveMessage = function( msg )
 	{
 		if( abw ) return abw.activate();
 		abw = new View( {
-			title: 'About Friend Mail',
+			title: 'About OnlyOffice Mail',
 			width: 500,
 			height: 500
 		} );
