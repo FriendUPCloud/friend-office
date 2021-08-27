@@ -11,6 +11,8 @@
 		}, '*' );
 		window.pingTimeo = setTimeout( function()
 		{
+			if( document.location.href.indexof( '/controlpanel/' ) > 0 )
+				return;
 			document.body.innerHTML = '<div style="padding: 20px"><h1>Transferring you</h1><p>You are not being transferred to your login page.</p></div>';
 			document.body.style.display = '';
 			let p = document.createElement( 'iframe' );
