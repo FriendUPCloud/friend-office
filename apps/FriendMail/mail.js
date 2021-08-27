@@ -79,7 +79,7 @@ Application.run = function( msg )
 			// JSON error
 			catch( err )
 			{
-				console.log( 'What was error: ', err );
+				//console.log( 'What was error: ', err );
 				Application.quit();
 			}
 			return;
