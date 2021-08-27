@@ -46,14 +46,14 @@
 	// Fix various elements
 	function linkFixer()
 	{
-		let host = document.location.host;
+		let host = document.location.origin;
 		
 		// Fix links
 		let a = document.getElementsByTagName( 'a' );
 		for( let b = 0; b < a.length; b++ )
 		{
-			// TODO: Make exceptions in some cases
-			if( a[b].href.indexOf( host ) > 0 )
+			// Only open own links in same window
+			if( a[b].href.indexOf( host ) == 0 )
 			{
 				if( a[b].getAttribute( 'target' ) == '_blank' )
 					a[b].setAttribute( 'target', '' );
