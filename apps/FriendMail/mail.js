@@ -22,7 +22,7 @@
 
 Application.run = function( msg )
 {
-	this.setApplicationName( 'Friend Mail' );
+	this.setApplicationName( 'OnlyOffice Mail' );
 
 	// Open the mail window
 	let v = new View( {
