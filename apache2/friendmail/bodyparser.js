@@ -46,13 +46,18 @@
 	// Fix various elements
 	function linkFixer()
 	{
+		let host = document.location.host;
+		
 		// Fix links
 		let a = document.getElementsByTagName( 'a' );
 		for( let b = 0; b < a.length; b++ )
 		{
 			// TODO: Make exceptions in some cases
-			if( a[b].getAttribute( 'target' ) == '_blank' )
-				a[b].setAttribute( 'target', '' );
+			if( a[b].href.indexOf( host ) > 0 )
+			{
+				if( a[b].getAttribute( 'target' ) == '_blank' )
+					a[b].setAttribute( 'target', '' );
+			}
 		}
 		
 		// Fix div buttons
