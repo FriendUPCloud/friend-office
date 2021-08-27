@@ -77,8 +77,9 @@ Application.run = function( msg )
 				f.load();
 			}
 			// JSON error
-			catch( e )
+			catch( err )
 			{
+				console.log( 'What was error: ', err );
 				Application.quit();
 			}
 			return;
