@@ -272,12 +272,14 @@ if( $args->command )
 			// Failed with source path
 			if( $f === false )
 			{
-				$Logger->log( '[FRIENDOFFICE] Abort! Failed to load file: ' . $args->args->sourcepath . ' -> ' . $args->args->diskpath );
-				die( 'fail<!--separate-->{"response":-1,"message":"Failed to load file. Aborting."}' );
-				/*$Logger->log( '[FRIENDOFFICE] Failed with source path. Trying to save anyway - could be failure: ' . $args->args->diskpath . '..' );
+				$Logger->log( '[FRIENDOFFICE] Failed with source path. Trying to save anyway - could be failure: ' . $args->args->diskpath . '..' );
 				$f = new File( $args->args->diskpath );
 				$fd = new Door( reset( explode( ':', $args->args->diskpath ) ) . ':' );
-				if( $f->Load() ) $fileok = true;*/
+				if( $f->Load() ) 
+				{
+					$Logger->log( '[FRIENDOFFICE] File content: ' . $f->GetContent() );
+					$fileok = true;
+				}
 			}
 			
 			
