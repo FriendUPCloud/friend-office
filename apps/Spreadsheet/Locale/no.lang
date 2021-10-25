@@ -21,4 +21,4 @@ i18n_spreadsheet_was_saved_prefix : Ditt regneark
 i18n_spreadsheet_was_saved_suffix : ble lagret.
 
 i18n_error_saving        : Feil oppsto ved lagring
-i18n_error_saving_text   : Kunne ikke lagre regnearket.
+i18n_error_saving_text   : Kunne ikke lagre regnearket. Er disken full?
