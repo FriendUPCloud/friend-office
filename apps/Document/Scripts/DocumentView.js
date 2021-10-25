@@ -244,7 +244,7 @@ Application.showOverlay = function( title, description )
 		this.viewoverlay = d;
 	}
 	this.viewoverlay.innerHTML = '<div><h2>' + title + '</h2><p>' + description + '</p></div>';
-	setTimeout( function(){ self.viewoverlay.classList.add( 'Showing' ); }, 5 );
+	setTimeout( function(){ if( self.viewoverlay && self.viewoverlay.classList ){ self.viewoverlay.classList.add( 'Showing' ); } }, 5 );
 }
 
 Application.hideOverlay = function( title, description )

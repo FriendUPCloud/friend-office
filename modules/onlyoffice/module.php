@@ -126,8 +126,15 @@ if( $args->command )
 				//$Logger->log( '[FRIENDOFFICE]  saved a file here line 118 ' .  print_r( $saveresult ));
 				if( $saveresult )
 				{
-					$Logger->log( '[friendoffice] Really saved from URL '. $args->args->path .' to ' . $diskpath . ' -> ' . $saveresult );
-					die( 'ok<!--separate-->{"result":"1","message":"Saved","path":"' . $diskpath . '"}' );
+					if( substr( $saveresult, 0, 4 ) == 'fail' )
+					{
+						die( $saveresult );
+					}
+					else
+					{
+						//$Logger->log( '[friendoffice] Really saved from URL '. $args->args->path .' to ' . $diskpath );
+						die( 'ok<!--separate-->{"result":"1","message":"Saved","path":"' . $diskpath . '"}' );
+					}
 				}
 				//$Logger->log( '[FRIENDOFFICE] Could not save to ' . $diskpath );
 				die( 'fail<!--separate-->{"result":"0","message":"Failed to save document"}' );
@@ -268,7 +275,11 @@ if( $args->command )
 				$Logger->log( '[FRIENDOFFICE] Failed with source path. Trying to save anyway - could be failure: ' . $args->args->diskpath . '..' );
 				$f = new File( $args->args->diskpath );
 				$fd = new Door( reset( explode( ':', $args->args->diskpath ) ) . ':' );
-				if( $f->Load() ) $fileok = true;
+				if( $f->Load() ) 
+				{
+					$Logger->log( '[FRIENDOFFICE] File content: ' . $f->GetContent() );
+					$fileok = true;
+				}
 			}
 			
 			
