@@ -940,7 +940,7 @@ Application.lockCreateInfoFile = function( fileItem, fileinfo, forcemode = false
 				executelock = false;
 				setTimeout( function()
 				{
-					Notify( { 'title': i18n( 'i18n_error' ), 'text': 'Write protected. Copy file to different location.' } );
+					Notify( { 'title': 'Write protected', 'text': 'Copy file to different location.' } );
 				}, 250 );
 			} ); //'set_file_lock failed: ' + e + ' / ' + d );
 		}
