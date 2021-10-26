@@ -984,7 +984,6 @@ Application.tryAgain = function(errmsg)
         Application.sas = null;
     }
     
-	Application.documentPath = msg.path;
 	Application.notEditing = Application.replaceView = true;
 	Application.loadFile( Application.documentPath );
 }
