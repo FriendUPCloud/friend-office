@@ -39,7 +39,7 @@ i18n_document_seems_being_edited_suffix_override : . You can override that sessi
 i18n_presentation_was_saved_prefix : Your presentation 
 i18n_presentation_was_saved_suffix : was saved.
 i18n_error_saving        : Error saving presentation
-i18n_error_saving_text   : Could not save your presentation.
+i18n_error_saving_text   : Could not save your presentation. Is your disk full?
 i18n_no_files_selected    : No files selected
 i18n_no_image_to_insert   : No image to insert.
 

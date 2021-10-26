@@ -21,4 +21,4 @@ i18n_presentation_was_saved_prefix : Din presentasjon
 i18n_presentation_was_saved_suffix : ble lagret.
 
 i18n_error_saving        : Feil oppsto ved lagring
-i18n_error_saving_text   : Kunne ikke lagre din presentasjon.
+i18n_error_saving_text   : Kunne ikke lagre din presentasjon. Er disken full?

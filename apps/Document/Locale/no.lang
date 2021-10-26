@@ -37,7 +37,7 @@ i18n_no_image_to_insert   : Intet bilde å sette inn.
 i18n_document_was_saved_prefix : Ditt dokument
 i18n_document_was_saved_suffix : ble lagret.
 i18n_error_saving        : Kunne ikke lagre dokument
-i18n_error_saving_text   : Dokumentet ble ikke lagret.
+i18n_error_saving_text   : Dokumentet ble ikke lagret. Er disken full?
 
 i18n_file_is_locked               : Filen er låst for redigering
 i18n_file_is_locked_by            : Filen blir akkurat nå redigert av

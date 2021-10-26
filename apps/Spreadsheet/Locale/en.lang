@@ -42,7 +42,7 @@ i18n_no_files_selected    : No files selected
 i18n_no_image_to_insert   : No image to insert.
 
 i18n_error_saving        : Error saving spreadsheet
-i18n_error_saving_text   : Could not save your spreadsheet.
+i18n_error_saving_text   : Could not save your spreadsheet. Is your disk full?
 
 i18n_file_is_locked               : File is locked for editing
 i18n_file_is_locked_by            : The file is currently being edited by 

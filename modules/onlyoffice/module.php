@@ -340,9 +340,20 @@ if( $args->command )
 					$saveresult = writeLockInfo($f->path, $fd->ID, $fileinfo );
 
 					if( $saveresult )
-						die( 'ok<!--separate-->' . json_encode( $fileinfo ) );
+					{
+						if( substr( $saveresult, 0, 4 ) == 'fail' )
+						{
+							die( $saveresult );
+						}
+						else
+						{
+							die( 'ok<!--separate-->' . json_encode( $fileinfo ) );
+						}
+					}
 					else
+					{
 						die( 'fail<!--separate-->{"error":"500","errormessage":"Could not save to .info file"}' );
+					}
 				}
 				else if( $args->args->fileinfo->user_to_release  )
 				{
@@ -374,9 +385,20 @@ if( $args->command )
 						$saveresult = writeLockInfo($f->path, $fd->ID, $fileinfo );
 			
 						if( $saveresult )
-							die( 'ok<!--separate-->' . json_encode( $fileinfo ) );
+						{
+							if( substr( $saveresult, 0, 4 ) == 'fail' )
+							{
+								die( $saveresult );
+							}
+							else
+							{
+								die( 'ok<!--separate-->' . json_encode( $fileinfo ) );
+							}
+						}
 						else
+						{
 							die( 'fail<!--separate-->{"error":"500","errormessage":"Could not save fileinfo"}' );
+						}
 					}
 
 				}
@@ -387,46 +409,59 @@ if( $args->command )
 
 					if( $saveresult )
 					{
-						//$Logger->log( '[friendoffice] We saved our info file!' . json_encode( $args->args->fileinfo ) );
-						//lock is set. lets see if we have a key to create a copy of our original file.
-						if( isset( $args->args->fileinfo->lock_document_key ) )
+						if( substr( $saveresult, 0, 4 ) == 'fail' )
 						{
-							//create shadow copy of original file
-							$lockFileName =  getLockCopyFileName( $f->path, $args->args->fileinfo->lock_document_key );
-							
-							$f3 = new File( $lockFileName );
-							if( $ru ) $f3->SetAuthContext('servertoken',$ru->ServerToken);
-							
-							$saveresult = $f3->Save( $f->GetContent() );
-							$Logger->log( '[FRIENDOFFICE] Saved lock info: ' . $f3->path . ' (' . $lockFileName . ')' . print_r( $args->args->fileinfo, 1 ) . 'Result: ' . $saveresult . "\n---\n" );
-							
-							if( $args->command == 'set_file_lock' && $saveresult )
-							{
-								//$Logger->log( '[friendoffice] We saved our shadow copy!' . $lockFileName );
-								
-								//we have made a copy.
-								$args->args->fileinfo->shadowcopy = true;
-								$args->args->fileinfo->shadowfile = ( $ru && isset($ru->ID) ? $ru->ID . '::' : '' ) . $lockFileName;
-								
-								//a bit double up here... but for workgroup drive this should not be that big an issue...
-								// save and return update // or error
-								$saveresult = writeLockInfo($f->path, $fd->ID, $args->args->fileinfo );
-								if( !$saveresult ) die( 'fail<!--separate-->{"error":"500","errormessage":"Could not save fileinfo in line 280"}' );
-								
-								//$Logger->log( '[friendoffice] We saved our info to include the new shadowfile!' . json_encode( $args->args->fileinfo ) );
-							}
-							else
-							{
-								$f3->Delete();
-							}
+							die( $saveresult );
 						}
 						else
 						{
-							$Logger->log( '[friendoffice] no key ??? ' .  print_r($args->args,1));
-							die( 'fail<!--separate-->{"error":"500","errormessage":"Invalid request"}' );
+							//$Logger->log( '[friendoffice] We saved our info file!' . json_encode( $args->args->fileinfo ) );
+							//lock is set. lets see if we have a key to create a copy of our original file.
+							if( isset( $args->args->fileinfo->lock_document_key ) )
+							{
+								//create shadow copy of original file
+								$lockFileName =  getLockCopyFileName( $f->path, $args->args->fileinfo->lock_document_key );
 							
+								$f3 = new File( $lockFileName );
+								if( $ru ) $f3->SetAuthContext('servertoken',$ru->ServerToken);
+							
+								$saveresult = $f3->Save( $f->GetContent() );
+								if( $saveresult && substr( $saveresult, 0, 4 ) != 'fail' )
+								{
+									$Logger->log( '[FRIENDOFFICE] Saved lock info: ' . $f3->path . ' (' . $lockFileName . ')' . print_r( $args->args->fileinfo, 1 ) . 'Result: ' . $saveresult . "\n---\n" );
+							
+									if( $args->command == 'set_file_lock' && $saveresult )
+									{
+										//$Logger->log( '[friendoffice] We saved our shadow copy!' . $lockFileName );
+								
+										//we have made a copy.
+										$args->args->fileinfo->shadowcopy = true;
+										$args->args->fileinfo->shadowfile = ( $ru && isset($ru->ID) ? $ru->ID . '::' : '' ) . $lockFileName;
+								
+										//a bit double up here... but for workgroup drive this should not be that big an issue...
+										// save and return update // or error
+										$saveresult = writeLockInfo($f->path, $fd->ID, $args->args->fileinfo );
+										if( !$saveresult ) die( 'fail<!--separate-->{"error":"500","errormessage":"Could not save fileinfo in line 280"}' );
+								
+										//$Logger->log( '[friendoffice] We saved our info to include the new shadowfile!' . json_encode( $args->args->fileinfo ) );
+									}
+									else
+									{
+										$f3->Delete();
+									}
+								}
+								else
+								{
+									die( $saveresult ? $saveresult : 'fail<!--separate-->{"error":"501","errormessage":"Invalid request"}' );
+								}
+							}
+							else
+							{
+								$Logger->log( '[friendoffice] no key ??? ' .  print_r($args->args,1));
+								die( 'fail<!--separate-->{"error":"500","errormessage":"Invalid request"}' );
+							}
+							die( 'ok<!--separate-->' . json_encode( $args->args->fileinfo ) );
 						}
-						die( 'ok<!--separate-->' . json_encode( $args->args->fileinfo ) );
 					}
 					else
 					{
@@ -488,7 +523,16 @@ if( $args->command )
 					$saveresult = writeLockInfo($f->path, $fd->ID, $fileinfo );
 		
 					if( $saveresult )
-						die( 'ok<!--separate-->' . json_encode( $fileinfo ) );
+					{
+						if( substr( $saveresult, 0, 4 ) == 'fail' )
+						{
+							die( $saveresult );
+						}
+						else
+						{
+							die( 'ok<!--separate-->' . json_encode( $fileinfo ) );
+						}
+					}
 					else
 						die( 'fail<!--separate-->{"error":"500","errormessage":"Could not save fileinfo with set_user_appview_id"}' );
 				}
