@@ -635,7 +635,7 @@ Application.checkState = function()
 			if( result && result.data && result.data == true )
 			{
 				//ok == we want to save and then quit
-				Application.documentView.sendMessage( { 'command': 'save', 'quit_after_save': true} );
+				Application.documentView.sendMessage( { 'command': 'save', 'quit_after_save': true } );
 			}
 			else if( result && result.data && result.data == "-1" )
 			{

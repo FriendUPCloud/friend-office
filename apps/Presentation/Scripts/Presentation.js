@@ -584,15 +584,15 @@ Application.createView = function( fileToOpen )
 
 Application.checkState = function()
 {
-	if( Application.editState == 'edited' && Application.documentPath === false )
+	if( Application.editState == 'edited' )
 	{
-		Confirm(i18n('i18n_unsaved_changes'),i18n('i18n_really_quit'),function( result )
+		Confirm( i18n('i18n_unsaved_changes'), i18n('i18n_really_quit'), function( result )
 		{
 			// Confirmed!
 			if( result && result.data && result.data == true )
 			{
 				//ok == we want to save and then quit
-				Application.documentView.sendMessage({'command':'save','quit_after_save':true});
+				Application.documentView.sendMessage( { 'command': 'save', 'quit_after_save': true } );
 			}
 			else if( result && result.data && result.data == "-1" )
 			{
@@ -604,19 +604,12 @@ Application.checkState = function()
 				Application.quit();
 
 			}
-		}, i18n('i18n_save'),i18n('i18n_dontsave'),i18n('i18n_cancel'), -1 );
+		}, i18n('i18n_save'), i18n('i18n_dontsave'), i18n('i18n_cancel'), -1 );
 		return false;
-	}
-	else if( Application.editState == 'edited' )
-	{
-		Application.documentView.sendMessage({'command':'save','quit_after_save':true});
-		return false;
-
 	}
 	else
 	{
 		Application.quit();
-
 	}
 }
 /*
