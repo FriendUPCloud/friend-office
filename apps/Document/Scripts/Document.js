@@ -1016,11 +1016,10 @@ Application.revalidateFileLock = function()
 /*
 	try again...somehow our initial doc opening doesnt work.
 */
-Application.tryAgain = function(errmsg, callback)
+Application.tryAgain = function( errmsg, callback )
 {
 	if( errmsg ) console.log(errmsg);
 	let nextTryPath = Application.documentPath;
-	let quitme = Application.quit;
 
 	if( Application.retries > 1 )
 	{

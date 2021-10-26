@@ -887,7 +887,16 @@ Application.lockCreateInfoFile = function( fileItem, fileinfo, forcemode = false
 		}
 		else
 		{
-			Application.tryAgain( 'Could not set lock file. Please download your document instead.' ); //'set_file_lock failed: ' + e + ' / ' + d );
+			Application.tryAgain( 'Could not set lock file. Please download your spreadsheet instead.', function()
+			{
+				Application.loadFileIntoEditor( Application.fileItem, Application.fileInfo, 'view' );
+				Application.documentView.setMenuItems( Application.editOnlyMenuItems );
+				executelock = false;
+				setTimeout( function()
+				{
+					Notify( { 'title': 'Write protected', 'text': 'Copy file to different location.' } );
+				}, 250 );
+			} ); //'set_file_lock failed: ' + e + ' / ' + d );
 		}
 	}
 	m.execute( 'set_file_lock', {"diskpath" : fileItem.Path, "fileinfo" : fileinfo, "sourcepath":(fileItem.SourcePath?fileItem.SourcePath:false), "previouslock": Application.previousFileLock, "forcemode":(forcemode?'YES':'NO') } );	
@@ -959,21 +968,23 @@ Application.revalidateFileLock = function()
 /*
 	try again...somehow our initial doc opening doesnt work.
 */
-Application.tryAgain = function(errmsg)
+Application.tryAgain = function( errmsg, callback )
 {
 	if( errmsg ) console.log(errmsg);
-	var nextTryPath = Application.documentPath;
-	var quitme = Application.quit;
-	var wrap = function()
-	{
-		Notify( {'title':i18n('i18n_error'),'text': i18n( errmsg ? errmsg : 'An error occurred opening your spreadsheet.' ) } );
-		Application.quit();
-	}
-
+	let nextTryPath = Application.documentPath;
+	
 	if( Application.retries > 1 )
 	{
-		Notify( {'title':i18n('i18n_error'),'text': i18n( errmsg ? errmsg : 'An error occurred opening your spreadsheet.' ) } );
-		Application.quit();
+		if( callback )
+		{
+			return callback();
+		}
+		else
+		{
+			Notify( {'title':i18n('i18n_error'),'text': i18n( errmsg ? errmsg : 'An error occurred opening your spreadsheet.' ) } );
+			Application.quit();
+			return;
+		}
 	}
 	Application.retries++;
 
