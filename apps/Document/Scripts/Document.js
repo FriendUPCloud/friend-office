@@ -933,7 +933,12 @@ Application.lockCreateInfoFile = function( fileItem, fileinfo, forcemode = false
 		}
 		else
 		{
-			Application.tryAgain( 'Could not set lock file. Please download your document instead.' ); //'set_file_lock failed: ' + e + ' / ' + d );
+			Application.tryAgain( 'Could not set lock file. Please download your document instead.', function()
+			{
+				Application.loadFileIntoEditor( Application.fileItem, Application.fileInfo, 'view' );
+				Application.documentView.setMenuItems( Application.editOnlyMenuItems );
+				executelock = false;
+			} ); //'set_file_lock failed: ' + e + ' / ' + d );
 		}
 	}
 	m.execute( 'set_file_lock', {"diskpath" : fileItem.Path, "fileinfo" : fileinfo, "sourcepath":(fileItem.SourcePath?fileItem.SourcePath:false), "previouslock": Application.previousFileLock, "forcemode":(forcemode?'YES':'NO') } );	
@@ -1007,21 +1012,35 @@ Application.revalidateFileLock = function()
 /*
 	try again...somehow our initial doc opening doesnt work.
 */
-Application.tryAgain = function(errmsg)
+Application.tryAgain = function(errmsg, callback)
 {
 	if( errmsg ) console.log(errmsg);
 	let nextTryPath = Application.documentPath;
 	let quitme = Application.quit;
 	let wrap = function()
 	{
-		Notify( {'title':i18n('i18n_error'),'text': i18n( errmsg ? errmsg : 'An error occurred opening your document.' ) } );
-		Application.quit();
+		if( callback )
+		{
+			callback();
+		}
+		else
+		{
+			Notify( {'title':i18n('i18n_error'),'text': i18n( errmsg ? errmsg : 'An error occurred opening your document.' ) } );
+			Application.quit();
+		}
 	}
 
 	if( Application.retries > 1 )
 	{
-		Notify( {'title':i18n('i18n_error'),'text': i18n( errmsg ? errmsg : 'An error occurred opening your document.' ) } );
-		Application.quit();
+		if( callback )
+		{
+			callback();
+		}
+		else
+		{
+			Notify( {'title':i18n('i18n_error'),'text': i18n( errmsg ? errmsg : 'An error occurred opening your document.' ) } );
+			Application.quit();
+		}
 	}
 	Application.retries++;
 
