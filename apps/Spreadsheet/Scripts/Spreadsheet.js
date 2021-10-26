@@ -965,13 +965,13 @@ Application.tryAgain = function(errmsg)
 	var quitme = Application.quit;
 	var wrap = function()
 	{
-		//Notify( {'title':i18n('i18n_error'),'text':i18n('i18n_unexpected_error_retrying')} );
+		Notify( {'title':i18n('i18n_error'),'text': i18n( errmsg ? errmsg : 'An error occurred opening your spreadsheet.' ) } );
 		Application.quit();
 	}
 
 	if( Application.retries > 1 )
 	{
-		//Notify( {'title':i18n('i18n_error'),'text':i18n('i18n_unexpected_error_retrying')} ); 
+		Notify( {'title':i18n('i18n_error'),'text': i18n( errmsg ? errmsg : 'An error occurred opening your spreadsheet.' ) } );
 		Application.quit();
 	}
 	Application.retries++;
