@@ -722,7 +722,7 @@ Application.checkFileLock = function( fileItem )
 						}
 						else
 						{
-							Application.tryAgain('file lock not in sync');		
+							Application.tryAgain( 'File lock is not in sync, aborting.' );		
 							return;
 						}
 					}
@@ -744,7 +744,7 @@ Application.checkFileLock = function( fileItem )
 		}
 		else
 		{
-			Application.tryAgain('load_document_info failed' + d );
+			Application.tryAgain( 'Could not load document info.' );
 		}
 	}
 	m.execute( 'load_document_info', {"diskpath" : fileItem.Path, "sourcepath":(fileItem.SourcePath?fileItem.SourcePath:false) } );
@@ -884,7 +884,7 @@ Application.lockCreateInfoFile = function( fileItem, fileinfo, forcemode = false
 		}
 		else
 		{
-			Application.tryAgain('set_file_lock failed: ' + e + ' / ' + d );
+			Application.tryAgain( 'Could not set lock file. Please download your document instead.' ); //'set_file_lock failed: ' + e + ' / ' + d );
 		}
 	}
 	m.execute( 'set_file_lock', {"diskpath" : fileItem.Path, "fileinfo" : fileinfo, "sourcepath":(fileItem.SourcePath?fileItem.SourcePath:false), "previouslock": Application.previousFileLock, "forcemode":(forcemode?'YES':'NO') } );	
@@ -935,8 +935,8 @@ Application.revalidateFileLock = function()
 				{
 					// this might happen if somebody sneaked into the lock file after we tried to set our lock... we will just join that other 
 					// users session...			
-					Notify({'title':i18n('i18n_could_not_lock_file'),'text':i18n('18in_lockfile_error') });
-					Application.tryAgain('file lock got out of sync');
+					//Notify({'title':i18n('i18n_could_not_lock_file'),'text':i18n('18in_lockfile_error') });
+					Application.tryAgain( 'The file lock got out of sync.' ); //'file lock got out of sync');
 				}
 			}
 			catch (e )
@@ -947,7 +947,7 @@ Application.revalidateFileLock = function()
 		}
 		else
 		{
-			Application.tryAgain('revalidate failed');
+			Application.tryAgain( 'Could not revalidate document.' ); //'revalidate failed');
 		}
 	}
 	m.execute( 'load_document_info', {"diskpath" : Application.documentPath, "sourcepath":(Application.fileItem.SourcePath?Application.fileItem.SourcePath:false) } );
