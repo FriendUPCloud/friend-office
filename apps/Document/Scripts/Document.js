@@ -1018,29 +1018,18 @@ Application.tryAgain = function(errmsg, callback)
 	if( errmsg ) console.log(errmsg);
 	let nextTryPath = Application.documentPath;
 	let quitme = Application.quit;
-	let wrap = function()
-	{
-		if( callback )
-		{
-			callback();
-		}
-		else
-		{
-			Notify( {'title':i18n('i18n_error'),'text': i18n( errmsg ? errmsg : 'An error occurred opening your document.' ) } );
-			Application.quit();
-		}
-	}
 
 	if( Application.retries > 1 )
 	{
 		if( callback )
 		{
-			callback();
+			return callback();
 		}
 		else
 		{
 			Notify( {'title':i18n('i18n_error'),'text': i18n( errmsg ? errmsg : 'An error occurred opening your document.' ) } );
 			Application.quit();
+			return;
 		}
 	}
 	Application.retries++;
