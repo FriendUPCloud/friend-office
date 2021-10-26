@@ -277,7 +277,6 @@ if( $args->command )
 				$fd = new Door( reset( explode( ':', $args->args->diskpath ) ) . ':' );
 				if( $f->Load() ) 
 				{
-					$Logger->log( '[FRIENDOFFICE] File content: ' . $f->GetContent() );
 					$fileok = true;
 				}
 			}
