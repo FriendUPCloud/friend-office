@@ -938,7 +938,7 @@ Application.lockCreateInfoFile = function( fileItem, fileinfo, forcemode = false
 				Application.loadFileIntoEditor( Application.fileItem, Application.fileInfo, 'view' );
 				Application.documentView.setMenuItems( Application.editOnlyMenuItems );
 				executelock = false;
-				Notify( { 'title': i18n( 'i18n_error' ), 'text': 'Could not set lock file. Opening read-only.' } );
+				Notify( { 'title': i18n( 'i18n_error' ), 'text': 'Write protected. Copy file to different location.' } );
 			} ); //'set_file_lock failed: ' + e + ' / ' + d );
 		}
 	}
