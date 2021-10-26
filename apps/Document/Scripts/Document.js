@@ -935,10 +935,10 @@ Application.lockCreateInfoFile = function( fileItem, fileinfo, forcemode = false
 		{
 			Application.tryAgain( 'Could not set lock file. Please download your document instead.', function()
 			{
-				Notify( { 'title': i18n( 'i18n_error' ), 'text': 'Could not set lock file. Is the disk full? Opening in read-only mode.' } );
 				Application.loadFileIntoEditor( Application.fileItem, Application.fileInfo, 'view' );
 				Application.documentView.setMenuItems( Application.editOnlyMenuItems );
 				executelock = false;
+				Notify( { 'title': i18n( 'i18n_error' ), 'text': 'Could not set lock file. Opening read-only.' } );
 			} ); //'set_file_lock failed: ' + e + ' / ' + d );
 		}
 	}
