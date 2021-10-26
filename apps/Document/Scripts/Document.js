@@ -34,6 +34,7 @@ Application.notEditing = true;
 Application.userAddedToFileLock = false;
 Application.documentPath = false;
 
+var executelock = false;
 
 /*
 	OnlyOffice Based Word processor
@@ -803,7 +804,7 @@ Application.checkFileLock = function( fileItem )
 */
 Application.lockFileForEditing = function( fileItem, fileinfo )
 {
-	let executelock = true;
+	executelock = true;
 	let editstatus = 'OPEN';
 	
 	fileItem.fileKey = fileinfo.lock_document_key = Application.createFileKey( Application.fileItem );
