@@ -174,7 +174,7 @@ if( $args->command )
 				if( $ru->Load() && $ru->ServerToken )
 				{
 					//$Logger->log( '[FRIENDOFFICE] Owner loaded (' . $owner . ')' );
-					$f = new File( $path );
+					$f = new File( $path, 'servertoken', $ru->ServerToken );
 					$f->SetAuthContext( 'servertoken', $ru->ServerToken );
 					if( $f->Load( $path ) )
 					{
@@ -192,7 +192,6 @@ if( $args->command )
 				{
 					die('fail<!--separate-->{"message":"user shared and has no servertoken; something is fishy"}');
 				}
-				
 			}
 
 			if( $f === false )
