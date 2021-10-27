@@ -126,19 +126,26 @@ if( $args->command )
 				if( strstr( $diskpath, '::' ) )
 				{
 					$data = explode( '::', $diskpath );
-					$d = new dbIO( 'FUser' );
-					if( $d->Load( $data[0] ) )
+					if( $data[0] != $User->ID )
 					{
-						$filename = explode( ':' . $data[1] );
-						if( strstr( $filename[1], '/' ) )
-							$filename = explode( '/', $filename[1] );
-						$filename = $filename[ count( $filename ) - 1 ];
-						$diskpath = 'Shared:' . $d->Name . '/' . $filename );
-						$f = new File( $diskpath );
+						$d = new dbIO( 'FUser' );
+						if( $d->Load( $data[0] ) )
+						{
+							$filename = explode( ':' . $data[1] );
+							if( strstr( $filename[1], '/' ) )
+								$filename = explode( '/', $filename[1] );
+							$filename = $filename[ count( $filename ) - 1 ];
+							$diskpath = 'Shared:' . $d->Name . '/' . $filename );
+							$f = new File( $diskpath );
+						}
+						else
+						{
+							die( 'fail<!--separate-->{"response":"0","message":"No such file owner."}' );
+						}
 					}
 					else
 					{
-						die( 'fail<!--separate-->{"response":"0","message":"No such file owner."}' );
+						$f = new File( $diskpath );
 					}
 				}
 				else
