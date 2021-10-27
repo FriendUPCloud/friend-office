@@ -104,6 +104,17 @@ if( $args->command )
 			//make sure we dont fiddle around with shadow file pathes			
 			$diskpath = getOriginalFilePath( $args->args->diskpath );
 			
+			// Check for the source user
+			$sourceUser = false;
+			if( strstr( $diskpath, '::' ) )
+			{
+				$id = explode( '::', $diskpath );
+				$diskpath = $diskpath[1];
+				
+				$sourceUser = new dbIO( 'FUser' );
+				$sourceUser->Load( $id );
+			}
+			
 			//$Logger->log('DISKPATH ' . $diskpath );
 			
 			$c = curl_init();
@@ -121,7 +132,14 @@ if( $args->command )
 			if( strlen( $r ) )
 			{	
 				//$Logger->log( '[FRIENDOFFICE] Result of save: ' . $r );
-				$f = new File( $diskpath );
+				if( $sourceUser )
+				{
+					$f = new File( $diskpath, 'servertoken', $sourceUser->ServerToken );
+				}
+				else
+				{
+					$f = new File( $diskpath );
+				}
 				$saveresult = $f->Save( $r );
 				//$Logger->log( '[FRIENDOFFICE]  saved a file here line 118 ' .  print_r( $saveresult ));
 				if( $saveresult )
