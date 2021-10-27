@@ -131,6 +131,7 @@ if( $args->command )
 					{
 						$diskpath = $data[1];
 						$f = new File( $diskpath, 'servertoken', $d->ServerToken );
+						// TODO: Check relationship between user $d and user $User!!!!!!
 					}
 					else
 					{
