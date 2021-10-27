@@ -904,11 +904,11 @@ Application.setUserViewID = function( docViewID )
 		//console.log('file lock set?', d);
 		if( e == 'ok' )
 		{
-			console.log('view id set' + d);
+			//console.log('view id set' + d);
 		}
 		else
 		{
-			console.log('could not set viewid' + d);
+			//console.log('could not set viewid' + d);
 		}
 	}
 	m.execute( 'set_user_appview_id', {
