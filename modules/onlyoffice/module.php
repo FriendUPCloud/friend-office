@@ -129,9 +129,12 @@ if( $args->command )
 					$d = new dbIO( 'FUser' );
 					if( $d->Load( $data[0] ) )
 					{
-						$diskpath = $data[1];
-						$f = new File( $diskpath, 'servertoken', $d->ServerToken );
-						// TODO: Check relationship between user $d and user $User!!!!!!
+						$filename = explode( ':' . $data[1] );
+						if( strstr( $filename[1], '/' ) )
+							$filename = explode( '/', $filename[1] );
+						$filename = $filename[ count( $filename ) - 1 ];
+						$diskpath = 'Shared:' . $d->Name . '/' . $filename );
+						$f = new File( $diskpath );
 					}
 					else
 					{
