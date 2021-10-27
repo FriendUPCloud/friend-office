@@ -104,17 +104,6 @@ if( $args->command )
 			//make sure we dont fiddle around with shadow file pathes			
 			$diskpath = getOriginalFilePath( $args->args->diskpath );
 			
-			// Check for the source user
-			$sourceUser = false;
-			if( strstr( $diskpath, '::' ) )
-			{
-				$id = explode( '::', $diskpath );
-				$diskpath = $diskpath[1];
-				
-				$sourceUser = new dbIO( 'FUser' );
-				$sourceUser->Load( $id );
-			}
-			
 			//$Logger->log('DISKPATH ' . $diskpath );
 			
 			$c = curl_init();
@@ -132,9 +121,21 @@ if( $args->command )
 			if( strlen( $r ) )
 			{	
 				//$Logger->log( '[FRIENDOFFICE] Result of save: ' . $r );
-				if( $sourceUser )
+				
+				// User disk?
+				if( strstr( $diskpath, '::' ) )
 				{
-					$f = new File( $diskpath, 'servertoken', $sourceUser->ServerToken );
+					$data = explode( '::', $diskpath );
+					$d = new dbIO( 'FUser' );
+					if( $d->Load( $data[0] ) )
+					{
+						$diskpath = $data[1];
+						$f = new File( $diskpath, 'servertoken', $d->ServerToken );
+					}
+					else
+					{
+						die( 'fail<!--separate-->{"response":"0","message":"No such file owner."}' );
+					}
 				}
 				else
 				{
