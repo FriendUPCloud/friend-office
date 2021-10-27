@@ -137,7 +137,7 @@ if( $args->command )
 							if( strstr( $filename[1], '/' ) )
 								$filename = explode( '/', $filename[1] );
 							$filename = $filename[ count( $filename ) - 1 ];
-							$diskpath = 'Shared:' . $d->Name . '/' . $filename );
+							$diskpath = 'Shared:' . $d->Name . '/' . $filename;
 							$f = new File( $diskpath );
 						}
 						else
