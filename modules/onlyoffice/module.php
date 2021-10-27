@@ -126,6 +126,8 @@ if( $args->command )
 				if( strstr( $diskpath, '::' ) )
 				{
 					$data = explode( '::', $diskpath );
+					
+					// Owner is not me!
 					if( $data[0] != $User->ID )
 					{
 						$d = new dbIO( 'FUser' );
