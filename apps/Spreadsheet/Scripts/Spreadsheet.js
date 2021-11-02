@@ -34,6 +34,7 @@ Application.notEditing = true;
 Application.userAddedToFileLock = false;
 Application.documentPath = false;
 
+var executelock = false;
 
 /*
 	OnlyOffice Based spreadsheet app
@@ -586,15 +587,15 @@ Application.createView = function( fileToOpen )
 
 Application.checkState = function()
 {
-	if( Application.editState == 'edited' && Application.documentPath === false )
+	if( Application.editState == 'edited' )
 	{
-		Confirm(i18n('i18n_unsaved_changes'),i18n('i18n_really_quit'),function( result )
+		Confirm( i18n('i18n_unsaved_changes'), i18n('i18n_really_quit'), function( result )
 		{
 			// Confirmed!
 			if( result && result.data && result.data == true )
 			{
 				//ok == we want to save and then quit
-				Application.documentView.sendMessage({'command':'save','quit_after_save':true});
+				Application.documentView.sendMessage( { 'command': 'save', 'quit_after_save': true } );
 			}
 			else if( result && result.data && result.data == "-1" )
 			{
@@ -606,19 +607,12 @@ Application.checkState = function()
 				Application.quit();
 
 			}
-		}, i18n('i18n_save'),i18n('i18n_dontsave'),i18n('i18n_cancel'), -1 );
+		}, i18n('i18n_save'), i18n('i18n_dontsave'), i18n('i18n_cancel'), -1 );
 		return false;
-	}
-	else if( Application.editState == 'edited' )
-	{
-		Application.documentView.sendMessage({'command':'save','quit_after_save':true});
-		return false;
-
 	}
 	else
 	{
 		Application.quit();
-
 	}
 }
 /*
@@ -725,7 +719,7 @@ Application.checkFileLock = function( fileItem )
 						}
 						else
 						{
-							Application.tryAgain('file lock not in sync');		
+							Application.tryAgain( 'File lock is not in sync, aborting.' );		
 							return;
 						}
 					}
@@ -747,7 +741,7 @@ Application.checkFileLock = function( fileItem )
 		}
 		else
 		{
-			Application.tryAgain('load_document_info failed' + d );
+			Application.tryAgain( 'Could not load document info.' );
 		}
 	}
 	m.execute( 'load_document_info', {"diskpath" : fileItem.Path, "sourcepath":(fileItem.SourcePath?fileItem.SourcePath:false) } );
@@ -758,7 +752,7 @@ Application.checkFileLock = function( fileItem )
 */
 Application.lockFileForEditing = function( fileItem, fileinfo )
 {
-	let executelock = true;
+	executelock = true;
 	let editstatus = 'OPEN';
 	
 	fileItem.fileKey = fileinfo.lock_document_key = Application.createFileKey( Application.fileItem );
@@ -887,7 +881,16 @@ Application.lockCreateInfoFile = function( fileItem, fileinfo, forcemode = false
 		}
 		else
 		{
-			Application.tryAgain('set_file_lock failed: ' + e + ' / ' + d );
+			Application.tryAgain( 'Could not set lock file. Please download your spreadsheet instead.', function()
+			{
+				Application.loadFileIntoEditor( Application.fileItem, Application.fileInfo, 'view' );
+				Application.documentView.setMenuItems( Application.editOnlyMenuItems );
+				executelock = false;
+				setTimeout( function()
+				{
+					Notify( { 'title': 'Write protected', 'text': 'Copy file to different location.' } );
+				}, 250 );
+			} ); //'set_file_lock failed: ' + e + ' / ' + d );
 		}
 	}
 	m.execute( 'set_file_lock', {"diskpath" : fileItem.Path, "fileinfo" : fileinfo, "sourcepath":(fileItem.SourcePath?fileItem.SourcePath:false), "previouslock": Application.previousFileLock, "forcemode":(forcemode?'YES':'NO') } );	
@@ -904,11 +907,11 @@ Application.setUserViewID = function( docViewID )
 		//console.log('file lock set?', d);
 		if( e == 'ok' )
 		{
-			console.log('view id set' + d);
+			//console.log('view id set' + d);
 		}
 		else
 		{
-			console.log('could not set viewid' + d);
+			//console.log('could not set viewid' + d);
 		}
 	}
 	m.execute( 'set_user_appview_id', {
@@ -938,8 +941,8 @@ Application.revalidateFileLock = function()
 				{
 					// this might happen if somebody sneaked into the lock file after we tried to set our lock... we will just join that other 
 					// users session...			
-					Notify({'title':i18n('i18n_could_not_lock_file'),'text':i18n('18in_lockfile_error') });
-					Application.tryAgain('file lock got out of sync');
+					//Notify({'title':i18n('i18n_could_not_lock_file'),'text':i18n('18in_lockfile_error') });
+					Application.tryAgain( 'The file lock got out of sync.' ); //'file lock got out of sync');
 				}
 			}
 			catch (e )
@@ -950,7 +953,7 @@ Application.revalidateFileLock = function()
 		}
 		else
 		{
-			Application.tryAgain('revalidate failed');
+			Application.tryAgain( 'Could not revalidate document.' ); //'revalidate failed');
 		}
 	}
 	m.execute( 'load_document_info', {"diskpath" : Application.documentPath, "sourcepath":(Application.fileItem.SourcePath?Application.fileItem.SourcePath:false) } );
@@ -959,21 +962,23 @@ Application.revalidateFileLock = function()
 /*
 	try again...somehow our initial doc opening doesnt work.
 */
-Application.tryAgain = function(errmsg)
+Application.tryAgain = function( errmsg, callback )
 {
 	if( errmsg ) console.log(errmsg);
-	var nextTryPath = Application.documentPath;
-	var quitme = Application.quit;
-	var wrap = function()
-	{
-		//Notify( {'title':i18n('i18n_error'),'text':i18n('i18n_unexpected_error_retrying')} );
-		Application.quit();
-	}
-
+	let nextTryPath = Application.documentPath;
+	
 	if( Application.retries > 1 )
 	{
-		//Notify( {'title':i18n('i18n_error'),'text':i18n('i18n_unexpected_error_retrying')} ); 
-		Application.quit();
+		if( callback )
+		{
+			return callback();
+		}
+		else
+		{
+			Notify( {'title':i18n('i18n_error'),'text': i18n( errmsg ? errmsg : 'An error occurred opening your spreadsheet.' ) } );
+			Application.quit();
+			return;
+		}
 	}
 	Application.retries++;
 
@@ -985,7 +990,6 @@ Application.tryAgain = function(errmsg)
         Application.sas = null;
     }
     
-	Application.documentPath = msg.path;
 	Application.notEditing = Application.replaceView = true;
 	Application.loadFile( Application.documentPath );
 }

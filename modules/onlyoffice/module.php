@@ -121,7 +121,39 @@ if( $args->command )
 			if( strlen( $r ) )
 			{	
 				//$Logger->log( '[FRIENDOFFICE] Result of save: ' . $r );
-				$f = new File( $diskpath );
+				
+				// User disk?
+				if( strstr( $diskpath, '::' ) )
+				{
+					$data = explode( '::', $diskpath );
+					
+					// Owner is not me!
+					if( $data[0] != $User->ID )
+					{
+						$d = new dbIO( 'FUser' );
+						if( $d->Load( $data[0] ) )
+						{
+							$filename = explode( ':' . $data[1] );
+							if( strstr( $filename[1], '/' ) )
+								$filename = explode( '/', $filename[1] );
+							$filename = $filename[ count( $filename ) - 1 ];
+							$diskpath = 'Shared:' . $d->Name . '/' . $filename;
+							$f = new File( $diskpath );
+						}
+						else
+						{
+							die( 'fail<!--separate-->{"response":"0","message":"No such file owner."}' );
+						}
+					}
+					else
+					{
+						$f = new File( $diskpath );
+					}
+				}
+				else
+				{
+					$f = new File( $diskpath );
+				}
 				$saveresult = $f->Save( $r );
 				//$Logger->log( '[FRIENDOFFICE]  saved a file here line 118 ' .  print_r( $saveresult ));
 				if( $saveresult )
@@ -174,7 +206,7 @@ if( $args->command )
 				if( $ru->Load() && $ru->ServerToken )
 				{
 					//$Logger->log( '[FRIENDOFFICE] Owner loaded (' . $owner . ')' );
-					$f = new File( $path );
+					$f = new File( $path, 'servertoken', $ru->ServerToken );
 					$f->SetAuthContext( 'servertoken', $ru->ServerToken );
 					if( $f->Load( $path ) )
 					{
@@ -192,7 +224,6 @@ if( $args->command )
 				{
 					die('fail<!--separate-->{"message":"user shared and has no servertoken; something is fishy"}');
 				}
-				
 			}
 
 			if( $f === false )
@@ -277,7 +308,6 @@ if( $args->command )
 				$fd = new Door( reset( explode( ':', $args->args->diskpath ) ) . ':' );
 				if( $f->Load() ) 
 				{
-					$Logger->log( '[FRIENDOFFICE] File content: ' . $f->GetContent() );
 					$fileok = true;
 				}
 			}
