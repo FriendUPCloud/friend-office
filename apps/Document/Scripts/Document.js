@@ -598,6 +598,7 @@ Application.createView = function( fileToOpen )
 			title: i18n( 'i18n_document' ),
 			width: 1280,
 			height: 1024,
+			flags: '',
 			invisible: (fileToOpen ? false : true ) //show loading thingy when opening files
 		} );
 		Application.documentView = v;
@@ -1224,7 +1225,8 @@ Application.showDocumentInformation = function()
 			title: i18n( 'i18n_document' ),
 			width: 280,
 			height: 280,
-			invisible: false
+			invisible: false,
+			flags: ''
 		} );
 
 		let s = '';
