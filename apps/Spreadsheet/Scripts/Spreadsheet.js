@@ -557,7 +557,7 @@ Application.createView = function( fileToOpen )
 			title: i18n( 'i18n_spreadsheet' ),
 			width: 1280,
 			height: 1024,
-			flags: '',
+			sandbox: '',
 			invisible: (fileToOpen ? false : true ) //show loading thingy when opening files
 		} );
 
@@ -1181,7 +1181,7 @@ Application.showDocumentInformation = function()
 			width: 280,
 			height: 280,
 			invisible: false,
-			flags: ''
+			sandbox: ''
 		} );
 
 		var s = '';
