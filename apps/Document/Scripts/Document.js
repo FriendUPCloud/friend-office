@@ -111,6 +111,7 @@ Application.run = function( msg )
 	{
 		Application.documentPath = Application.queuedFile = msg.args;
 		Application.checkDocumentInstances();
+		console.log( 'Executable opened with path (args): ', msg.args );
 	}
 	else
 	{
@@ -125,11 +126,13 @@ Application.run = function( msg )
 
 Application.checkDocumentInstances = function( path )
 {
+    console.log( 'Checking document instances on path: ' + path );
 	Application.getApplicationsByName('Document', function( rs ){
 		
 		if( rs.data && rs.data.length > 0 )
 		{
 			Application.otherInstanceCount = rs.data.length;
+			console.log( 'Ready to reveal document path..' );
 			Application.sendApplicationMessage( 'Document', { 'command':'revealdocumentpath' }, function( cdprs ) {
 				//nothing to do
 			} );

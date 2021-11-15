@@ -154,6 +154,7 @@ Application.receiveMessage = function( msg )
 			break;
 
 		case 'loaddoc':
+		    console.log( 'loaddoc: Trying to load document.' );
 			Application.loadDocument();
 			break;
 
@@ -443,6 +444,8 @@ Application.loadDocument = function()
 	let ext = Application.fileName.split( '.' ).pop();
 
 	Application.documentURL = Application.friendHost + "/fileaccess/getfile/"+ encodeURIComponent( Application.documentPath ) +"/user/" + Application.username + '/' + Application.authId + '/' + Application.viewId;
+	
+	console.log( 'Final clown url! -> ' + Application.documentURL );
 
 	let pconfig = {
 	    "document": {
