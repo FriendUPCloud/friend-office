@@ -45,6 +45,45 @@ Application.run = function( msg )
 	Application.setApplicationName( i18n( 'i18n_presentation' ) );
 	Application.openMessagePort( Application.appInterface );
 
+	// Set up the quick menu items ---------------------------------------------
+	Application.quickMenu = [ {
+	    name: i18n( 'menu_file' ),
+	    icon: 'caret-down',
+	    items: [ { 
+	        name: i18n( 'i18n_about' ), 
+	        icon: 'info',
+	        command: 'about' 
+	    }, { 
+		    name: i18n( 'i18n_newfile' ), 
+		    icon: 'file-text',
+		    command : 'new' 
+	    }, { 
+	        name: i18n( 'i18n_openfile' ), 
+	        icon: 'folder-open',
+	        command : 'open'
+        }, { 
+            name: i18n( 'i18n_save' ), 
+            icon: 'save',
+            command : 'save' 
+        }, { 
+            name: i18n( 'i18n_save_as' ), 
+            icon: 'copy',
+            command : 'save_as' 
+        }, { 
+            name: i18n( 'i18n_quit' ), 
+            icon: 'window-close',
+            command : 'ask_quit' 
+        } ]
+	} ];
+	
+	Application.quickMenuEditOnly = [ {
+		name: i18n( 'i18n_file' ),
+		icon: 'window-close',
+		items: [
+			{ name: i18n( 'i18n_quit' ), command : 'quit' }
+		]
+	} ];
+	
 	Application.menuItems = [
 		{
 			name: i18n( 'i18n_file' ),
@@ -562,6 +601,7 @@ Application.createView = function( fileToOpen )
 		Application.documentView = v;
 
 		v.setMenuItems( Application.menuItems );
+		v.setQuickMenu( Application.quickMenu );
 		v.setContent('');
 		if( fileToOpen ) v.setFlag( 'loadinganimation', true );
 
@@ -798,6 +838,7 @@ Application.fileisLocked = function()
 			// open read only here
 			Application.loadFileIntoEditor( Application.fileItem, Application.fileInfo, 'view' );
 			Application.documentView.setMenuItems( Application.editOnlyMenuItems );
+			Application.documentView.setQuickMenu( Application.quickMenuEditOnly );
 			executelock = false;
 		}
 		else
@@ -831,6 +872,7 @@ Application.askforOverride = function(fileItem, fileinfo)
 			// open read only here
 			Application.loadFileIntoEditor( Application.fileItem, Application.fileInfo, 'view' );
 			Application.documentView.setMenuItems( Application.editOnlyMenuItems );
+			Application.documentView.setQuickMenu( Application.quickMenuEditOnly );
 			Application.ignoreFileLock = true;
 		}
 		else
@@ -883,6 +925,7 @@ Application.lockCreateInfoFile = function( fileItem, fileinfo, forcemode = false
 			{
 				Application.loadFileIntoEditor( Application.fileItem, Application.fileInfo, 'view' );
 				Application.documentView.setMenuItems( Application.editOnlyMenuItems );
+				Application.documentView.setQuickMenu( Application.quickMenuEditOnly );
 				executelock = false;
 				setTimeout( function()
 				{
