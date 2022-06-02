@@ -47,17 +47,9 @@ Application.run = function( msg )
 
     // Set up the quick menu items ---------------------------------------------
 	Application.quickMenu = [ {
-	    name: i18n( 'menu_file' ),
+	    name: i18n( 'i18n_file' ),
 	    icon: 'caret-down',
 	    items: [ { 
-	        name: i18n( 'i18n_about' ), 
-	        icon: 'info',
-	        command: 'about' 
-	    }, { 
-		    name: i18n( 'i18n_newfile' ), 
-		    icon: 'file-text',
-		    command : 'new' 
-	    }, { 
 	        name: i18n( 'i18n_openfile' ), 
 	        icon: 'folder-open',
 	        command : 'open'
@@ -70,6 +62,10 @@ Application.run = function( msg )
             icon: 'copy',
             command : 'save_as' 
         }, { 
+	        name: i18n( 'i18n_about' ), 
+	        icon: 'info',
+	        command: 'about' 
+	    }, { 
             name: i18n( 'i18n_quit' ), 
             icon: 'window-close',
             command : 'ask_quit' 
